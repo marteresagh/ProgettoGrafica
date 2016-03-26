@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- background: #fff -->
 <!-- color: #000 -->
 
@@ -238,3 +239,6 @@ And find us on [Twitter](https://twitter.com/swipe_to) and [Facebook](https://ww
 
 	
 
+=======
+# ProgettoGrafica
+>>>>>>> 7fb501fe9ed5944c1db7d90afcd6a51134f66bc9
