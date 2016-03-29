@@ -84,8 +84,6 @@ Camera dell'Assemblea:
 
 #### Camera dell'Assemblea:
 ![Assembly](https://upload.wikimedia.org/wikipedia/commons/4/46/Sangshad_Assembly_Hall.jpg)
-
-#### Tetto della sala dell'Assemblea:
 ![tetto](http://www.epab.bme.hu/hallg/CADalk-AC/2011v/ARNJ81O6/National%20Assembly.jpg)
 ![Tetto](http://archnet.org/system/media_contents/contents/26150/original/IAA17549.jpg?1384701707)
 
@@ -98,6 +96,19 @@ Camera dell'Assemblea:
 ![vista](http://www.oroeditions.com/sites/all/files/oroweb_interior_kahn_03.jpg)
 ![da dentro up](http://www.akdn.org/architecture/img/75/40.jpg)
 
+***
+
+## RIFERIMENTI
+
+- [Sito riferimento](http://en.banglapedia.org/index.php?title=Jatiya_Sangsad_Bhaban)
+- [sito](http://www.londoni.co/index.php/who-s-who?id=325)
+- Documentario:[film](https://vimeo.com/9418890)
+
+***
+
+## AUTORE
+
+Maria Teresa Graziano
 
 
 
