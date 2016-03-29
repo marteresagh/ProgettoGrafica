@@ -51,9 +51,16 @@ Altezza edifici periferici:
 Altezza piazza sud:
  - Massima 20 piedi (6 metri circa)
 
+***
+
 ## IMMAGINI
 
-![PLAN](file:///media/terry/Data/Linux/Progetto/planimetria.jpg)
+![Atrio](http://img.photobucket.com/albums/v193/Bangladesh/parliament6.jpg)
+`Ingresso Nord: Atrio`
+
+
+
+
 
 
 
