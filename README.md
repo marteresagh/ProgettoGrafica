@@ -100,9 +100,10 @@ Camera dell'Assemblea:
 
 ## RIFERIMENTI
 
-- [Sito riferimento](http://en.banglapedia.org/index.php?title=Jatiya_Sangsad_Bhaban)
-- [sito](http://www.londoni.co/index.php/who-s-who?id=325)
-- Documentario:[film](https://vimeo.com/9418890)
+- [Banglapedia.org](http://en.banglapedia.org/index.php?title=Jatiya_Sangsad_Bhaban)
+- [Londoni.co](http://www.londoni.co/index.php/who-s-who?id=325)
+- Foto:[Archnet.org](http://archnet.org/sites/70)
+- Documentario:[My Architect - A son's journey](https://vimeo.com/9418890)
 
 ***
 
