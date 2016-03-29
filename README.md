@@ -31,7 +31,7 @@ La caratteristica principale del National Assembly Building è la sua monumental
 
 ### Il Bhaban
 
-Il complesso principale emerge dal lago artificiale che lo bagna su tutti i suoi lati. E' costituito da nove blocchi individuali, dei quali otto periferici che ospitano: gli uffici, la Sala della Preghiera, gli alloggi dei parlamentari e dei Ministri e l'edificio della mensa. Il blocco centrale ottagonale ospita la camera dell'Assemblea con 354 posti per i membri del parlamento. Il complesso è collegato a terra tramite le due piazze Nord e Sud.
+Il complesso principale emerge dal lago artificiale che lo bagna su tutti i suoi lati. E' costituito da nove blocchi individuali, dei quali otto periferici che ospitano: gli uffici, la Sala della Preghiera, gli alloggi dei parlamentari e dei Ministri e l'edificio della mensa. Il blocco centrale ottagonale ospita la camera dell'Assemblea con 354 posti per i membri del parlamento. Blocchi differenti hanno funzionalità differenti, ma sono tutti connessi da una rete di corridoi, scale e ascensori. Il complesso è collegato a terra tramite le due piazze Nord e Sud.
 
 ![Bhaban](https://twistedsifter.files.wordpress.com/2011/05/jatiyo-sangsad-bhaban-national-assembly-parliament-building-aerial-bangladesh.jpg)
 
@@ -43,14 +43,31 @@ Il complesso principale emerge dal lago artificiale che lo bagna su tutti i suoi
 ![modello](http://www.designboom.com/wp-content/uploads/2013/02/kahnPOA_09.jpg)
 
 Altezza Assemblea:
- - Massima 155 piedi (50 metri circa)
- - Minima 117 piedi (35 metri circa)
+ - Esterna 155 piedi (50 metri circa)
+ - Interna 117 piedi (35 metri circa)
 
 Altezza edifici periferici: 
  - 112 piedi (33 metri circa)
 
 Altezza piazza sud:
  - Massima 20 piedi (6 metri circa)
+
+Edificio degli uffici:
+ - Lato lungo 42,8 metri
+ - Lato corto 17,26
+
+Ingresso Nord:
+ - Fronte 31,31 metri
+ - Laterale 28,8
+
+Sala della Preghiera:
+ - Lato  20,77 metri
+ - Raggio colonna 6,8 metri
+
+Camera dell'Assemblea:
+ - Lato ottagono 14,00 metri
+
+
 
 ***
 
@@ -61,6 +78,13 @@ Altezza piazza sud:
 ![Ingresso nord](http://www.thedailystar.net/sites/default/files/styles/big_4/public/feature/images/sangsad-bhaban_0.jpg?itok=adUqOtas&c=d0b48742aac3607933403421fdd1b225)
 ![da dentro](http://larryspeck.com/wp-content/uploads/2011/12/2011-5705.jpg)
 
+#### Ingresso Sud - Sala della Preghiera:
+![Sud](https://tedideas.files.wordpress.com/2013/11/dhaka-profile-064.jpg)
+![sala della preghiera](http://4.bp.blogspot.com/-AWhzDBkuzXo/UC1bPPxXTGI/AAAAAAAADWM/sosfdsUA5J0/s1600/P7281277.JPG)
+
+#### Camera dell'Assemblea:
+![Assembly](https://upload.wikimedia.org/wikipedia/commons/4/46/Sangshad_Assembly_Hall.jpg)
+
 #### Tetto della sala dell'Assemblea:
 ![tetto](http://www.epab.bme.hu/hallg/CADalk-AC/2011v/ARNJ81O6/National%20Assembly.jpg)
 ![Tetto](http://archnet.org/system/media_contents/contents/26150/original/IAA17549.jpg?1384701707)
@@ -69,17 +93,11 @@ Altezza piazza sud:
 ![Scale](https://s-media-cache-ak0.pinimg.com/736x/ea/46/39/ea4639107c5fa33a4c95cbcf2643edfa.jpg)
 ![interno](https://ksamedia.osu.edu/sites/default/files/originals/07_0000512_0.jpeg)
 
-#### Ingresso Sud - Sala della Preghiera:
-![Sud](https://tedideas.files.wordpress.com/2013/11/dhaka-profile-064.jpg)
-![sala della preghiera](http://4.bp.blogspot.com/-AWhzDBkuzXo/UC1bPPxXTGI/AAAAAAAADWM/sosfdsUA5J0/s1600/P7281277.JPG)
-
-#### Camera dell'Assemblea:
-![Assembly](https://upload.wikimedia.org/wikipedia/commons/4/46/Sangshad_Assembly_Hall.jpg)
-
 #### Vista laterale:
 ![vista](https://dhakadesigners.files.wordpress.com/2012/09/national_assembly_6.jpg)
 ![vista](http://www.oroeditions.com/sites/all/files/oroweb_interior_kahn_03.jpg)
 ![da dentro up](http://www.akdn.org/architecture/img/75/40.jpg)
+
 
 
 
