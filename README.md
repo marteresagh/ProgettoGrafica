@@ -51,6 +51,9 @@ Altezza edifici periferici:
 Altezza piazza sud:
  - Massima 20 piedi (6 metri circa)
 
+## IMMAGINI
+
+![PLAN](file:///media/terry/Data/Linux/Progetto/planimetria.jpg)
 
 
 
