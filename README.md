@@ -40,6 +40,7 @@ Il complesso principale emerge dal lago artificiale che lo bagna su tutti i suoi
 ## Planimetrie e dimensioni
 
 ![Planimetria](https://s-media-cache-ak0.pinimg.com/736x/93/62/fc/9362fcb4c028eddf3bed93231ac80021.jpg)
+![modello](http://www.designboom.com/wp-content/uploads/2013/02/kahnPOA_09.jpg)
 
 Altezza Assemblea:
  - Massima 155 piedi (50 metri circa)
@@ -58,6 +59,7 @@ Altezza piazza sud:
 #### Atrio sull'ingresso Nord: 
 ![Atrio](http://img.photobucket.com/albums/v193/Bangladesh/parliament6.jpg)
 ![Ingresso nord](http://www.thedailystar.net/sites/default/files/styles/big_4/public/feature/images/sangsad-bhaban_0.jpg?itok=adUqOtas&c=d0b48742aac3607933403421fdd1b225)
+![da dentro](http://larryspeck.com/wp-content/uploads/2011/12/2011-5705.jpg)
 
 #### Tetto della sala dell'Assemblea:
 ![tetto](http://www.epab.bme.hu/hallg/CADalk-AC/2011v/ARNJ81O6/National%20Assembly.jpg)
@@ -65,11 +67,11 @@ Altezza piazza sud:
 
 #### Scale interne:
 ![Scale](https://s-media-cache-ak0.pinimg.com/736x/ea/46/39/ea4639107c5fa33a4c95cbcf2643edfa.jpg)
+![interno](https://ksamedia.osu.edu/sites/default/files/originals/07_0000512_0.jpeg)
 
 #### Ingresso Sud - Sala della Preghiera:
 ![Sud](https://tedideas.files.wordpress.com/2013/11/dhaka-profile-064.jpg)
 ![sala della preghiera](http://4.bp.blogspot.com/-AWhzDBkuzXo/UC1bPPxXTGI/AAAAAAAADWM/sosfdsUA5J0/s1600/P7281277.JPG)
-![sala](http://www.oxfordartonline.com/public/media/F022364.jpg)
 
 #### Camera dell'Assemblea:
 ![Assembly](https://upload.wikimedia.org/wikipedia/commons/4/46/Sangshad_Assembly_Hall.jpg)
@@ -78,6 +80,8 @@ Altezza piazza sud:
 ![vista](https://dhakadesigners.files.wordpress.com/2012/09/national_assembly_6.jpg)
 ![vista](http://www.oroeditions.com/sites/all/files/oroweb_interior_kahn_03.jpg)
 ![da dentro up](http://www.akdn.org/architecture/img/75/40.jpg)
+
+
 
 
 
