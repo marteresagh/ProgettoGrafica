@@ -71,7 +71,7 @@ Camera dell'Assemblea:
 
 ***
 
-## IMMAGINI
+# Immagini
 
 #### Atrio sull'ingresso Nord: 
 ![Atrio](http://img.photobucket.com/albums/v193/Bangladesh/parliament6.jpg)
@@ -98,16 +98,16 @@ Camera dell'Assemblea:
 
 ***
 
-## RIFERIMENTI
+# Riferimenti
 
-- [Banglapedia.org](http://en.banglapedia.org/index.php?title=Jatiya_Sangsad_Bhaban)
-- [Londoni.co](http://www.londoni.co/index.php/who-s-who?id=325)
-- Foto:[Archnet.org](http://archnet.org/sites/70)
-- Documentario:[My Architect - A son's journey](https://vimeo.com/9418890)
+- Sito: [Banglapedia.org](http://en.banglapedia.org/index.php?title=Jatiya_Sangsad_Bhaban)
+- Sito: [Londoni.co](http://www.londoni.co/index.php/who-s-who?id=325)
+- Foto: [Archnet.org](http://archnet.org/sites/70)
+- Documentario: [My Architect - A son's journey](https://vimeo.com/9418890)
 
 ***
 
-## AUTORE
+# Autore
 
 Maria Teresa Graziano
 
