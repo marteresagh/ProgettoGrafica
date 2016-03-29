@@ -10,12 +10,12 @@
 
 Il **National Assembly Building** o **Jatiyo Sangsad Bhaban**, è la sede del Parlamento del Bangladesh, localizzata nella capitale Dacca. E' considerato, a livello internazionale, un capolavoro architettonico ed è uno dei complessi legislativi più grandi al mondo. 
 
-Nel 1962 fu affidata la progettazione a **Louis Kahn** (1901-1974), un famoso architetto statunitense.
+Nel 1962 fu affidata la progettazione a **Louis I. Kahn** (1901-1974), un famoso architetto statunitense.
 Un architetto occidentale per un paese orientale sembrava un'idea improbabile, ma il progetto fu effettivamente realizzato come il risulato del fatto che l'architetto ha mostrato una sensibilità eccezionale per la terra e la coltura ed è antrato in un intensa collaborazione con architetti locali.
 
 La costruzione fu interrotta durante la guerra di liberazione del Bangladesh nel 1971 e fu poi completato il 28 gennaio 1982.
 
-Dopo la morte di Louis I. Kahn, altri architetti lavorarono al progetto. La costruzione infatti è un mix meraviglioso di idee e di ingegneria.
+Dopo la morte di Louis Kahn, altri architetti lavorarono al progetto. La costruzione infatti è un mix meraviglioso di idee e di ingegneria.
 
 ![Louis Kahn](http://www.newyorkerfilms.com/administrator/movie_images/My_Architect_6.jpg)
 
@@ -71,7 +71,7 @@ Camera dell'Assemblea:
 
 ***
 
-# Immagini
+## Immagini
 
 #### Atrio sull'ingresso Nord: 
 ![Atrio](http://img.photobucket.com/albums/v193/Bangladesh/parliament6.jpg)
@@ -98,7 +98,7 @@ Camera dell'Assemblea:
 
 ***
 
-# Riferimenti
+## Riferimenti
 
 - Sito: [Banglapedia.org](http://en.banglapedia.org/index.php?title=Jatiya_Sangsad_Bhaban)
 - Sito: [Londoni.co](http://www.londoni.co/index.php/who-s-who?id=325)
@@ -107,7 +107,7 @@ Camera dell'Assemblea:
 
 ***
 
-# Autore
+## Autore
 
 Maria Teresa Graziano
 
