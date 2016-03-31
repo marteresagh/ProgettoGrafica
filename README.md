@@ -8,14 +8,16 @@
 
 ## Storia
 
-Il **National Assembly Building** o **Jatiyo Sangsad Bhaban**, è la sede del Parlamento del Bangladesh, localizzata nella capitale Dacca. E' considerato, a livello internazionale, un capolavoro architettonico ed è uno dei complessi legislativi più grandi al mondo. 
+Il **National Assembly Building** o **Jatiyo Sangsad Bhaban**, è la sede del Parlamento del Bangladesh, localizzata nella capitale Dacca. E' considerato, a livello internazionale, un capolavoro architettonico ed è uno dei complessi legislativi più grandi al mondo.
 
-Nel 1962 fu affidata la progettazione a **Louis I. Kahn** (1901-1974), un famoso architetto statunitense.
-Un architetto occidentale per un paese orientale sembrava un'idea improbabile, ma il progetto fu effettivamente realizzato come il risulato del fatto che l'architetto ha mostrato una sensibilità eccezionale per la terra e la coltura ed è antrato in un intensa collaborazione con architetti locali.
+Il progetto iniziò con la costruzione della Seconda Capitale del Pakistan. Il governo, centralizzato nel West Pakistan, decise di stabilire una seconda capitale nell'East Pakistan nel 1959, per eliminare l'isolamento e il senso di abbandono percepito dal popolo dell'East Pakistan e per portare i pakistani dell'ovest in stretto contatto con i loro connazionali orientali.
 
-La costruzione fu interrotta durante la guerra di liberazione del Bangladesh nel 1971 e fu poi completato il 28 gennaio 1982.
+Nel 1962 fu affidata la progettazione a **Louis I. Kahn** (1901-1974), un famoso architetto statunitense. 
+Un architetto occidentale per un paese orientale sembrava un'idea improbabile, ma il progetto fu effettivamente realizzato come il risulato del fatto che l'architetto ha mostrato una sensibilità eccezionale per la terra e la coltura ed è antrato in un'intensa collaborazione con architetti locali.
 
-Dopo la morte di Louis Kahn, altri architetti lavorarono al progetto. La costruzione infatti è un mix meraviglioso di idee e di ingegneria.
+La costruzione fu interrotta durante la guerra di liberazione del Bangladesh nel 1971 e fu poi completato nel luglio del 1983.
+
+Dopo la morte di Louis Kahn, altri architetti, tra cui David Wisdom, lavorarono al progetto. La costruzione infatti è un mix meraviglioso di idee e di ingegneria.
 
 ![Louis Kahn](http://www.newyorkerfilms.com/administrator/movie_images/My_Architect_6.jpg)
 
@@ -23,7 +25,8 @@ Dopo la morte di Louis Kahn, altri architetti lavorarono al progetto. La costruz
 
 ## Architettura
 
-La caratteristica principale del National Assembly Building è la sua monumentalità. La massa di calcestruzzo rivestita con strisce di marmo, la parete esterna scandita da aperture geometriche pure e le masse di cemento circolari e rettangolari dominanti impartiscono una monumentalità suprema alla costruzione.
+La caratteristica principale del National Assembly Building è la sua monumentalità.
+La massa di calcestruzzo è rivestita con strisce di marmo bianco per mascherare le giunture della costruzione, la parete esterna è scandita da aperture geometriche pure per proteggere le finestre dalla pioggia e dal vento, le colonne di calcestruzzo vuote aiutano la struttura per la regolazione della luce e della climatizzazione e le masse di cemento circolari e rettangolari dominanti impartiscono una monumentalità suprema alla costruzione.
 
 ![Il potere dell'architettura](https://www.yatzer.com/sites/default/files/article_images/3182/Louis-Kahn-The-Power-of-Architecture-yatzer-8.jpg)
 
@@ -31,7 +34,7 @@ La caratteristica principale del National Assembly Building è la sua monumental
 
 ### Il Bhaban
 
-Il complesso principale emerge dal lago artificiale che lo bagna su tutti i suoi lati. E' costituito da nove blocchi individuali, dei quali otto periferici che ospitano: gli uffici, la Sala della Preghiera, gli alloggi dei parlamentari e dei Ministri e l'edificio della mensa. Il blocco centrale ottagonale ospita la camera dell'Assemblea con 354 posti per i membri del parlamento. Blocchi differenti hanno funzionalità differenti, ma sono tutti connessi da una rete di corridoi, scale e ascensori. Il complesso è collegato a terra tramite le due piazze Nord e Sud.
+Il complesso principale emerge dal lago artificiale che lo bagna su tutti i suoi lati. E' costituito da nove blocchi individuali, dei quali otto periferici che ospitano: gli uffici, la Sala della Preghiera, la corte di Abluzione, gli alloggi dei parlamentari e dei Ministri e l'edificio della mensa. Il blocco centrale ottagonale ospita la camera dell'Assemblea con 354 posti per i membri del parlamento. Blocchi differenti hanno funzionalità differenti, ma sono tutti connessi da una rete di corridoi, scale e ascensori. Il complesso è collegato a terra tramite le due piazze: a Nord, la piazza Presidenziale, e a Sud, l'ingresso principale. 
 
 ![Bhaban](https://twistedsifter.files.wordpress.com/2011/05/jatiyo-sangsad-bhaban-national-assembly-parliament-building-aerial-bangladesh.jpg)
 
