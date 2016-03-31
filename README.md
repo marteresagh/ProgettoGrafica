@@ -45,6 +45,8 @@ Il complesso principale emerge dal lago artificiale che lo bagna su tutti i suoi
 #### Planimetrie dei piani:
 ![Piani](https://raw.githubusercontent.com/marteresagh/ProgettoGrafica/master/FotoProgetto/planimetria_livelli.jpg)
 
+***
+
 #### Edifici:
 ![Lista edifici](https://raw.githubusercontent.com/marteresagh/ProgettoGrafica/master/FotoProgetto/plannumeri.jpg)
 
@@ -56,11 +58,17 @@ Il complesso principale emerge dal lago artificiale che lo bagna su tutti i suoi
 6. Edificio della mensa
 7. Corte di Abluzione
 
+***
+
 #### Modello 3D:
 ![modello](http://www.designboom.com/wp-content/uploads/2013/02/kahnPOA_09.jpg)
 
+***
+
 #### Sezione:
 ![sezione](https://raw.githubusercontent.com/marteresagh/ProgettoGrafica/master/FotoProgetto/Assembly_Dacca_Sect_A.jpg)
+
+***
 
 #### Dimensioni:
 
@@ -89,8 +97,6 @@ Sala della Preghiera:
 Camera dell'Assemblea:
  - Lato ottagono 14,00 metri
 
-
-
 ***
 
 ## Immagini
@@ -100,20 +106,28 @@ Camera dell'Assemblea:
 ![Ingresso nord](http://www.thedailystar.net/sites/default/files/styles/big_4/public/feature/images/sangsad-bhaban_0.jpg?itok=adUqOtas&c=d0b48742aac3607933403421fdd1b225)
 ![da dentro](http://larryspeck.com/wp-content/uploads/2011/12/2011-5705.jpg)
 
+***
+
 #### Ingresso Sud - Sala della Preghiera:
 ![Sud](https://tedideas.files.wordpress.com/2013/11/dhaka-profile-064.jpg)
 ![sala della preghiera](http://4.bp.blogspot.com/-AWhzDBkuzXo/UC1bPPxXTGI/AAAAAAAADWM/sosfdsUA5J0/s1600/P7281277.JPG)
+
+***
 
 #### Camera dell'Assemblea:
 ![Assembly](https://upload.wikimedia.org/wikipedia/commons/4/46/Sangshad_Assembly_Hall.jpg)
 ![tetto](http://www.epab.bme.hu/hallg/CADalk-AC/2011v/ARNJ81O6/National%20Assembly.jpg)
 ![Tetto](http://archnet.org/system/media_contents/contents/26150/original/IAA17549.jpg?1384701707)
 
-#### Scale interne:
+***
+
+#### Interno:
 ![Scale](https://s-media-cache-ak0.pinimg.com/736x/ea/46/39/ea4639107c5fa33a4c95cbcf2643edfa.jpg)
 ![interno](https://ksamedia.osu.edu/sites/default/files/originals/07_0000512_0.jpeg)
 
-#### Vista laterale:
+***
+
+#### Esterno:
 ![vista est](https://dhakadesigners.files.wordpress.com/2012/09/national_assembly_6.jpg)
 ![uffici](http://www.oroeditions.com/sites/all/files/oroweb_interior_kahn_03.jpg)
 ![vista ovest](https://lh3.googleusercontent.com/-HMJsuyCGf9k/U6G2JMPq5yI/AAAAAAAAI1o/imhfn6FdZNQgnW0OBhmUf1n8CrgEIVejQCHM/s640/upper-view-640.jpg)
@@ -126,13 +140,14 @@ Camera dell'Assemblea:
 - Sito: [Banglapedia.org](http://en.banglapedia.org/index.php?title=Jatiya_Sangsad_Bhaban)
 - Sito: [Londoni.co](http://www.londoni.co/index.php/who-s-who?id=325)
 - Foto: [Archnet.org](http://archnet.org/sites/70)
+- Documento:[The Aga Khan Award for Architecture](http://www.akdn.org/architecture/pdf/0075_Ban.pdf)
 - Documentario: [My Architect - A son's journey](https://vimeo.com/9418890)
 
 ***
 
 ## Autore
 
-*Maria Teresa Graziano*
+**Maria Teresa Graziano**
 
 
 
