@@ -55,6 +55,7 @@ Il complesso principale emerge dal lago artificiale che lo bagna su tutti i suoi
 5. Alloggi dei Ministri
 6. Edificio della mensa
 7. Corte di Abluzione
+
 #### Modello 3D:
 ![modello](http://www.designboom.com/wp-content/uploads/2013/02/kahnPOA_09.jpg)
 
@@ -113,8 +114,9 @@ Camera dell'Assemblea:
 ![interno](https://ksamedia.osu.edu/sites/default/files/originals/07_0000512_0.jpeg)
 
 #### Vista laterale:
-![vista](https://dhakadesigners.files.wordpress.com/2012/09/national_assembly_6.jpg)
-![vista](http://www.oroeditions.com/sites/all/files/oroweb_interior_kahn_03.jpg)
+![vista est](https://dhakadesigners.files.wordpress.com/2012/09/national_assembly_6.jpg)
+![uffici](http://www.oroeditions.com/sites/all/files/oroweb_interior_kahn_03.jpg)
+![vista ovest](https://lh3.googleusercontent.com/-HMJsuyCGf9k/U6G2JMPq5yI/AAAAAAAAI1o/imhfn6FdZNQgnW0OBhmUf1n8CrgEIVejQCHM/s640/upper-view-640.jpg)
 ![da dentro up](http://www.akdn.org/architecture/img/75/40.jpg)
 
 ***
