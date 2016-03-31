@@ -42,9 +42,22 @@ Il complesso principale emerge dal lago artificiale che lo bagna su tutti i suoi
 
 ## Planimetrie e dimensioni
 
-![Planimetria](https://s-media-cache-ak0.pinimg.com/736x/93/62/fc/9362fcb4c028eddf3bed93231ac80021.jpg)
+#### Planimetrie dei piani:
+![Piani](https://raw.githubusercontent.com/marteresagh/ProgettoGrafica/master/FotoProgetto/planimetria_livelli.jpg)
+
+#### Edifici:
+![Lista edifici](https://raw.githubusercontent.com/marteresagh/ProgettoGrafica/master/FotoProgetto/plannumeri.jpg)
+
+1. Ingresso Nord
+2. Camera dell'Assemblea
+3. Sala della Preghiera
+4. Uffici
+5. Alloggi dei Ministri
+6. Edificio della mensa
+7. Corte di Abluzione
+
 ![modello](http://www.designboom.com/wp-content/uploads/2013/02/kahnPOA_09.jpg)
-![prova](https://raw.githubusercontent.com/marteresagh/ProgettoGrafica/master/piantalevel1.jpg)
+![sezione](https://raw.githubusercontent.com/marteresagh/ProgettoGrafica/master/FotoProgetto/Assembly_Dacca_Sect_A.jpg)
 
 
 Altezza Assemblea:
