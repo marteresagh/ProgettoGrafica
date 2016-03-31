@@ -56,7 +56,7 @@ Il complesso principale emerge dal lago artificiale che lo bagna su tutti i suoi
 6. Edificio della mensa
 7. Corte di Abluzione
 
-![modello](http://www.designboom.com/wp-content/uploads/2013/02/kahnPOA_09.jpg)
+![modello](http://www.designboom.com/wp-content/uploads/2013/02/kahnPOA_09.jpg "modello")
 ![sezione](https://raw.githubusercontent.com/marteresagh/ProgettoGrafica/master/FotoProgetto/Assembly_Dacca_Sect_A.jpg)
 
 
