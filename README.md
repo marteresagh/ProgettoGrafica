@@ -55,10 +55,13 @@ Il complesso principale emerge dal lago artificiale che lo bagna su tutti i suoi
 5. Alloggi dei Ministri
 6. Edificio della mensa
 7. Corte di Abluzione
+#### Modello 3D:
+![modello](http://www.designboom.com/wp-content/uploads/2013/02/kahnPOA_09.jpg)
 
-![modello](http://www.designboom.com/wp-content/uploads/2013/02/kahnPOA_09.jpg "modello")
+#### Sezione:
 ![sezione](https://raw.githubusercontent.com/marteresagh/ProgettoGrafica/master/FotoProgetto/Assembly_Dacca_Sect_A.jpg)
 
+#### Dimensioni:
 
 Altezza Assemblea:
  - Esterna 155 piedi (50 metri circa)
@@ -127,7 +130,7 @@ Camera dell'Assemblea:
 
 ## Autore
 
-Maria Teresa Graziano
+*Maria Teresa Graziano*
 
 
 
