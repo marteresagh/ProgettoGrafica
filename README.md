@@ -117,7 +117,6 @@ Camera dell'Assemblea:
 #### Camera dell'Assemblea:
 ![Assembly](https://upload.wikimedia.org/wikipedia/commons/4/46/Sangshad_Assembly_Hall.jpg)
 ![tetto](http://www.epab.bme.hu/hallg/CADalk-AC/2011v/ARNJ81O6/National%20Assembly.jpg)
-![Tetto](http://archnet.org/system/media_contents/contents/26150/original/IAA17549.jpg?1384701707)
 <img src="http://archnet.org/system/media_contents/contents/26150/original/IAA17549.jpg?1384701707" width="800"/>
 
 ***
@@ -131,7 +130,7 @@ Camera dell'Assemblea:
 #### Esterno:
 ![vista est](https://dhakadesigners.files.wordpress.com/2012/09/national_assembly_6.jpg)
 ![uffici](http://www.oroeditions.com/sites/all/files/oroweb_interior_kahn_03.jpg)
-![vista ovest](https://lh3.googleusercontent.com/-HMJsuyCGf9k/U6G2JMPq5yI/AAAAAAAAI1o/imhfn6FdZNQgnW0OBhmUf1n8CrgEIVejQCHM/s640/upper-view-640.jpg)
+<img src="https://lh3.googleusercontent.com/-HMJsuyCGf9k/U6G2JMPq5yI/AAAAAAAAI1o/imhfn6FdZNQgnW0OBhmUf1n8CrgEIVejQCHM/s640/upper-view-640.jpg" width="800"/>
 ![da dentro up](http://www.akdn.org/architecture/img/75/40.jpg)
 
 ***
