@@ -104,7 +104,6 @@ Camera dell'Assemblea:
 #### Atrio sull'ingresso Nord: 
 ![Atrio](http://img.photobucket.com/albums/v193/Bangladesh/parliament6.jpg)
 ![Ingresso nord](http://www.thedailystar.net/sites/default/files/styles/big_4/public/feature/images/sangsad-bhaban_0.jpg?itok=adUqOtas&c=d0b48742aac3607933403421fdd1b225)
-<img src="http://www.thedailystar.net/sites/default/files/styles/big_4/public/feature/images/sangsad-bhaban_0.jpg?itok=adUqOtas&c=d0b48742aac3607933403421fdd1b225" width="200"/>
 ![da dentro](http://larryspeck.com/wp-content/uploads/2011/12/2011-5705.jpg)
 
 ***
@@ -119,6 +118,7 @@ Camera dell'Assemblea:
 ![Assembly](https://upload.wikimedia.org/wikipedia/commons/4/46/Sangshad_Assembly_Hall.jpg)
 ![tetto](http://www.epab.bme.hu/hallg/CADalk-AC/2011v/ARNJ81O6/National%20Assembly.jpg)
 ![Tetto](http://archnet.org/system/media_contents/contents/26150/original/IAA17549.jpg?1384701707)
+<img src="http://archnet.org/system/media_contents/contents/26150/original/IAA17549.jpg?1384701707" width="800"/>
 
 ***
 
