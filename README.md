@@ -103,7 +103,7 @@ Camera dell'Assemblea:
 
 #### Atrio sull'ingresso Nord: 
 ![Atrio](http://img.photobucket.com/albums/v193/Bangladesh/parliament6.jpg)
-![Ingresso nord](http://www.thedailystar.net/sites/default/files/styles/big_4/public/feature/images/sangsad-bhaban_0.jpg?itok=adUqOtas&c=d0b48742aac3607933403421fdd1b225 =20x20)
+![Ingresso nord](http://www.thedailystar.net/sites/default/files/styles/big_4/public/feature/images/sangsad-bhaban_0.jpg?itok=adUqOtas&c=d0b48742aac3607933403421fdd1b225 =1000x1000)
 ![da dentro](http://larryspeck.com/wp-content/uploads/2011/12/2011-5705.jpg)
 
 ***
