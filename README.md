@@ -1,4 +1,4 @@
-<!-- background: #fff -->
+<!-- background: #fff -->git
 <!-- color: #000 -->
 # **Progetto Grafica Computazionale**
 # **NATIONAL ASSEMBLY BUILDING di LOUIS KAHN**
@@ -76,9 +76,9 @@ Il complesso principale emerge dal lago artificiale che lo bagna su tutti i suoi
 
 |	| BASE	(metri)	|ALTEZZA (metri)|
 |-------|---------------|---------------|
-|Camera dell'Assemblea|	|	|
-|Interno|34,63|40,82|
-|Esterno|41,44|47,01|
+|Camera dell'Assemblea:|	|	|
+|*	Interno|34,63|40,82|
+|*	Esterno|41,44|47,01|
 |Ingresso Nord|31,42x28,57|34,02|
 |Sala della Preghiera|20,95|34,02|
 |Edificio Uffici|41,90x17,14|34,02|
