@@ -19,6 +19,8 @@ La costruzione fu interrotta durante la guerra di liberazione del Bangladesh nel
 
 Dopo la morte di Louis Kahn, altri architetti, tra cui David Wisdom, lavorarono al progetto. La costruzione infatti è un mix meraviglioso di idee e di ingegneria.
 
+> Even a brick wants to be something - Louis Kahn
+
 ![Louis Kahn](http://www.newyorkerfilms.com/administrator/movie_images/My_Architect_6.jpg)
 
 ***
@@ -72,30 +74,17 @@ Il complesso principale emerge dal lago artificiale che lo bagna su tutti i suoi
 
 #### Dimensioni:
 
-Altezza Assemblea:
- - Esterna 155 piedi (50 metri circa)
- - Interna 117 piedi (35 metri circa)
+|	| BASE	(metri)	|ALTEZZA (metri)|
+|-------|---------------|---------------|
+|Camera dell'Assemblea|	|	|
+|Interno|34,63|40,82|
+|Esterno|41,44|47,01|
+|Ingresso Nord|31,42x28,57|34,02|
+|Sala della Preghiera|20,95|34,02|
+|Edificio Uffici|41,90x17,14|34,02|
+|Edificio della mensa|16,19x31,42|34,02|
+|Alloggi dei Ministri|49,52x22,85|34,02|
 
-Altezza edifici periferici: 
- - 112 piedi (33 metri circa)
-
-Altezza piazza sud:
- - Massima 20 piedi (6 metri circa)
-
-Edificio degli uffici:
- - Lato lungo 42,8 metri
- - Lato corto 17,26
-
-Ingresso Nord:
- - Fronte 31,31 metri
- - Laterale 28,8
-
-Sala della Preghiera:
- - Lato  20,77 metri
- - Raggio colonna 6,8 metri
-
-Camera dell'Assemblea:
- - Lato ottagono 14,00 metri
 
 ***
 
@@ -117,7 +106,7 @@ Camera dell'Assemblea:
 #### Camera dell'Assemblea:
 ![Assembly](https://upload.wikimedia.org/wikipedia/commons/4/46/Sangshad_Assembly_Hall.jpg)
 ![tetto](http://www.epab.bme.hu/hallg/CADalk-AC/2011v/ARNJ81O6/National%20Assembly.jpg)
-<img src="http://archnet.org/system/media_contents/contents/26150/original/IAA17549.jpg?1384701707" width="800"/>
+![terrazzo](http://archnet.org/system/media_contents/contents/26150/original/IAA17549.jpg?1384701707)
 
 ***
 
@@ -130,7 +119,7 @@ Camera dell'Assemblea:
 #### Esterno:
 ![vista est](https://dhakadesigners.files.wordpress.com/2012/09/national_assembly_6.jpg)
 ![uffici](http://www.oroeditions.com/sites/all/files/oroweb_interior_kahn_03.jpg)
-<img src="https://lh3.googleusercontent.com/-HMJsuyCGf9k/U6G2JMPq5yI/AAAAAAAAI1o/imhfn6FdZNQgnW0OBhmUf1n8CrgEIVejQCHM/s640/upper-view-640.jpg" width="800"/>
+![vista ovest](https://lh3.googleusercontent.com/-HMJsuyCGf9k/U6G2JMPq5yI/AAAAAAAAI1o/imhfn6FdZNQgnW0OBhmUf1n8CrgEIVejQCHM/s640/upper-view-640.jpg)
 ![da dentro up](http://www.akdn.org/architecture/img/75/40.jpg)
 
 ***
