@@ -83,7 +83,7 @@ Il complesso principale emerge dal lago artificiale che lo bagna su tutti i suoi
 |Edificio Uffici|41.90 x 17.14|34.02|
 |Edificio della mensa|16.19 x 31.42|34.02|
 |Alloggi dei Ministri|49.52 x 22.85|34.02|
-
+|Mattoni calcestruzzo||1,80|
 
 ***
 
