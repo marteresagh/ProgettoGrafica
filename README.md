@@ -19,9 +19,9 @@ La costruzione fu interrotta durante la guerra di liberazione del Bangladesh nel
 
 Dopo la morte di Louis Kahn, altri architetti, tra cui David Wisdom, lavorarono al progetto. La costruzione infatti è un mix meraviglioso di idee e di ingegneria.
 
-> Even a brick wants to be something - Louis Kahn
-
 ![Louis Kahn](http://www.newyorkerfilms.com/administrator/movie_images/My_Architect_6.jpg)
+
+> Even a brick wants to be something - Louis Kahn
 
 ***
 
@@ -75,12 +75,11 @@ Il complesso principale emerge dal lago artificiale che lo bagna su tutti i suoi
 #### Dimensioni:
 
 |	| BASE	(metri)	|ALTEZZA (metri)|
-|-------|---------------|---------------|
-|Camera dell'Assemblea:|	|	|
-|	-Interno|34.63|40.82|
-|	-Esterno|41.44|47.01|
+|-------|---------------|--------------|
+|Camera dell'Assemblea:	Interno|34.63|40.82|
+|Camera dell'Assemblea:	Esterno|41.44|47.01|
 |Ingresso Nord|31.42 x 28.57|34.02|
-|Sala della Preghiera|20,95|34.02|
+|Sala della Preghiera|20.95|34.02|
 |Edificio Uffici|41.90 x 17.14|34.02|
 |Edificio della mensa|16.19 x 31.42|34.02|
 |Alloggi dei Ministri|49.52 x 22.85|34.02|
