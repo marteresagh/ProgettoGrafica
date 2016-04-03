@@ -77,13 +77,13 @@ Il complesso principale emerge dal lago artificiale che lo bagna su tutti i suoi
 |	| BASE	(metri)	|ALTEZZA (metri)|
 |-------|---------------|---------------|
 |Camera dell'Assemblea:|	|	|
-|	*Interno|34,63|40,82|
-|	*Esterno|41,44|47,01|
-|Ingresso Nord|31,42x28,57|34,02|
-|Sala della Preghiera|20,95|34,02|
-|Edificio Uffici|41,90x17,14|34,02|
-|Edificio della mensa|16,19x31,42|34,02|
-|Alloggi dei Ministri|49,52x22,85|34,02|
+|	-Interno|34.63|40.82|
+|	-Esterno|41.44|47.01|
+|Ingresso Nord|31.42 x 28.57|34.02|
+|Sala della Preghiera|20,95|34.02|
+|Edificio Uffici|41.90 x 17.14|34.02|
+|Edificio della mensa|16.19 x 31.42|34.02|
+|Alloggi dei Ministri|49.52 x 22.85|34.02|
 
 
 ***
