@@ -29,7 +29,7 @@ Dopo la morte di Louis Kahn, altri architetti, tra cui **David Wisdom**, lavorar
 
 ***
 
-> Even a brick wants to be something - Louis Kahn
+> "Even a brick wants to be something - Louis Kahn"
 \centering ![Louis Kahn](http://www.newyorkerfilms.com/administrator/movie_images/My_Architect_6.jpg)
 
 ***
