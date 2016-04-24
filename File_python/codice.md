@@ -1,17 +1,17 @@
 from larlib import *
 
-*** **PROVE**
+#**PROVE**
 
-lines = lines2lines("edificio.lines")
-prova=STRUCT(AA(POLYLINE)(lines)) #NON taglia i pezzi in più
-VIEW(OFFSET([0.005,0.005])(prova))
-V,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
-prova=STRUCT(MKPOLS((V,EV))) #grafo pulito
-VIEW(OFFSET([0.005,0.005])(prova))
+#lines = lines2lines("edificio.lines")
+#prova=STRUCT(AA(POLYLINE)(lines)) #NON taglia i pezzi in più
+#VIEW(OFFSET([0.005,0.005])(prova))
+#V,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
+#prova=STRUCT(MKPOLS((V,EV))) #grafo pulito
+#VIEW(OFFSET([0.005,0.005])(prova))
 
 
-**EDIFICIO DEGLI UFFICI**  3 metri ogni piano a partire da 1.5 sulle z
- **RIALZO**
+#**EDIFICIO DEGLI UFFICI**  3 metri ogni piano a partire da 1.5 sulle z
+# **RIALZO**
 lines = lines2lines("rialzo_level1.lines")
 V,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
 grafo=STRUCT(MKPOLS((V,EV))) #grafo pulito
@@ -29,15 +29,15 @@ scala = 41.9/0.9949
 
 W=((mat(V)-V[6])*scala).tolist()
 
-***
-**verifica** 
+#***
+#**verifica** 
 #WW = AA(LIST)(range(len(W)))
 #VIEW(larModelNumbering(1,1,1)(W,[WW,EV,FV],STRUCT(MKPOLS((W,EV))),2))
 #assert W[9][0]-W[3][0]==41.9
-***
+#***
 
-***
-**celle vuote**
+#***
+#**celle vuote**
 #celle vuote sono 0,1,2, mi serve solo la 3
 buchi = STRUCT(MKPOLS([W,[FV[k] for k in range(3)]]))
 tot = STRUCT(MKPOLS([W,FV]))
@@ -51,7 +51,7 @@ rialzo=PROD([base0,Q(1.5)])
 
 
  
-**LEVEL 1_muri esterni** 
+#**LEVEL 1_muri esterni** 
 
 lines = lines2lines("rialzo_level1.lines")
 V,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
@@ -75,8 +75,8 @@ EV_bassi=sorted([1,3,5,0,10,12,16,7])
 EV_alti= set(range(len(EV))).difference(EV_bassi)
 muri_bassi=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_bassi]))
 muri_alti=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_alti]))
-***
-**verifica** 
+#***
+#**verifica** 
 #WW = AA(LIST)(range(len(W)))
 #VIEW(larModelNumbering(1,1,1)(W,[WW,EV,FV],STRUCT(MKPOLS((W,EV))),2))
 #assert W[9][0]-W[3][0]==41.9
@@ -97,7 +97,7 @@ wall_2=PROD([muri_bassi,Q(1.5)])
 level1=STRUCT([wall_1,wall_2])
 #VIEW(level1)
 
-**COLONNE**
+#**COLONNE**
 lines = lines2lines("colonne.lines")
 V,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
 grafo=STRUCT(MKPOLS((V,EV))) #grafo pulito
@@ -121,10 +121,8 @@ W=((mat(V)-V[2])*scala).tolist()
 EV_no=sorted([0,1,7,5,10,2,3,9])
 EV_si= set(range(len(EV))).difference(EV_no)
 
-
-
-***
-**verifica** 
+#***
+#**verifica** 
 #WW = AA(LIST)(range(len(W)))
 #VIEW(larModelNumbering(1,1,1)(W,[WW,EV,FV],STRUCT(MKPOLS((W,EV))),2))
 #assert W[7][0]-W[3][0]==41.9
@@ -138,9 +136,7 @@ colonne=T(3)(4.5)(colonne)
 #VIEW(colonne)
 
 
-
-
-**LEVEL 1_muri interni**
+#**LEVEL 1_muri interni**
 
 lines = lines2lines("uff_level1.lines")
 grafo = STRUCT(AA(POLYLINE)(lines))
@@ -178,7 +174,7 @@ level_1=T(3)(1.5)(level_1)
 
 VIEW(STRUCT([rialzo,level1,colonne,level_1]))
 
-**LEVEL 2**
+#**LEVEL 2**
 lines = lines2lines("uff_level2.lines")
 grafo = STRUCT(AA(POLYLINE)(lines))
 #VIEW(grafo)
@@ -215,7 +211,7 @@ level_2=T(3)(4.5)(level_2)
 
 VIEW(STRUCT([rialzo,level1,colonne,level_1,level_2]))
 
-**LEVEL 3**
+#**LEVEL 3**
 
 lines = lines2lines("uff_level3.lines")
 grafo = STRUCT(AA(POLYLINE)(lines))
@@ -257,7 +253,7 @@ level_3up=STRUCT(NN(4)([level_3,T(3)(6)]))
 
 VIEW(STRUCT([rialzo,level1,colonne,level_1,level_2,level_3,level_3up]))
 
-**LEVEL 4**
+#**LEVEL 4**
 
 lines = lines2lines("uff_level4.lines")
 grafo = STRUCT(AA(POLYLINE)(lines))
@@ -293,7 +289,7 @@ level_4=STRUCT([wall_1,wall_2])
 level_4=T(3)(10.5)(level_4)
 level_4up=STRUCT(NN(3)([level_4,T(3)(6)]))
 
-**ultimo livello da concludere**
+#**ultimo livello da concludere**
 lines = lines2lines("finale.lines")
 grafo = STRUCT(AA(POLYLINE)(lines))
 #VIEW(grafo)
@@ -313,8 +309,8 @@ finale=T(3)(28.5)(PROD([finale,Q(5.5)]))
 EDF_UFF=STRUCT([rialzo,level1,colonne,level_1,level_2,level_3up,level_4up,finale])
 VIEW(EDF_UFF)
 
-**PAVIMENTI**
-**pavimento level 2**
+#**PAVIMENTI**
+#**pavimento level 2**
 lines = lines2lines("pavimento_level2.lines")
 Y,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
 #prova=STRUCT(MKPOLS((V,FV))) #grafo pulito
@@ -331,7 +327,7 @@ Z=((mat(Y)-Y[26])*scala).tolist()
 ZZ = AA(LIST)(range(len(Z)))
 submodel = STRUCT(MKPOLS((Z,EV)))
 #VIEW(larModelNumbering(1,1,1)(Z,[ZZ,EV,FV],submodel,0.1))
-**celle vuote**
+#**celle vuote**
 #celle vuote sono 0,1,2,7,65,4, mi serve solo la 3
 buchi = STRUCT(MKPOLS([Z,[FV[k] for k in [0,1,2,4,5,7,6]]]))
 tot = STRUCT(MKPOLS([Z,FV]))
@@ -341,7 +337,7 @@ pavimento_level2=T(3)(4.25)(PROD([pavimento_level2,Q(0.3)]))
 VIEW(STRUCT([EDF_UFF,pavimento_level2]))
 
 
-**pavimento level3**
+#**pavimento level3**
 lines = lines2lines("pavimento_level3.lines")
 V,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
 #prova=STRUCT(MKPOLS((V,FV))) #grafo pulito
@@ -354,7 +350,7 @@ submodel = STRUCT(MKPOLS((V,EV)))
 assert V[21]==[0.0, 0.5928]
 scala = 41.9
 W=((mat(V)-V[21])*scala).tolist()
-**celle vuote**
+#**celle vuote**
 #celle vuote sono 0,4,3,8,9,5,6,2 mi serve  la 7,1
 buchi = STRUCT(MKPOLS([W,[FV[k] for k in [0,4,3,8,9,5,6,2]]]))
 tot = STRUCT(MKPOLS([W,FV]))
@@ -363,7 +359,7 @@ pavimento_level3=T(3)(7.25)(PROD([pavimento_level3,Q(0.3)]))
 #VIEW(pavimento_level3)
 VIEW(STRUCT([EDF_UFF,pavimento_level3,pavimento_level2]))
 
-**pavimento level4**
+#**pavimento level4**
 lines = lines2lines("pavimento_level3.lines")
 V,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
 #prova=STRUCT(MKPOLS((V,FV))) #grafo pulito
@@ -376,14 +372,14 @@ submodel = STRUCT(MKPOLS((V,EV)))
 assert V[21]==[0.0, 0.5928]
 scala = 41.9
 W=((mat(V)-V[21])*scala).tolist()
-**celle vuote**
+#**celle vuote**
 #celle vuote sono 0,4,3,8,9,5,6,2 mi serve  la 7,1
 buchi = STRUCT(MKPOLS([W,[FV[k] for k in [3,8,9,5,6,2]]]))
 tot = STRUCT(MKPOLS([W,FV]))
 pavimento_level4= DIFFERENCE([tot,buchi])
 pavimento_level4=T(3)(10.25)(PROD([pavimento_level4,Q(0.3)]))
 
-**pavimenti superiori e finale**
+#**pavimenti superiori e finale**
 pavimento_3up=STRUCT(NN(4)([pavimento_level3,T(3)(6)]))
 pavimento_4up=STRUCT(NN(3)([pavimento_level4,T(3)(6)]))
 
@@ -399,7 +395,7 @@ submodel = STRUCT(MKPOLS((V,EV)))
 assert V[21]==[0.0, 0.5928]
 scala = 41.9
 W=((mat(V)-V[21])*scala).tolist()
-**celle vuote**
+#**celle vuote**
 #celle vuote sono 2,5,6,9,8
 buchi = STRUCT(MKPOLS([W,[FV[k] for k in [2,5,6,9,8]]]))
 tot = STRUCT(MKPOLS([W,FV]))
@@ -411,7 +407,7 @@ PAVIMENTI_UFF=COLOR(RED)(STRUCT([pavimento_3up,pavimento_level2,pavimento_4up,to
 #VIEW(pavimento_level4up)
 VIEW(STRUCT([EDF_UFF,PAVIMENTI_UFF]))
 
-**MURO CIRCOLARE**
+#**MURO CIRCOLARE**
 
 lines = lines2lines("murocircolare.lines") 
 grafo = STRUCT(AA(POLYLINE)(lines))
@@ -440,6 +436,41 @@ muro_circ=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_si]))
 muro_circ=OFFSET([0.3,0.3])(muro_circ)
 muro_circ=T(3)(1)(PROD([muro_circ,Q(33)]))
 VIEW(STRUCT([EDF_UFF,PAVIMENTI_UFF,muro_circ]))
+
+
+#BUCHI e DETTAGLI
+taglio = CUBOID([2,1,33])
+taglio=T([1,2,3])([-1,-.5,1.5])(taglio)
+taglio=T(1)(21.2)(taglio)
+EDF_UFF1=DIFFERENCE([EDF_UFF,taglio])
+VIEW(STRUCT([EDF_UFF1,PAVIMENTI_UFF,muro_circ]))
+
+#larghezza colonna W[10][0]-W[1][0] Out[376]: 9.674709999999997
+#distanza dei rettangoli da inizio è di 0.8
+rett = CUBOID([8,1,11.5])
+rett=T(3)(1.7)(rett)
+rett=T(1)(33.4)(rett)
+EDF_UFF2=DIFFERENCE([EDF_UFF1,rett])
+VIEW(STRUCT([EDF_UFF2,PAVIMENTI_UFF,muro_circ]))
+
+rett = CUBOID([8,1,11.5])
+rett=T(3)(1.7)(rett)
+rett=T(1)(0.8)(rett)
+EDF_UFF3=DIFFERENCE([EDF_UFF2,rett])
+VIEW(STRUCT([EDF_UFF3,PAVIMENTI_UFF,muro_circ]))
+
+#triangoli
+V=[[-1,0],[1,0],[0,1]]
+FV=[[0,1,2]]
+triangle=STRUCT(MKPOLS((V,FV)))
+triangle=S([1,2])([8,15])(triangle)
+triangle=PROD([triangle,INTERVALS(1)(1)])
+VIEW(triangle)
+
+#cambio di coordinate con lo scambio e poi buco  
+
+
+
 
 
 
