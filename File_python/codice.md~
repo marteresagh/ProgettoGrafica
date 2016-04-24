@@ -467,6 +467,7 @@ triangle=S([1,2])([8,15])(triangle)
 triangle=PROD([triangle,INTERVALS(1)(1)])
 VIEW(triangle)
 
+#cambio di coordinate con lo scambio e poi buco  
 
 
 
