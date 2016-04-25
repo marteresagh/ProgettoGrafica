@@ -39,10 +39,10 @@ W=((mat(V)-V[6])*scala).tolist()
 #***
 #**celle vuote**
 #celle vuote sono 0,1,2, mi serve solo la 3
-buchi = STRUCT(MKPOLS([W,[FV[k] for k in range(3)]]))
+buchi = STRUCT(MKPOLS((W,[FV[0]])))
 tot = STRUCT(MKPOLS([W,FV]))
 base0= DIFFERENCE([tot,buchi])
-#VIEW(base0)
+VIEW(base0)
 ***
 
 rialzo=PROD([base0,Q(1.5)])
@@ -304,9 +304,20 @@ base=STRUCT(MKPOLS((W,EV)))
 finale=OFFSET([0.3,0.3])(base)
 finale=T(3)(28.5)(PROD([finale,Q(5.5)]))
 
+#dettagli
+frame=CUBOID([42.3,17.3])
+righe=COLOR(BLUE)(SKEL_1(frame))
+#VIEW(righe)
+RIGHE=OFFSET([0.3,0.3])(righe)
+RIGHE=T([1,2])([-0.15,-0.15])(PROD([RIGHE,INTERVALS(0.3)(1)]))
+#VIEW(RIGHE)
+MARMO=T(3)(1.4)(RIGHE)
+rip_MARMO=STRUCT(NN(11)([prova,T(3)(3)]))
+
+
 #VIEW(level_4)
 #VIEW(level_4up)
-EDF_UFF=STRUCT([rialzo,level1,colonne,level_1,level_2,level_3up,level_4up,finale])
+EDF_UFF=STRUCT([rialzo,level1,colonne,level_1,level_2,level_3up,level_4up,finale,rip_MARMO])
 VIEW(EDF_UFF)
 
 #**PAVIMENTI**
@@ -436,41 +447,70 @@ muro_circ=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_si]))
 muro_circ=OFFSET([0.3,0.3])(muro_circ)
 muro_circ=T(3)(1)(PROD([muro_circ,Q(33)]))
 VIEW(STRUCT([EDF_UFF,PAVIMENTI_UFF,muro_circ]))
-
+Pav_UFF=T([1,2])([0.1,0.2])(S(2)(0.99)(PAVIMENTI_UFF))
 
 #BUCHI e DETTAGLI
 taglio = CUBOID([2,1,33])
 taglio=T([1,2,3])([-1,-.5,1.5])(taglio)
 taglio=T(1)(21.2)(taglio)
-EDF_UFF1=DIFFERENCE([EDF_UFF,taglio])
-VIEW(STRUCT([EDF_UFF1,PAVIMENTI_UFF,muro_circ]))
+#EDF_UFF1=DIFFERENCE([EDF_UFF,taglio])
+#VIEW(STRUCT([EDF_UFF1,PAVIMENTI_UFF,muro_circ]))
 
 #larghezza colonna W[10][0]-W[1][0] Out[376]: 9.674709999999997
 #distanza dei rettangoli da inizio è di 0.8
-rett = CUBOID([8,1,11.5])
-rett=T(3)(1.7)(rett)
-rett=T(1)(33.4)(rett)
-EDF_UFF2=DIFFERENCE([EDF_UFF1,rett])
-VIEW(STRUCT([EDF_UFF2,PAVIMENTI_UFF,muro_circ]))
+rett = CUBOID([8,1,12.5])
+rett=T([1,2,3])([33.4,-0.5,2.25])(rett)
+#EDF_UFF2=DIFFERENCE([EDF_UFF1,rett])
+#VIEW(STRUCT([EDF_UFF2,PAVIMENTI_UFF,muro_circ]))
 
-rett = CUBOID([8,1,11.5])
-rett=T(3)(1.7)(rett)
-rett=T(1)(0.8)(rett)
-EDF_UFF3=DIFFERENCE([EDF_UFF2,rett])
-VIEW(STRUCT([EDF_UFF3,PAVIMENTI_UFF,muro_circ]))
+rett1 = CUBOID([8,1,12.5])
+rett1=T([1,2,3])([0.8,-0.5,2.25])(rett1)
+#EDF_UFF3=DIFFERENCE([EDF_UFF2,rett1])
+#VIEW(STRUCT([EDF_UFF3,PAVIMENTI_UFF,muro_circ]))
 
 #triangoli
 V=[[-1,0],[1,0],[0,1]]
 FV=[[0,1,2]]
 triangle=STRUCT(MKPOLS((V,FV)))
-triangle=S([1,2])([8,15])(triangle)
+triangle=S([1,2])([4,13.5])(triangle)
 triangle=PROD([triangle,INTERVALS(1)(1)])
-VIEW(triangle)
-
+#VIEW(triangle)
 #cambio di coordinate con lo scambio e poi buco  
+Q,FQ,EQ=UKPOL(triangle)
+Q = AA(CONS([S1,S3,S2]))(Q)
+tr_buco=STRUCT([MKPOL((Q,FQ,EQ))])
+#altezza 16.5
+tr_buco=T([1,2,3])([37.4,-0.5,18])(tr_buco)
+#EDF_UFF4=DIFFERENCE([EDF_UFF3,tr_buco])
+#VIEW(STRUCT([EDF_UFF4,PAVIMENTI_UFF,muro_circ]))
+#secondo
+V=[[-1,0],[1,0],[0,1]]
+FV=[[0,1,2]]
+triangle=STRUCT(MKPOLS((V,FV)))
+triangle=S([1,2])([4,13.5])(triangle)
+triangle=PROD([triangle,INTERVALS(1)(1)])
+#VIEW(triangle)
+#cambio di coordinate con lo scambio e poi buco  
+V,FV,EV=UKPOL(triangle)
+V = AA(CONS([S1,S3,S2]))(V)
+tr_buco1=STRUCT([MKPOL((V,FV,EV))])
+#altezza 16.5
+tr_buco1=COLOR(RED)(T([1,2,3])([4.8,-0.5,18])(tr_buco1))
+#EDF_UFF5=DIFFERENCE([EDF_UFF4,tr_buco1])
+#VIEW(STRUCT([EDF_UFF5,PAVIMENTI_UFF,muro_circ]))
 
+#cerchi
+buco_circ= CYLINDER([4,3])(100)
+#VIEW(buco_circ)
+#12 altezza, 5.3 
+buco=R([1,3])(PI/2)(buco_circ)
+circ=T([1,2,3])([0.5,4.8,16.5])(buco)
+#VIEW(STRUCT([circ,EDF_UFF5]))
+#12 altezza, 5.3 
+circ2=T(1)(42)(circ)
 
-
-
+BUCHI=COLOR(RED)(STRUCT([taglio,rett,rett1,tr_buco,tr_buco1,circ,circ2]))
+EDF_UFFfinal=DIFFERENCE([EDF_UFF,BUCHI])
+VIEW(STRUCT([EDF_UFFfinal,Pav_UFF,muro_circ]))
 
 
