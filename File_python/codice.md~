@@ -305,14 +305,31 @@ finale=OFFSET([0.3,0.3])(base)
 finale=T(3)(28.5)(PROD([finale,Q(5.5)]))
 
 #dettagli
-frame=CUBOID([42.3,17.3])
-righe=COLOR(BLUE)(SKEL_1(frame))
-#VIEW(righe)
-RIGHE=OFFSET([0.3,0.3])(righe)
-RIGHE=T([1,2])([-0.15,-0.15])(PROD([RIGHE,INTERVALS(0.3)(1)]))
-#VIEW(RIGHE)
+***
+lines = lines2lines("rialzo_level1.lines")
+V,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
+grafo=STRUCT(MKPOLS((V,EV))) #grafo pulito
+VV = AA(LIST)(range(len(V)))
+submodel = STRUCT(MKPOLS((V,EV)))
+#VIEW(larModelNumbering(1,1,1)(V,[VV,EV,FV],submodel,0.1))
+
+scala = 41.9/0.9949
+
+W=((mat(V)-V[6])*scala).tolist()
+
+#***
+#**verifica** 
+#WW = AA(LIST)(range(len(W)))
+#VIEW(larModelNumbering(1,1,1)(W,[WW,EV,FV],STRUCT(MKPOLS((W,EV))),2))
+#assert W[9][0]-W[3][0]==41.9
+EV_cut=sorted([2,4,14,13])
+EV_righe= set(range(len(EV))).difference(EV_cut)
+frame=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_righe]))
+
+righe = T([1,2])([-0.15,-0.15])( OFFSET([0.60,0.60])(frame))
+RIGHE=PROD([righe,INTERVALS(0.20)(1)])
 MARMO=T(3)(1.4)(RIGHE)
-rip_MARMO=STRUCT(NN(11)([prova,T(3)(3)]))
+rip_MARMO=STRUCT(NN(11)([MARMO,T(3)(3)]))
 
 
 #VIEW(level_4)
