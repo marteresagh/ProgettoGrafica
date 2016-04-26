@@ -15,8 +15,8 @@ from larlib import *
 lines = lines2lines("rialzo_level1.lines")
 V,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
 grafo=STRUCT(MKPOLS((V,EV))) #grafo pulito
-VV = AA(LIST)(range(len(V)))
-submodel = STRUCT(MKPOLS((V,EV)))
+#VV = AA(LIST)(range(len(V)))
+#submodel = STRUCT(MKPOLS((V,EV)))
 #VIEW(larModelNumbering(1,1,1)(V,[VV,EV,FV],submodel,0.1))
 
 #V[6] da portare nell'origine, spigolo EV[7] da portare a grandezza mondo: 42metri
@@ -29,7 +29,7 @@ scala = 41.9/0.9949
 
 W=((mat(V)-V[6])*scala).tolist()
 
-#***
+
 #**verifica** 
 #WW = AA(LIST)(range(len(W)))
 #VIEW(larModelNumbering(1,1,1)(W,[WW,EV,FV],STRUCT(MKPOLS((W,EV))),2))
@@ -43,21 +43,16 @@ buchi = STRUCT(MKPOLS((W,[FV[0]])))
 tot = STRUCT(MKPOLS([W,FV]))
 base0= DIFFERENCE([tot,buchi])
 #VIEW(base0)
-***
-
 rialzo=PROD([base0,Q(1.5)])
 #VIEW(rialzo)
-
-
-
  
 #**LEVEL 1_muri esterni** 
 
 lines = lines2lines("rialzo_level1.lines")
 V,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
 grafo=STRUCT(MKPOLS((V,EV))) #grafo pulito
-VV = AA(LIST)(range(len(V)))
-submodel = STRUCT(MKPOLS((V,EV)))
+#VV = AA(LIST)(range(len(V)))
+#submodel = STRUCT(MKPOLS((V,EV)))
 #VIEW(larModelNumbering(1,1,1)(V,[VV,EV,FV],submodel,0.1))
 
 #V[6] da portare nell'origine, spigolo EV[7] da portare a grandezza mondo: 42metri
@@ -75,12 +70,12 @@ EV_bassi=sorted([1,3,5,0,10,12,16,7])
 EV_alti= set(range(len(EV))).difference(EV_bassi)
 muri_bassi=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_bassi]))
 muri_alti=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_alti]))
-#***
+
 #**verifica** 
 #WW = AA(LIST)(range(len(W)))
 #VIEW(larModelNumbering(1,1,1)(W,[WW,EV,FV],STRUCT(MKPOLS((W,EV))),2))
 #assert W[9][0]-W[3][0]==41.9
-***
+
 #SPIGOLo 2 diverso
 EVmuri=set(range(len(EV))).difference({2})
 muro = STRUCT(MKPOLS((W,[EV[2]])))
@@ -103,8 +98,8 @@ V,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
 grafo=STRUCT(MKPOLS((V,EV))) #grafo pulito
 #VIEW(OFFSET([0.005,0.005])(grafo))
 
-VV = AA(LIST)(range(len(V)))
-submodel = STRUCT(MKPOLS((V,EV)))
+#VV = AA(LIST)(range(len(V)))
+#submodel = STRUCT(MKPOLS((V,EV)))
 #VIEW(larModelNumbering(1,1,1)(V,[VV,EV,FV],submodel,0.1))
 
 #V[2] da portare nell'origine, spigolo EV[9] da portare a grandezza mondo: 42metri
@@ -121,12 +116,11 @@ W=((mat(V)-V[2])*scala).tolist()
 EV_no=sorted([0,1,7,5,10,2,3,9])
 EV_si= set(range(len(EV))).difference(EV_no)
 
-#***
 #**verifica** 
 #WW = AA(LIST)(range(len(W)))
 #VIEW(larModelNumbering(1,1,1)(W,[WW,EV,FV],STRUCT(MKPOLS((W,EV))),2))
 #assert W[7][0]-W[3][0]==41.9
-***
+
 
 baseC=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_si]))
 baseC=OFFSET([0.3,0.3])(baseC)
@@ -144,8 +138,8 @@ grafo = STRUCT(AA(POLYLINE)(lines))
 
 #numerazione vertici e spigoli
 V,EV = lines2lar(lines)
-VV = AA(LIST)(range(len(V)))
-submodel = STRUCT(MKPOLS((V,EV)))
+#VV = AA(LIST)(range(len(V)))
+#submodel = STRUCT(MKPOLS((V,EV)))
 #VIEW(larModelNumbering(1,1,1)(V,[VV,EV],submodel,0.05))
 
 #V[3] da portare nell'origine, spigolo V[18]V[21] da portare a grandezza mondo: 42metri
@@ -172,7 +166,7 @@ level_1=STRUCT([wall_1,wall_2])
 level_1=T(3)(1.5)(level_1)
 #VIEW(level_1)
 
-VIEW(STRUCT([rialzo,level1,colonne,level_1]))
+#VIEW(STRUCT([rialzo,level1,colonne,level_1]))
 
 #**LEVEL 2**
 lines = lines2lines("uff_level2.lines")
@@ -181,8 +175,8 @@ grafo = STRUCT(AA(POLYLINE)(lines))
 
 #numerazione vertici e spigoli
 V,EV = lines2lar(lines)
-VV = AA(LIST)(range(len(V)))
-submodel = STRUCT(MKPOLS((V,EV)))
+#VV = AA(LIST)(range(len(V)))
+#submodel = STRUCT(MKPOLS((V,EV)))
 #VIEW(larModelNumbering(1,1,1)(V,[VV,EV],submodel,0.2))
 
 #V[40] da portare nell'origine, spigolo V[40]V[23] da portare a grandezza mondo: 42metri
@@ -207,18 +201,18 @@ level_2=STRUCT([wall_1,wall_2])
 level_2=T(3)(4.5)(level_2)
 #VIEW(level_2)
 
-VIEW(STRUCT([rialzo,level1,colonne,level_1,level_2]))
+#VIEW(STRUCT([rialzo,level1,colonne,level_1,level_2]))
 
 #**LEVEL 3**
 
 lines = lines2lines("uff_level3.lines")
-grafo = STRUCT(AA(POLYLINE)(lines))
+#grafo = STRUCT(AA(POLYLINE)(lines))
 #VIEW(grafo)
 
 #numerazione vertici e spigoli
 V,EV = lines2lar(lines)
-VV = AA(LIST)(range(len(V)))
-submodel = STRUCT(MKPOLS((V,EV)))
+#VV = AA(LIST)(range(len(V)))
+#submodel = STRUCT(MKPOLS((V,EV)))
 #VIEW(larModelNumbering(1,1,1)(V,[VV,EV],submodel,0.2))
 
 #V[38] da portare nell'origine, spigolo V[38]V[22] da portare a grandezza mondo: 42metri
@@ -254,13 +248,13 @@ level_3up=STRUCT(NN(4)([level_3,T(3)(6)]))
 #**LEVEL 4**
 
 lines = lines2lines("uff_level4.lines")
-grafo = STRUCT(AA(POLYLINE)(lines))
+#grafo = STRUCT(AA(POLYLINE)(lines))
 #VIEW(grafo)
 
 #numerazione vertici e spigoli
 V,EV = lines2lar(lines)
-VV = AA(LIST)(range(len(V)))
-submodel = STRUCT(MKPOLS((V,EV)))
+#VV = AA(LIST)(range(len(V)))
+#submodel = STRUCT(MKPOLS((V,EV)))
 #VIEW(larModelNumbering(1,1,1)(V,[VV,EV],submodel,0.2))
 
 #V[42] da portare nell'origine, spigolo V[42]V[27] da portare a grandezza mondo: 42metri
@@ -294,8 +288,8 @@ grafo = STRUCT(AA(POLYLINE)(lines))
 
 #numerazione vertici e spigoli
 V,EV = lines2lar(lines)
-VV = AA(LIST)(range(len(V)))
-submodel = STRUCT(MKPOLS((V,EV)))
+#VV = AA(LIST)(range(len(V)))
+#submodel = STRUCT(MKPOLS((V,EV)))
 #VIEW(larModelNumbering(1,1,1)(V,[VV,EV],submodel,0.2))
 W=((mat(V)-V[5])*scala).tolist()
 base=STRUCT(MKPOLS((W,EV)))
@@ -303,20 +297,19 @@ finale=OFFSET([0.3,0.3])(base)
 finale=T(3)(28.5)(PROD([finale,Q(5.5)]))
 
 #dettagli righe
-***
+
 lines = lines2lines("rialzo_level1.lines")
 V,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
-grafo=STRUCT(MKPOLS((V,EV))) #grafo pulito
-VV = AA(LIST)(range(len(V)))
-submodel = STRUCT(MKPOLS((V,EV)))
+#grafo=STRUCT(MKPOLS((V,EV))) #grafo pulito
+#VV = AA(LIST)(range(len(V)))
+#submodel = STRUCT(MKPOLS((V,EV)))
 #VIEW(larModelNumbering(1,1,1)(V,[VV,EV,FV],submodel,0.1))
 
 scala = 41.9/0.9949
 
 W=((mat(V)-V[6])*scala).tolist()
 
-#***
-#**verifica** 
+#verifica 
 #WW = AA(LIST)(range(len(W)))
 #VIEW(larModelNumbering(1,1,1)(W,[WW,EV,FV],STRUCT(MKPOLS((W,EV))),2))
 #assert W[9][0]-W[3][0]==41.9
@@ -342,16 +335,16 @@ Y,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
 #prova=STRUCT(MKPOLS((V,FV))) #grafo pulito
 #VIEW(prova)
 
-YY = AA(LIST)(range(len(Y)))
-submodel = STRUCT(MKPOLS((Y,EV)))
+#YY = AA(LIST)(range(len(Y)))
+#submodel = STRUCT(MKPOLS((Y,EV)))
 #VIEW(larModelNumbering(1,1,1)(Y,[YY,EV,FV],submodel,0.1))
 #V[26] da portare nell'origine, spigolo EV[18] da portare a grandezza mondo: 42metri
 assert Y[26]==[0.0, 0.5928]
 assert Y[26][0]-Y[7][0] == 1.0
 scala = 41.9
 Z=((mat(Y)-Y[26])*scala).tolist()
-ZZ = AA(LIST)(range(len(Z)))
-submodel = STRUCT(MKPOLS((Z,EV)))
+#ZZ = AA(LIST)(range(len(Z)))
+#submodel = STRUCT(MKPOLS((Z,EV)))
 #VIEW(larModelNumbering(1,1,1)(Z,[ZZ,EV,FV],submodel,0.1))
 #**celle vuote**
 #celle vuote sono 0,1,2,7,65,4, mi serve solo la 3
@@ -369,8 +362,8 @@ V,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
 #prova=STRUCT(MKPOLS((V,FV))) #grafo pulito
 #VIEW(prova)
 
-VV = AA(LIST)(range(len(V)))
-submodel = STRUCT(MKPOLS((V,EV)))
+#VV = AA(LIST)(range(len(V)))
+#submodel = STRUCT(MKPOLS((V,EV)))
 #VIEW(larModelNumbering(1,1,1)(V,[VV,EV,FV],submodel,0.1))
 #V[21] da portare nell'origine a grandezza mondo: 42metri
 assert V[21]==[0.0, 0.5928]
@@ -391,8 +384,8 @@ V,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
 #prova=STRUCT(MKPOLS((V,FV))) #grafo pulito
 #VIEW(prova)
 
-VV = AA(LIST)(range(len(V)))
-submodel = STRUCT(MKPOLS((V,EV)))
+#VV = AA(LIST)(range(len(V)))
+#submodel = STRUCT(MKPOLS((V,EV)))
 #VIEW(larModelNumbering(1,1,1)(V,[VV,EV,FV],submodel,0.1))
 #V[21] da portare nell'origine a grandezza mondo: 42metri
 assert V[21]==[0.0, 0.5928]
@@ -414,8 +407,8 @@ V,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
 #prova=STRUCT(MKPOLS((V,FV))) #grafo pulito
 #VIEW(prova)
 
-VV = AA(LIST)(range(len(V)))
-submodel = STRUCT(MKPOLS((V,EV)))
+#VV = AA(LIST)(range(len(V)))
+#submodel = STRUCT(MKPOLS((V,EV)))
 #VIEW(larModelNumbering(1,1,1)(V,[VV,EV,FV],submodel,0.1))
 #V[21] da portare nell'origine a grandezza mondo: 42metri
 assert V[21]==[0.0, 0.5928]
@@ -441,8 +434,8 @@ grafo = STRUCT(AA(POLYLINE)(lines))
 
 #numerazione vertici e spigoli
 V,EV = lines2lar(lines)
-VV = AA(LIST)(range(len(V)))
-submodel = STRUCT(MKPOLS((V,EV)))
+#VV = AA(LIST)(range(len(V)))
+#submodel = STRUCT(MKPOLS((V,EV)))
 #VIEW(larModelNumbering(1,1,1)(V,[VV,EV],submodel,0.2))
 
 #lo spigolo EV[60] deve misurare (misura presa dal pavimento livello 2) W[12][0]-W[4][0]==7.366019999999999, traslazione Z[4]
@@ -450,8 +443,8 @@ submodel = STRUCT(MKPOLS((V,EV)))
 scaling=7.366019999999999
 W=((mat(V)-V[64])*scaling).tolist()
 W=(mat(W)+Z[4]).tolist()
-WW = AA(LIST)(range(len(W)))
-submodel = STRUCT(MKPOLS((W,EV)))
+#WW = AA(LIST)(range(len(W)))
+#submodel = STRUCT(MKPOLS((W,EV)))
 #VIEW(larModelNumbering(1,1,1)(W,[WW,EV],submodel,0.2))
 
 
@@ -538,7 +531,7 @@ circ2=T(1)(42)(circ)
 
 BUCHI=COLOR(RED)(STRUCT([taglio,rett,rett1,tr_buco,tr_buco1,circ,circ2]))
 EDF_UFFfinal=DIFFERENCE([EDF_UFF,BUCHI])
-VIEW(STRUCT([EDF_UFFfinal,Pav_UFF,muro_circ]))
+#VIEW(STRUCT([EDF_UFFfinal,Pav_UFF,muro_circ]))
 
 #GRIGLIE
 frame=S([1,2])([0.30,0.30])(SKEL_1(STRUCT(MKPOLS(larCuboids([32,32])))))
@@ -560,3 +553,4 @@ GRID_tot=T(2)(0.1)(STRUCT([GRID_dx,GRID_sx,grcol_dx,grcol_sx]))
 EDIFICIO=STRUCT([COLOR(BROWN)(EDF_UFFfinal),Pav_UFF,muro_circ,GRID_tot])
 VIEW(EDIFICIO)
 
+#mancano solo le scale 
