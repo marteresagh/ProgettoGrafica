@@ -39,9 +39,7 @@ W=((mat(V)-V[6])*scala).tolist()
 #***
 #**celle vuote**
 #celle vuote sono 0,1,2, mi serve solo la 3
-buchi = STRUCT(MKPOLS((W,[FV[0]])))
-tot = STRUCT(MKPOLS([W,FV]))
-base0= DIFFERENCE([tot,buchi])
+base0 = STRUCT(MKPOLS([W,FV]))
 #VIEW(base0)
 rialzo=PROD([base0,Q(1.5)])
 #VIEW(rialzo)
@@ -317,7 +315,7 @@ EV_cut=sorted([2,4,14,13])
 EV_righe= set(range(len(EV))).difference(EV_cut)
 frame=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_righe]))
 
-righe = T([1,2])([-0.15,-0.15])( OFFSET([0.60,0.60])(frame))
+righe = T([1,2])([-0.15,-0.15])( OFFSET([0.4,0.4])(frame))
 RIGHE=PROD([righe,INTERVALS(0.20)(1)])
 MARMO=T(3)(1.4)(RIGHE)
 rip_MARMO=STRUCT(NN(11)([MARMO,T(3)(3)]))

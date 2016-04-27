@@ -39,9 +39,7 @@ W=((mat(V)-V[6])*scala).tolist()
 #***
 #**celle vuote**
 #celle vuote sono 0,1,2, mi serve solo la 3
-buchi = STRUCT(MKPOLS((W,[FV[0]])))
-tot = STRUCT(MKPOLS([W,FV]))
-base0= DIFFERENCE([tot,buchi])
+base0 = STRUCT(MKPOLS([W,FV]))
 #VIEW(base0)
 rialzo=PROD([base0,Q(1.5)])
 #VIEW(rialzo)
@@ -326,7 +324,7 @@ rip_MARMO=STRUCT(NN(11)([MARMO,T(3)(3)]))
 #VIEW(level_4)
 #VIEW(level_4up)
 EDF_UFF=STRUCT([rialzo,level1,colonne,level_1,level_2,level_3up,level_4up,finale,rip_MARMO])
-VIEW(EDF_UFF)
+#VIEW(EDF_UFF)
 
 #**PAVIMENTI**
 #**pavimento level 2**
@@ -454,9 +452,8 @@ muro_circ=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_si]))
 
 muro_circ=OFFSET([0.3,0.3])(muro_circ)
 muro_circ=T([2,3])([0.1,1])(PROD([muro_circ,Q(33)]))
+#VIEW(STRUCT([EDF_UFF,PAVIMENTI_UFF,muro_circ]))
 
-
-VIEW(STRUCT([EDF_UFF,PAVIMENTI_UFF,muro_circ]))
 #righe circolari
 muro_circ1=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_si]))
 righe_circ = T([1,2])([-0.15,-0.15])( OFFSET([0.60,0.60])(muro_circ1))
@@ -466,7 +463,6 @@ rip_MARMOcirc=STRUCT(NN(11)([MARMO_circ,T(3)(3)]))
 
 EDF_UFF=STRUCT([rialzo,level1,colonne,level_1,level_2,level_3up,level_4up,finale,rip_MARMO,rip_MARMOcirc])
 
-***
 Pav_UFF=T([1,2])([0.1,0.2])(S(2)(0.99)(PAVIMENTI_UFF))
 
 #BUCHI e DETTAGLI
