@@ -30,6 +30,8 @@ circ2=COLOR(RED)(T([1,3])([.8,14.5])(buco2))
 buco3=R([1,2])(PI/2)(R([1,3])(PI/2)(buco_circ))
 circ3=COLOR(RED)(T([2,3])([.8,14.5])(buco3))
 #VIEW(STRUCT([circ3,circ2]))
+
+#DA CAMBIARE CIRC SUD 
 circ_sud=COLOR(RED)(T([1,2,3])([.8,.8,11.5])(S([3])(-1)(T([1,2,3])([-.8,-.8,-14.5])(STRUCT([circ2,circ3])))))
 
 base1=STRUCT(MKPOLS(larDisk(7.61,3./2*PI)([100,1])))
@@ -89,6 +91,8 @@ griglia_sud=PROD([griglia2,Q(0.05)])
 finestra1_sud=T([1,2,3])([0.1,0.2,15.5])(R([2,3])(PI/2)(griglia_sud))
 finestra2_sud=T([1,2])([.3,0.1])(R([1,2])(PI/2)(finestra1_sud))
 fin_SUD=T(3)(14.5)(S(3)(0.88)(T(3)(-14)(STRUCT([finestra1_sud,finestra2_sud]))))
+
+#DA CAMBIARE LE FINESTRE SOTTO
 FIN_SOTTO=T(3)(11.5)(S(3)(-1)(S(3)(0.88)(T(3)(-14)(STRUCT([finestra1_sud,finestra2_sud])))))
 #VIEW(STRUCT([fin_SUD,SALA_PREG]))
 #trasformazioni finestre
@@ -154,4 +158,6 @@ tetto_finale4=T([1,2])([4.8,16])(S([1,2])([-1,-1])(R([1,2])(PI/2)(tetto_finale))
 TETTO=STRUCT([tetto_finale1,tetto_finale2,tetto_finale3,tetto_finale4])
 SALA_PREGHIERA=STRUCT([TETTO,SALA_PREG,FINESTRE])
 VIEW(SALA_PREGHIERA)
+
+#MODIFICA PIANO TERRA CON LE PLANIMETRIE TROVATE IN PDF E COMPLETA CON LA CORTE 
 
