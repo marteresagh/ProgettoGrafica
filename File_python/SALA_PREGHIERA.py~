@@ -7,9 +7,20 @@ rialzo=PROD([base,Q(1.5)])
 muri=OFFSET([0.3,0.3])(SKEL_1(base))
 pareti=PROD([muri,Q(34)])
 pav_sala=T([1,2,3])([0.3,0.3,13.5])(CUBOID([20.5,20.5,0.5]))
+pav_sala1=T([1,2,3])([0.3,0.3,7.5])(CUBOID([20.5,20.5,0.5]))
 soffitto=T([1,2,3])([0.3,0.3,33.5])(CUBOID([20.2,20.2,0.5]))
-SALA=STRUCT([rialzo,pareti,COLOR(BROWN)(soffitto),pav_sala])
+SALA=STRUCT([rialzo,pareti,soffitto,pav_sala,pav_sala1])
 
+#COLONNE PIANO TERRA
+lines = lines2lines("sala_terra.lines") 
+grafo = STRUCT(AA(POLYLINE)(lines))
+V,EV = lines2lar(lines)
+scaling=14.95
+W=(mat(V)*scaling).tolist()
+grafo1=STRUCT(MKPOLS((W,EV)))
+arco=OFFSET([0.3,0.3])(grafo1)
+ARCHI=T([1,2])([2.87,2.87])(PROD([arco,Q(13.5)]))
+#VIEW(STRUCT([ARCHI]))
 
 #VIEW(SALA)
 #a 6*1.5 metri c'è l'ingresso principale, ovvero al terzo piano, al primo c' è il passaggio inferiore al livello 5 ovvero a 1.5+3*4
@@ -30,8 +41,11 @@ circ2=COLOR(RED)(T([1,3])([.8,14.5])(buco2))
 buco3=R([1,2])(PI/2)(R([1,3])(PI/2)(buco_circ))
 circ3=COLOR(RED)(T([2,3])([.8,14.5])(buco3))
 #VIEW(STRUCT([circ3,circ2]))
-circ_sud=COLOR(RED)(T([1,2,3])([.8,.8,11.5])(S([3])(-1)(T([1,2,3])([-.8,-.8,-14.5])(STRUCT([circ2,circ3])))))
 
+#DA CAMBIARE CIRC SUD!!!!!!!!!!!!!!!!!!!!!!
+circ_sud=COLOR(RED)(T([1,2,3])([.8,.8,13.3])(S([3])(-0.75)(T([1,2,3])([-.8,-.8,-14.5])(STRUCT([circ2,circ3])))))
+
+#CILINDRI
 base1=STRUCT(MKPOLS(larDisk(7.61,3./2*PI)([100,1])))
 base2=STRUCT(MKPOLS(larDisk(7.31,3./2*PI)([100,1])))
 cil1=PROD([base1,Q(34)])
@@ -89,7 +103,9 @@ griglia_sud=PROD([griglia2,Q(0.05)])
 finestra1_sud=T([1,2,3])([0.1,0.2,15.5])(R([2,3])(PI/2)(griglia_sud))
 finestra2_sud=T([1,2])([.3,0.1])(R([1,2])(PI/2)(finestra1_sud))
 fin_SUD=T(3)(14.5)(S(3)(0.88)(T(3)(-14)(STRUCT([finestra1_sud,finestra2_sud]))))
-FIN_SOTTO=T(3)(11.5)(S(3)(-1)(S(3)(0.88)(T(3)(-14)(STRUCT([finestra1_sud,finestra2_sud])))))
+
+#DA CAMBIARE LE FINESTRE SOTTO
+FIN_SOTTO=T(3)(13.3)(S(3)(-.75)(S(3)(0.88)(T(3)(-14)(STRUCT([finestra1_sud,finestra2_sud])))))
 #VIEW(STRUCT([fin_SUD,SALA_PREG]))
 #trasformazioni finestre
 GRATE=STRUCT([FIN_SOTTO,fin_SUD,finestra1,finestra2])
@@ -152,7 +168,7 @@ tetto_finale2=T([1,2])([16,16])(S([1,2])([-1,-1])(tetto_finale))
 tetto_finale3=T([1,2])([16,4.8])(R([1,2])(PI/2)(tetto_finale))
 tetto_finale4=T([1,2])([4.8,16])(S([1,2])([-1,-1])(R([1,2])(PI/2)(tetto_finale)))
 TETTO=STRUCT([tetto_finale1,tetto_finale2,tetto_finale3,tetto_finale4])
-SALA_PREGHIERA=STRUCT([TETTO,SALA_PREG,FINESTRE])
+SALA_PREGHIERA=STRUCT([ARCHI,TETTO,SALA_PREG,FINESTRE])
 VIEW(SALA_PREGHIERA)
 
 #MODIFICA PIANO TERRA CON LE PLANIMETRIE TROVATE IN PDF E COMPLETA CON LA CORTE 
