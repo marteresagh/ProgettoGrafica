@@ -146,7 +146,7 @@ MARMOrett=T(3)(1.4)(righe)
 rip_MARMOrett=STRUCT(NN(11)([MARMOrett,T(3)(3)]))
 #VIEW(rip_MARMOrett)
 PREG=STRUCT([SALA,croce1,croce2,croce3,croce4,rip_MARMOrett])
-SALA_PREG=DIFFERENCE([PREG,FORI])
+#SALA_PREG=DIFFERENCE([PREG,FORI])
 
 
 #ARCHI ANGOLATI
@@ -171,5 +171,148 @@ TETTO=STRUCT([tetto_finale1,tetto_finale2,tetto_finale3,tetto_finale4])
 SALA_PREGHIERA=STRUCT([ARCHI,TETTO,SALA_PREG,FINESTRE])
 VIEW(SALA_PREGHIERA)
 
-#MODIFICA PIANO TERRA CON LE PLANIMETRIE TROVATE IN PDF E COMPLETA CON LA CORTE 
+#MANCA SECONDO PIANO E COMPLETA CON LA CORTE 
+
+#CORTE :CAMBIA I DISEGNI:PIU PRECISI 
+#LEVEL1
+lines = lines2lines("corte_level1.lines")
+grafo = STRUCT(AA(POLYLINE)(lines))
+#VIEW(grafo)
+
+#numerazione vertici e spigoli
+V,EV = lines2lar(lines)
+VV = AA(LIST)(range(len(V)))
+submodel = STRUCT(MKPOLS((V,EV)))
+#VIEW(larModelNumbering(1,1,1)(V,[VV,EV],submodel,0.2))
+
+#V[203] da portare nell'origine, spigolo V[29]V[97] da portare a grandezza mondo: 30.46metri
+#assert V[203]==[0.0, 1.0]
+#assert V[189]==[0.0414,1.0]
+#assert V[71]==[0.9528,1.0]
+#assert V[71][0]-V[189][0] == 0.9114
+scala = 30.46/0.9114
+
+W=((mat(V)-V[203])*scala).tolist()
+
+#W[79][0]-W[168][0]
+# 34.25165860789385
+
+
+base=STRUCT(MKPOLS((W,EV)))
+baseOFF=OFFSET([0.3,0.3])(base)
+muri_level1=PROD([baseOFF,Q(4.5)])
+VIEW(muri_level1)
+
+#LEVEL2
+lines = lines2lines("corte_level2.lines")
+grafo = STRUCT(AA(POLYLINE)(lines))
+#VIEW(grafo)
+
+#numerazione vertici e spigoli
+V,EV = lines2lar(lines)
+VV = AA(LIST)(range(len(V)))
+submodel = STRUCT(MKPOLS((V,EV)))
+#VIEW(larModelNumbering(1,1,1)(V,[VV,EV],submodel,0.2))
+
+#V[210] da portare nell'origine, spigolo da portare a grandezza mondo: 30.46metri
+#assert V[210]==[0.0, 1.0]
+#assert V[211]==[0.0406,0.9989]
+#assert V[165]==[0.952,0.9989]
+#assert V[165][0]-V[211][0] == 0.9114
+scala = 30.46/0.9114
+
+W=((mat(V)-V[210])*scala).tolist()
+
+base2=STRUCT(MKPOLS((W,EV)))
+baseOFF2=OFFSET([0.3,0.3])(base2)
+muri_level2=T(3)(4.5)(PROD([baseOFF2,Q(3)]))
+#VIEW(muri_level2)
+VIEW(STRUCT([muri_level1,muri_level2]))
+
+#LEVEL3
+lines = lines2lines("corte_level3.lines")
+grafo = STRUCT(AA(POLYLINE)(lines))
+#VIEW(grafo)
+
+#numerazione vertici e spigoli
+V,EV = lines2lar(lines)
+VV = AA(LIST)(range(len(V)))
+submodel = STRUCT(MKPOLS((V,EV)))
+#VIEW(larModelNumbering(1,1,1)(V,[VV,EV],submodel,0.2))
+
+#V[168] da portare nell'origine, spigolo V[29]V[97] da portare a grandezza mondo: 30.46metri
+#assert V[168]==[0.0, 0.9989]
+#assert V[169]==[0.0414,0.9989]
+#assert V[52]==[0.9528,0.9989]
+#assert V[52][0]-V[169][0] == 0.9114
+scala = 30.46/0.9114
+
+W=((mat(V)-V[168])*scala).tolist()
+
+base3=STRUCT(MKPOLS((W,EV)))
+baseOFF3=OFFSET([0.3,0.3])(base3)
+muri_level3=T(3)(7.5)(PROD([baseOFF3,Q(3)]))
+#VIEW(muri_level3)
+VIEW(STRUCT([muri_level1,muri_level2,muri_level3]))
+
+
+#LEVEL4/5
+lines = lines2lines("corte_level45.lines")
+grafo = STRUCT(AA(POLYLINE)(lines))
+#VIEW(grafo)
+
+#numerazione vertici e spigoli
+V,EV = lines2lar(lines)
+VV = AA(LIST)(range(len(V)))
+submodel = STRUCT(MKPOLS((V,EV)))
+#VIEW(larModelNumbering(1,1,1)(V,[VV,EV],submodel,0.2))
+
+#V[107] da portare nell'origine, spigolo V[29]V[97] da portare a grandezza mondo: 30.46metri
+#assert V[107]==[0.0, 0.9989]
+#assert V[108]==[0.0406,0.9989]
+#assert V[103]==[0.952,0.9989]
+#assert V[103][0]-V[108][0] == 0.9114
+scala = 30.46/0.9114
+
+W=((mat(V)-V[107])*scala).tolist()
+
+base4=STRUCT(MKPOLS((W,EV)))
+baseOFF4=OFFSET([0.3,0.3])(base4)
+muri_level4=T(3)(10.5)(PROD([baseOFF4,Q(3)]))
+muri_level5=T(3)(13.5)(PROD([baseOFF4,Q(3)]))
+#VIEW(muri_level4)
+VIEW(STRUCT([muri_level1,muri_level2,muri_level3,muri_level4,muri_level5]))
+
+
+#LEVEL6
+lines = lines2lines("corte_level6up.lines")
+grafo = STRUCT(AA(POLYLINE)(lines))
+#VIEW(grafo)
+
+#numerazione vertici e spigoli
+V,EV = lines2lar(lines)
+VV = AA(LIST)(range(len(V)))
+submodel = STRUCT(MKPOLS((V,EV)))
+#VIEW(larModelNumbering(1,1,1)(V,[VV,EV],submodel,0.2))
+
+#V[107] da portare nell'origine, spigolo V[29]V[97] da portare a grandezza mondo: 30.46metri
+#assert V[192]==[0.0, 0.9989]
+#assert V[131]==[0.0406,0.9989]
+#assert V[160]==[0.952,0.9989]
+#assert V[160][0]-V[131][0] == 0.9114
+scala = 30.46/0.9114
+
+W=((mat(V)-V[192])*scala).tolist()
+
+base6=STRUCT(MKPOLS((W,EV)))
+baseOFF6=OFFSET([0.3,0.3])(base6)
+muri_level6=T(3)(16.5)(PROD([baseOFF6,Q(17.5)]))
+#VIEW(muri_level6)
+MURI=STRUCT([muri_level1,muri_level2,muri_level3,muri_level4,muri_level5,muri_level6])
+
+VIEW(STRUCT([MURI,PREG]))
+
+rot_SALA=R([1,2])(-PI-0.0872665)(T([1,2])([-10.475,-10.475])(PREG))
+tras_SALA=T([1,2])([13.328,-31.416])(rot_SALA)
+
 
