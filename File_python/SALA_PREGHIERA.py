@@ -169,11 +169,13 @@ tetto_finale3=T([1,2])([16,4.8])(R([1,2])(PI/2)(tetto_finale))
 tetto_finale4=T([1,2])([4.8,16])(S([1,2])([-1,-1])(R([1,2])(PI/2)(tetto_finale)))
 TETTO=STRUCT([tetto_finale1,tetto_finale2,tetto_finale3,tetto_finale4])
 SALA_PREGHIERA=STRUCT([ARCHI,TETTO,SALA_PREG,FINESTRE])
-VIEW(SALA_PREGHIERA)
-
+#VIEW(SALA_PREGHIERA)
+rot_SALA=R([1,2])(-PI-0.10472)(T([1,2])([-10.475,-10.475])(SALA_PREGHIERA))
+tras_SALA=T([1,2])([13.328,-30.416])(rot_SALA)
+VIEW(tras_SALA)
 #MANCA SECONDO PIANO E COMPLETA CON LA CORTE 
 
-#CORTE :CAMBIA I DISEGNI:PIU PRECISI 
+#CORTE
 #LEVEL1
 lines = lines2lines("corte_level1.lines")
 grafo = STRUCT(AA(POLYLINE)(lines))
@@ -192,16 +194,16 @@ submodel = STRUCT(MKPOLS((V,EV)))
 #assert V[71][0]-V[189][0] == 0.9114
 scala = 30.46/0.9114
 
-W=((mat(V)-V[203])*scala).tolist()
+Z=((mat(V)-V[203])*scala).tolist()
 
-#W[79][0]-W[168][0]
-# 34.25165860789385
+ZZ = AA(LIST)(range(len(Z)))
+submodel = STRUCT(MKPOLS((Z,EV)))
+#VIEW(larModelNumbering(1,1,1)(Z,[ZZ,EV],submodel,0.5))
 
-
-base=STRUCT(MKPOLS((W,EV)))
+base=STRUCT(MKPOLS((Z,EV)))
 baseOFF=OFFSET([0.3,0.3])(base)
 muri_level1=PROD([baseOFF,Q(4.5)])
-VIEW(muri_level1)
+#VIEW(muri_level1)
 
 #LEVEL2
 lines = lines2lines("corte_level2.lines")
@@ -253,7 +255,7 @@ base3=STRUCT(MKPOLS((W,EV)))
 baseOFF3=OFFSET([0.3,0.3])(base3)
 muri_level3=T(3)(7.5)(PROD([baseOFF3,Q(3)]))
 #VIEW(muri_level3)
-VIEW(STRUCT([muri_level1,muri_level2,muri_level3]))
+#VIEW(STRUCT([muri_level1,muri_level2,muri_level3]))
 
 
 #LEVEL4/5
@@ -281,7 +283,7 @@ baseOFF4=OFFSET([0.3,0.3])(base4)
 muri_level4=T(3)(10.5)(PROD([baseOFF4,Q(3)]))
 muri_level5=T(3)(13.5)(PROD([baseOFF4,Q(3)]))
 #VIEW(muri_level4)
-VIEW(STRUCT([muri_level1,muri_level2,muri_level3,muri_level4,muri_level5]))
+#VIEW(STRUCT([muri_level1,muri_level2,muri_level3,muri_level4,muri_level5]))
 
 
 #LEVEL6
@@ -310,9 +312,34 @@ muri_level6=T(3)(16.5)(PROD([baseOFF6,Q(17.5)]))
 #VIEW(muri_level6)
 MURI=STRUCT([muri_level1,muri_level2,muri_level3,muri_level4,muri_level5,muri_level6])
 
-VIEW(STRUCT([MURI,PREG]))
+#VIEW(STRUCT([MURI,PREG]))
 
-rot_SALA=R([1,2])(-PI-0.0872665)(T([1,2])([-10.475,-10.475])(PREG))
-tras_SALA=T([1,2])([13.328,-31.416])(rot_SALA)
+#dettaglio MARMO:FAI IL SEMICERCHIO TAGLIATO AL CENTRO
+lines = lines2lines("corte_marmo.lines")
+grafo = STRUCT(AA(POLYLINE)(lines))
+#VIEW(grafo)
+
+#numerazione vertici e spigoli
+V,EV = lines2lar(lines)
+VV = AA(LIST)(range(len(V)))
+submodel = STRUCT(MKPOLS((V,EV)))
+#VIEW(larModelNumbering(1,1,1)(V,[VV,EV],submodel,0.2))
+ #da traslare V[101]
+scala = 30.46
+
+W=((mat(V)-V[101])*scala+Z[189]).tolist()
+
+mar=STRUCT(MKPOLS((W,EV)))
+base_marm=T([1,2])([-0.07,-0.15])(OFFSET([0.4,0.4])(mar))
+
+cir_marmo=PROD([base_marm,Q(0.2)])
+MARMO_corte=T(3)(1.4)(cir_marmo)
+rip_MARMOcorte=STRUCT(NN(11)([MARMO_corte,T(3)(3)]))
+MURI_CORTE=STRUCT([rip_MARMOcorte,MURI])
+VIEW(MURI_CORTE)
+#rotazione di 6 gradi
+
+VIEW(STRUCT([tras_SALA,MURI_CORTE]))
+
 
 
