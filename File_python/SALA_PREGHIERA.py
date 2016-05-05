@@ -314,7 +314,7 @@ MURI=STRUCT([muri_level1,muri_level2,muri_level3,muri_level4,muri_level5,muri_le
 
 #VIEW(STRUCT([MURI,PREG]))
 
-#dettaglio MARMO:FAI IL SEMICERCHIO TAGLIATO AL CENTRO
+#dettaglio MARMO:file svg modificato, ricrea lines e modifica
 lines = lines2lines("corte_marmo.lines")
 grafo = STRUCT(AA(POLYLINE)(lines))
 #VIEW(grafo)
@@ -340,6 +340,8 @@ VIEW(MURI_CORTE)
 #rotazione di 6 gradi
 
 VIEW(STRUCT([tras_SALA,MURI_CORTE]))
+
+#PAVIMENTI CORTE E SCALE
 
 
 

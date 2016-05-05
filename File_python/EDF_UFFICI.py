@@ -30,15 +30,11 @@ scala = 41.9/0.9949
 W=((mat(V)-V[6])*scala).tolist()
 
 
-#**verifica** 
+#verifica 
 #WW = AA(LIST)(range(len(W)))
 #VIEW(larModelNumbering(1,1,1)(W,[WW,EV,FV],STRUCT(MKPOLS((W,EV))),2))
 #assert W[9][0]-W[3][0]==41.9
-#***
 
-#***
-#**celle vuote**
-#celle vuote sono 0,1,2, mi serve solo la 3
 base0 = STRUCT(MKPOLS([W,FV]))
 #VIEW(base0)
 rialzo=PROD([base0,Q(1.5)])

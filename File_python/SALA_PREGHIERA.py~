@@ -169,8 +169,10 @@ tetto_finale3=T([1,2])([16,4.8])(R([1,2])(PI/2)(tetto_finale))
 tetto_finale4=T([1,2])([4.8,16])(S([1,2])([-1,-1])(R([1,2])(PI/2)(tetto_finale)))
 TETTO=STRUCT([tetto_finale1,tetto_finale2,tetto_finale3,tetto_finale4])
 SALA_PREGHIERA=STRUCT([ARCHI,TETTO,SALA_PREG,FINESTRE])
-VIEW(SALA_PREGHIERA)
-
+#VIEW(SALA_PREGHIERA)
+rot_SALA=R([1,2])(-PI-0.10472)(T([1,2])([-10.475,-10.475])(SALA_PREGHIERA))
+tras_SALA=T([1,2])([13.328,-30.416])(rot_SALA)
+VIEW(tras_SALA)
 #MANCA SECONDO PIANO E COMPLETA CON LA CORTE 
 
 #CORTE
@@ -333,12 +335,13 @@ base_marm=T([1,2])([-0.07,-0.15])(OFFSET([0.4,0.4])(mar))
 cir_marmo=PROD([base_marm,Q(0.2)])
 MARMO_corte=T(3)(1.4)(cir_marmo)
 rip_MARMOcorte=STRUCT(NN(11)([MARMO_corte,T(3)(3)]))
-VIEW(STRUCT([rip_MARMOcorte,MURI]))
+MURI_CORTE=STRUCT([rip_MARMOcorte,MURI])
+VIEW(MURI_CORTE)
+#rotazione di 6 gradi
 
-rot_SALA=R([1,2])(-PI-0.10472)(T([1,2])([-10.475,-10.475])(SALA_PREGHIERA))
-tras_SALA=T([1,2])([13.328,-30.416])(rot_SALA)
+VIEW(STRUCT([tras_SALA,MURI_CORTE]))
 
-VIEW(STRUCT([tras_SALA,MURI,rip_MARMOcorte]))
+#PAVIMENTI CORTE E SCALE
 
 
 
