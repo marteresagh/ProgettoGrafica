@@ -154,13 +154,17 @@ W=((mat(V)-V[7])*scala).tolist()
 EV_spessi=sorted([4,0,11,21,7,1,14,8])
 EV_fini= set(range(len(EV))).difference(EV_spessi)
 muri_fini=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_fini]))
-muri_spessi=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_spessi]))
+muri_spessi=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_spessi if e!=8]))
 
 muri_fini=OFFSET([0.3/SQRT(2),0.3/SQRT(2)])(muri_fini)
 wall_fini=T(3)(13.5)(PROD([muri_fini,Q(3)]))
 muri_spessi=OFFSET([0.3,0.3])(muri_spessi)
 wall_spessi=T(3)(13.5)(PROD([muri_spessi,Q(3)]))
-wall_5=STRUCT([wall_spessi,wall_fini])
+muro_basso=STRUCT(MKPOLS((W,[EV[8]])))
+balcone=OFFSET([0.3,0.3])(muro_basso)
+wall_basso=T(3)(13.5)(PROD([balcone,Q(1.5)]))
+wall_5=STRUCT([wall_spessi,wall_fini,wall_basso])
+
 #VIEW(STRUCT([wall_5,wall_2,wall_1,WALL,wall_3,rialzo]))
 
 
@@ -212,13 +216,16 @@ W=((mat(V)-V[3])*scala).tolist()
 EV_fini=sorted([13,7,8,6,15,2,16,0])
 EV_spessi= set(range(len(EV))).difference(EV_fini)
 muri_fini=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_fini]))
-muri_spessi=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_spessi]))
+muri_spessi=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_spessi if e!=4]))
 
 muri_fini=OFFSET([0.3/SQRT(2),0.3/SQRT(2)])(muri_fini)
 wall_fini=T(3)(19.5)(PROD([muri_fini,Q(3)]))
 muri_spessi=OFFSET([0.3,0.3])(muri_spessi)
 wall_spessi=T(3)(19.5)(PROD([muri_spessi,Q(3)]))
-wall_7=STRUCT([wall_spessi,wall_fini])
+muro_basso=STRUCT(MKPOLS((W,[EV[4]])))
+balcone=OFFSET([0.3,0.3])(muro_basso)
+wall_basso=T(3)(19.5)(PROD([balcone,Q(1.5)]))
+wall_7=STRUCT([wall_spessi,wall_fini,wall_basso])
 #VIEW(STRUCT([wall_7,wall_6,wall_5,wall_2,wall_1,WALL,wall_3,rialzo]))
 
 #LEVEL8
@@ -243,13 +250,47 @@ W=((mat(V)-V[6])*scala).tolist()
 EV_fini=sorted([9,10,5,7,15,13,8,0])
 EV_spessi= set(range(len(EV))).difference(EV_fini)
 muri_fini=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_fini]))
-muri_spessi=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_spessi]))
+muri_spessi=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_spessi if e!=3]))
 
 muri_fini=OFFSET([0.3/SQRT(2),0.3/SQRT(2)])(muri_fini)
-wall_fini=T(3)(22.5)(PROD([muri_fini,Q(9)]))
+wall_fini=T(3)(22.5)(PROD([muri_fini,Q(3)]))
 muri_spessi=OFFSET([0.3,0.3])(muri_spessi)
-wall_spessi=T(3)(22.5)(PROD([muri_spessi,Q(9)]))
-wall_8up=STRUCT([wall_spessi,wall_fini])
+wall_spessi=T(3)(22.5)(PROD([muri_spessi,Q(3)]))
+
+wall_8=STRUCT([wall_spessi,wall_fini])
+
+#LEVEL9
+lines = lines2lines("nord_level8.lines")
+grafo = STRUCT(AA(POLYLINE)(lines))
+#VIEW(grafo)
+
+#numerazione vertici e spigoli
+V,EV = lines2lar(lines)
+VV = AA(LIST)(range(len(V)))
+submodel = STRUCT(MKPOLS((V,EV)))
+#VIEW(larModelNumbering(1,1,1)(V,[VV,EV],submodel,0.2))
+
+scala = 31.42
+
+W=((mat(V)-V[6])*scala).tolist()
+#W[9]== [19.125354, 22.820346, 30]
+#W[3]==[12.822502000000002, 22.839198000000003,30]
+#W[9][0]-W[3][0]==6.302852
+
+#muri fini e muri spessi
+EV_fini=sorted([9,10,5,7,15,13,8,0])
+EV_spessi= set(range(len(EV))).difference(EV_fini)
+muri_fini=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_fini]))
+muri_spessi=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_spessi if e!=3]))
+
+muri_fini=OFFSET([0.3/SQRT(2),0.3/SQRT(2)])(muri_fini)
+wall_fini=T(3)(25.5)(PROD([muri_fini,Q(6)]))
+muri_spessi=OFFSET([0.3,0.3])(muri_spessi)
+wall_spessi=T(3)(25.5)(PROD([muri_spessi,Q(6)]))
+muro_basso=STRUCT(MKPOLS((W,[EV[3]])))
+balcone=OFFSET([0.3,0.3])(muro_basso)
+wall_basso=T(3)(25.5)(PROD([balcone,Q(1.5)]))
+wall_9=STRUCT([wall_basso,wall_spessi,wall_fini])
 
 #LEVEL_top
 lines = lines2lines("nord_top.lines")
@@ -280,8 +321,6 @@ wall_top=STRUCT([wall_spessi,wall_fini])
 
 
 
-ingresso=STRUCT([rip_MARMOup,rip_MARMObottom,wall_top,wall_8up,wall_7,wall_6,wall_5,wall_2,wall_1,WALL,wall_3,rialzo,muro_centro])
-VIEW(ingresso)
 
 #PAVIMENTI: figure concave!!!
 #LEVEL2
@@ -447,6 +486,9 @@ VIEW(STRUCT([ingresso,PAVIMENTI]))
 muro=CUBOID([6.302852,0.3,3])
 muro_centro=T([1,2,3])([12.822502000000002, 22.839198000000003,30])(muro)
 
+ingresso=STRUCT([rip_MARMOup,rip_MARMObottom,wall_top,wall_8,wall_9,wall_7,wall_6,wall_5,wall_2,wall_1,WALL,wall_3,rialzo,muro_centro])
+VIEW(ingresso)
+
 #fessure
 
 frame=COLOR(RED)(CUBOID([2,1,27]))
@@ -472,6 +514,16 @@ grid_fessure1=T([1,2,3])([.15,1.5,5.25])(grid)
 grid_fessure2=T([1,2,3])([31.57,1.5,5.25])(grid)
 grid_fessure3=T([1,2,3])([.15,26.26,5.25])(grid)
 grid_fessure4=T([1,2,3])([31.57,26.26,5.25])(grid)
-VIEW(STRUCT([grid_fessure1,grid_fessure2,grid_fessure3,grid_fessure4,INGRESSO]))
+grid1=S(2)(5./3)(SKEL_1(STRUCT(MKPOLS(larCuboids([3,3])))))
+grid_fin=OFFSET([0.05,0.05])(grid1)
+grid_fin=R([1,3])(PI/2)(PROD([grid_fin,Q(0.05)]))
+fin_1=T([1,2,3])([13,23.3,27])(grid_fin)
+fin_2=T([1,2,3])([19.3,23.3,27])(grid_fin)
+#VIEW(STRUCT([INGRESSO,fin_1,fin_2]))
+
+GRATE=STRUCT([fin_1,fin_2,grid_fessure1,grid_fessure2,grid_fessure3,grid_fessure4])
+VIEW(STRUCT([GRATE,INGRESSO,PAVIMENTI]))
+
+
 
 
