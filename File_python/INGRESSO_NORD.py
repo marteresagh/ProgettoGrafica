@@ -327,11 +327,11 @@ wall_top=STRUCT([wall_spessi,wall_fini])
 lines = lines2lines("nord_pav2.lines")
 Y,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
 prova=STRUCT(MKPOLS((Y,FV))) #grafo pulito
-VIEW(prova)
+#VIEW(prova)
 
 YY = AA(LIST)(range(len(Y)))
 submodel = STRUCT(MKPOLS((Y,EV)))
-VIEW(larModelNumbering(1,1,1)(Y,[YY,EV,FV],submodel,0.1))
+#VIEW(larModelNumbering(1,1,1)(Y,[YY,EV,FV],submodel,0.1))
 
 #assert Y[25]==[0.0, 0.5928]
 #Y[25][0]-Y[37][0] == 0.9206
@@ -346,17 +346,17 @@ tot = STRUCT(MKPOLS([Z,FV]))
 frame_level2= DIFFERENCE([tot,buchi])
 pavimento_level2=T(3)(4.25)(PROD([frame_level2,Q(0.3)]))
 #VIEW(pavimento_level2)
-VIEW(STRUCT([ingresso,COLOR(RED)(pavimento_level2)]))
+#VIEW(STRUCT([ingresso,COLOR(RED)(pavimento_level2)]))
 
 #LEVEL3
 lines = lines2lines("nord_pav3.lines")
 Y,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
 prova=STRUCT(MKPOLS((Y,FV))) #grafo pulito
-VIEW(prova)
+#VIEW(prova)
 
 YY = AA(LIST)(range(len(Y)))
 submodel = STRUCT(MKPOLS((Y,EV)))
-VIEW(larModelNumbering(1,1,1)(Y,[YY,EV,FV],submodel,0.1))
+#VIEW(larModelNumbering(1,1,1)(Y,[YY,EV,FV],submodel,0.1))
 
 
 #Y[9][0]-Y[0][0] == 0.9345
@@ -371,7 +371,7 @@ tot = STRUCT(MKPOLS([Z,FV]))
 frame_level3= DIFFERENCE([tot,buchi])
 pavimento_level3=T(3)(7.25)(PROD([frame_level3,Q(0.3)]))
 #VIEW(pavimento_level2)
-VIEW(STRUCT([ingresso,COLOR(RED)(pavimento_level3)]))
+#VIEW(STRUCT([ingresso,COLOR(RED)(pavimento_level3)]))
 
 
 #LEVEL5
@@ -380,7 +380,7 @@ V,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
 grafo=STRUCT(MKPOLS((V,EV))) #grafo pulito
 VV = AA(LIST)(range(len(V)))
 submodel = STRUCT(MKPOLS((V,EV)))
-VIEW(larModelNumbering(1,1,1)(V,[VV,EV,FV],submodel,0.1))
+#VIEW(larModelNumbering(1,1,1)(V,[VV,EV,FV],submodel,0.1))
 #muri del livello5
 # W[6]: [7.7104680000000005, 0.0]
 # W[5]: [24.234246000000002, 0.0]
@@ -391,7 +391,7 @@ W=((mat(V)-V[2])*scala).tolist()
 
 base=STRUCT(MKPOLS((W,FV)))
 pav5=T([1,2,3])([7.7104680000000005, 0.0, 13.25])(PROD([base,Q(0.3)]))
-VIEW(pav5)
+#VIEW(pav5)
 
 #LEVEL6
 lines = lines2lines("nord_pav6.lines")
@@ -401,7 +401,7 @@ prova=STRUCT(MKPOLS((Y,FV))) #grafo pulito
 
 YY = AA(LIST)(range(len(Y)))
 submodel = STRUCT(MKPOLS((Y,EV)))
-VIEW(larModelNumbering(1,1,1)(Y,[YY,EV,FV],submodel,0.1))
+#VIEW(larModelNumbering(1,1,1)(Y,[YY,EV,FV],submodel,0.1))
 
 
 #Y[30][0]-Y[34][0] == 0.9603999999999999
@@ -416,7 +416,7 @@ tot = STRUCT(MKPOLS([Z,FV]))
 frame_level6= DIFFERENCE([tot,buchi])
 pavimento_level6=T(3)(16.25)(PROD([frame_level6,Q(0.3)]))
 
-VIEW(STRUCT([ingresso,COLOR(RED)(pavimento_level6)]))
+#VIEW(STRUCT([ingresso,COLOR(RED)(pavimento_level6)]))
 
 #LEVEL7
 lines = lines2lines("nord_pav7.lines")
@@ -426,7 +426,7 @@ prova=STRUCT(MKPOLS((Y,FV))) #grafo pulito
 
 YY = AA(LIST)(range(len(Y)))
 submodel = STRUCT(MKPOLS((Y,EV)))
-VIEW(larModelNumbering(1,1,1)(Y,[YY,EV,FV],submodel,0.2))
+#VIEW(larModelNumbering(1,1,1)(Y,[YY,EV,FV],submodel,0.2))
 
 
 #Y[1][0]-Y[9][0] == 0.9549
@@ -441,7 +441,7 @@ tot = STRUCT(MKPOLS([Z,FV]))
 frame_level7= DIFFERENCE([tot,buchi])
 pavimento_level7=T(3)(19.25)(PROD([frame_level7,Q(0.3)]))
 
-VIEW(STRUCT([ingresso,COLOR(RED)(pavimento_level7)]))
+#VIEW(STRUCT([ingresso,COLOR(RED)(pavimento_level7)]))
 
 #LEVEL9
 lines = lines2lines("nord_pav9.lines")
@@ -451,7 +451,7 @@ prova=STRUCT(MKPOLS((Y,FV))) #grafo pulito
 
 YY = AA(LIST)(range(len(Y)))
 submodel = STRUCT(MKPOLS((Y,EV)))
-VIEW(larModelNumbering(1,1,1)(Y,[YY,EV,FV],submodel,0.2))
+#VIEW(larModelNumbering(1,1,1)(Y,[YY,EV,FV],submodel,0.2))
 
 
 #Y[23][0]-Y[29][0] == 0.9195
@@ -459,14 +459,14 @@ scala = 31.42/0.9195
 Z=((mat(Y)-Y[29])*scala).tolist()
 ZZ = AA(LIST)(range(len(Z)))
 submodel = STRUCT(MKPOLS((Z,EV)))
-VIEW(larModelNumbering(1,1,1)(Z,[ZZ,EV,FV],submodel,0.1))
+#VIEW(larModelNumbering(1,1,1)(Z,[ZZ,EV,FV],submodel,0.1))
 #**celle vuote**
 buchi = STRUCT(MKPOLS([Z,[FV[k] for k in [0,1,2,3,4,5,6,7]]]))
 tot = STRUCT(MKPOLS([Z,FV]))
 frame_level9= DIFFERENCE([tot,buchi])
 pavimento_level9=T([1,3])([0.1,25.25])(PROD([frame_level9,Q(0.3)]))
 
-VIEW(STRUCT([ingresso,COLOR(RED)(pavimento_level9)]))
+#VIEW(STRUCT([ingresso,COLOR(RED)(pavimento_level9)]))
 
 
 buchi_top = STRUCT(MKPOLS([Z,[FV[k] for k in [0,1,2,3,6]]]))
@@ -474,9 +474,9 @@ tot = STRUCT(MKPOLS([Z,FV]))
 frame_top= DIFFERENCE([tot,buchi_top])
 top=T([1,3])([0.1,31.25])(PROD([frame_top,Q(0.3)]))
 
-VIEW(STRUCT([ingresso,COLOR(RED)(top)]))
+#VIEW(STRUCT([ingresso,COLOR(RED)(top)]))
 PAVIMENTI=STRUCT([pavimento_level2,pavimento_level3,pav5,pavimento_level6,pavimento_level7,pavimento_level9,top])
-VIEW(STRUCT([ingresso,PAVIMENTI]))
+#VIEW(STRUCT([ingresso,PAVIMENTI]))
 
 #fessure e buchi 
 #Z[10]: [31.42, 1.0695443175638941]
@@ -487,7 +487,7 @@ muro=CUBOID([6.302852,0.3,3])
 muro_centro=T([1,2,3])([12.822502000000002, 22.839198000000003,30])(muro)
 
 ingresso=STRUCT([rip_MARMOup,rip_MARMObottom,wall_top,wall_8,wall_9,wall_7,wall_6,wall_5,wall_2,wall_1,WALL,wall_3,rialzo,muro_centro])
-VIEW(ingresso)
+#VIEW(ingresso)
 
 #fessure
 
@@ -505,7 +505,7 @@ bucotr=T([1,2,3])([0.7,14.5,7.5])(buco)
 bucotr2=T([1,2,3])([32,14.5,7.5])(buco)
 BUCHI=COLOR(RED)(STRUCT([fessura1,fessura2,fessura3,fessura4,fessura5,bucotr,bucotr2,finestre]))
 INGRESSO=DIFFERENCE([ingresso,BUCHI])
-VIEW(STRUCT([INGRESSO,PAVIMENTI]))
+#VIEW(STRUCT([INGRESSO,PAVIMENTI]))
 
 #GRIGLIE
 seg=CUBOID([1.2,0.05,0.05])
@@ -519,11 +519,43 @@ grid_fin=OFFSET([0.05,0.05])(grid1)
 grid_fin=R([1,3])(PI/2)(PROD([grid_fin,Q(0.05)]))
 fin_1=T([1,2,3])([13,23.3,27])(grid_fin)
 fin_2=T([1,2,3])([19.3,23.3,27])(grid_fin)
+GRATE=STRUCT([fin_1,fin_2,grid_fessure1,grid_fessure2,grid_fessure3,grid_fessure4])
 #VIEW(STRUCT([INGRESSO,fin_1,fin_2]))
 
-GRATE=STRUCT([fin_1,fin_2,grid_fessure1,grid_fessure2,grid_fessure3,grid_fessure4])
-VIEW(STRUCT([GRATE,INGRESSO,PAVIMENTI]))
+"""BUCHI"""
+buco= T(3)(-1)(CYLINDER([4,8])(100))
+cerchi=R([1,3])(PI/2)(buco)
+foro1=T([1,2,3])([10.5,18.85,13.5])(R([1,2])(-PI/6)(cerchi))
+foro2=T([1,2,3])([10.5,18.85,25.5])(R([1,2])(-PI/6)(cerchi))
+foro3=T([1,2,3])([10.5,10.21,13.5])(R([1,2])(PI/6)(cerchi))
+foro4=T([1,2,3])([10.5,10.21,25.5])(R([1,2])(PI/6)(cerchi))
+foro_dx=STRUCT([foro1,foro2,foro3,foro4])
+foro_sx=T(1)(15.86)(S(1)(-1)(T(1)(-15.86)(foro_dx)))
+FORO=STRUCT([foro_dx,foro_sx])
+ING_CUT=DIFFERENCE([INGRESSO,FORO])
+#VIEW(STRUCT([foro_dx,foro_sx,INGRESSO]))
 
+#grata finestre
+grid=SKEL_1(STRUCT(MKPOLS(larCuboids([4,1]))))
+grid2=T([1,2])([.5,1])(SKEL_1(STRUCT(MKPOLS(larCuboids([3,1])))))
+grid_rip=STRUCT(NN(2)([(STRUCT([grid,grid2])),T(2)(2)]))
+bordofin=SKEL_1(CUBOID([4,4]))
+seg=T([1])(.5)(R([1,2])(-PI/2)(INTERVALS(2)(1)))
+grata=STRUCT(NN(4)([seg,T(1)(1)]))
+grata_2=T(2)(6)(grata)
+grata_3=T(1)(-2)(R([1,2])(PI/2)(grata))
+grata_4=T(1)(6)(grata_3)
+GRID=STRUCT([grata,grata_2,grata_3,grata_4,bordofin,grid_rip])
+gridOFF=OFFSET([0.05,0.05])(GRID)
+GRATA_fin=T([1,2])([-2,-2])(PROD([gridOFF,Q(0.05)]))
+GRATA=R([2,3])(PI/2)(R([1,3])(PI/2)(GRATA_fin))
+fin1=T([1,2,3])([0.15,14.5,7.5])(GRATA)
+fin2=T([1,2,3])([31.57,14.5,7.5])(GRATA)
+
+VIEW(STRUCT([GRATE,ING_CUT,PAVIMENTI,fin1,fin2]))
+
+
+"""mancano le scale"""
 
 
 

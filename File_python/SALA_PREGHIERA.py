@@ -1,4 +1,6 @@
 #SALA DELLA PREGHIERA
+
+"""togli le alette alla corte e fai le finestre"""
 #dimensioni 20.95 per lato e 34 di altezza, 7.61 il raggio delle colonne, offset delle pareti a 0.3
 from larlib import *
 
@@ -146,7 +148,7 @@ MARMOrett=T(3)(1.4)(righe)
 rip_MARMOrett=STRUCT(NN(11)([MARMOrett,T(3)(3)]))
 #VIEW(rip_MARMOrett)
 PREG=STRUCT([SALA,croce1,croce2,croce3,croce4,rip_MARMOrett])
-#SALA_PREG=DIFFERENCE([PREG,FORI])
+SALA_PREG=DIFFERENCE([PREG,FORI])
 
 
 #ARCHI ANGOLATI
@@ -168,12 +170,41 @@ tetto_finale2=T([1,2])([16,16])(S([1,2])([-1,-1])(tetto_finale))
 tetto_finale3=T([1,2])([16,4.8])(R([1,2])(PI/2)(tetto_finale))
 tetto_finale4=T([1,2])([4.8,16])(S([1,2])([-1,-1])(R([1,2])(PI/2)(tetto_finale)))
 TETTO=STRUCT([tetto_finale1,tetto_finale2,tetto_finale3,tetto_finale4])
-SALA_PREGHIERA=STRUCT([ARCHI,TETTO,SALA_PREG,FINESTRE])
+
+"""pavimento di transito"""
+
+lines = lines2lines("pav_transito.lines")
+Y,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
+prova=STRUCT(MKPOLS((Y,FV))) #grafo pulito
+#VIEW(prova)
+
+YY = AA(LIST)(range(len(Y)))
+submodel = STRUCT(MKPOLS((Y,EV)))
+#VIEW(larModelNumbering(1,1,1)(Y,[YY,EV,FV],submodel,0.1))
+#EV[107]:Y[8][0]-Y[0][0]== 0.39929999999999993
+
+scala =5.73/0.39929999999999993
+Z=((mat(Y)-Y[0])*scala).tolist()
+#ZZ = AA(LIST)(range(len(Z)))
+#submodel = STRUCT(MKPOLS((Z,EV)))
+#VIEW(larModelNumbering(1,1,1)(Z,[ZZ,EV,FV],submodel,0.1))
+#**celle vuote**
+#celle vuote sono 0,1,2,7,65,4, mi serve solo la 3
+buchi = STRUCT(MKPOLS([Z,[FV[k] for k in [5,6,7]]]))
+tot = STRUCT(MKPOLS([Z,FV]))
+pav_frame= DIFFERENCE([tot,buchi])
+pavrefl=S([1,2])([1.05,-1.09])(PROD([pav_frame,Q(0.3)]))
+pav_transtop=T([1,3])([7.4,33.7])(pavrefl)
+pav_trans1=T([1,3])([7.4,1.25])(pavrefl)
+pav_trans5=T([1,3])([7.4,13.25])(pavrefl)
+PAV_TRANS=STRUCT([pav_transtop,pav_trans1,pav_trans5])
+
+SALA_PREGHIERA=STRUCT([ARCHI,TETTO,SALA_PREG,FINESTRE,PAV_TRANS])
 #VIEW(SALA_PREGHIERA)
 rot_SALA=R([1,2])(-PI-0.10472)(T([1,2])([-10.475,-10.475])(SALA_PREGHIERA))
 tras_SALA=T([1,2])([13.328,-30.416])(rot_SALA)
-VIEW(tras_SALA)
-#MANCA SECONDO PIANO E COMPLETA CON LA CORTE 
+#VIEW(tras_SALA)
+#rotazione di 6 gradi
 
 #CORTE
 #LEVEL1
@@ -200,7 +231,8 @@ ZZ = AA(LIST)(range(len(Z)))
 submodel = STRUCT(MKPOLS((Z,EV)))
 #VIEW(larModelNumbering(1,1,1)(Z,[ZZ,EV],submodel,0.5))
 
-base=STRUCT(MKPOLS((Z,EV)))
+
+base=STRUCT(AA(POLYLINE)([[Z[EV[e][0]],Z[EV[e][1]]] for e in range(len(EV)) if e!=11 and e!=69]))
 baseOFF=OFFSET([0.3,0.3])(base)
 muri_level1=PROD([baseOFF,Q(4.5)])
 #VIEW(muri_level1)
@@ -225,11 +257,11 @@ scala = 30.46/0.9114
 
 W=((mat(V)-V[210])*scala).tolist()
 
-base2=STRUCT(MKPOLS((W,EV)))
+base2=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in range(len(EV)) if e!=106 and e!=133 and e!=194 and e!=0]))
 baseOFF2=OFFSET([0.3,0.3])(base2)
 muri_level2=T(3)(4.5)(PROD([baseOFF2,Q(3)]))
 #VIEW(muri_level2)
-VIEW(STRUCT([muri_level1,muri_level2]))
+#VIEW(STRUCT([muri_level1,muri_level2]))
 
 #LEVEL3
 lines = lines2lines("corte_level3.lines")
@@ -251,7 +283,7 @@ scala = 30.46/0.9114
 
 W=((mat(V)-V[168])*scala).tolist()
 
-base3=STRUCT(MKPOLS((W,EV)))
+base3=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in range(len(EV)) if e!=130 and e!=133 and e!=162 and e!=21 ]))
 baseOFF3=OFFSET([0.3,0.3])(base3)
 muri_level3=T(3)(7.5)(PROD([baseOFF3,Q(3)]))
 #VIEW(muri_level3)
@@ -278,13 +310,12 @@ scala = 30.46/0.9114
 
 W=((mat(V)-V[107])*scala).tolist()
 
-base4=STRUCT(MKPOLS((W,EV)))
+base4=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in range(len(EV)) if e!=40 and e!=82 and e!=184 and e!=215]))
 baseOFF4=OFFSET([0.3,0.3])(base4)
 muri_level4=T(3)(10.5)(PROD([baseOFF4,Q(3)]))
 muri_level5=T(3)(13.5)(PROD([baseOFF4,Q(3)]))
 #VIEW(muri_level4)
 #VIEW(STRUCT([muri_level1,muri_level2,muri_level3,muri_level4,muri_level5]))
-
 
 #LEVEL6
 lines = lines2lines("corte_level6up.lines")
@@ -306,7 +337,7 @@ scala = 30.46/0.9114
 
 W=((mat(V)-V[192])*scala).tolist()
 
-base6=STRUCT(MKPOLS((W,EV)))
+base6=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in range(len(EV)) if e!=114 and e!=172 and e!=69 and e!=62]))
 baseOFF6=OFFSET([0.3,0.3])(base6)
 muri_level6=T(3)(16.5)(PROD([baseOFF6,Q(17.5)]))
 #VIEW(muri_level6)
@@ -314,7 +345,39 @@ MURI=STRUCT([muri_level1,muri_level2,muri_level3,muri_level4,muri_level5,muri_le
 
 #VIEW(STRUCT([MURI,PREG]))
 
-#dettaglio MARMO:file svg modificato, ricrea lines e modifica
+"""dettagli"""
+
+#DETTAGLI: CHIUDI MURI E APRI CORRIDOI
+#W[112]: [14.625077902128593, 0.0]
+#W[99]: [19.116875137151634, 0.0]
+porta=CUBOID([4.50,0.3,3])
+chiudi=T([1,3])([14.625077902128593,13.5])(porta)
+cut=T([1,2,3])([28.76,-0.15,-1])(CUBOID([3.05,0.6,8]))
+cut2=T([1,2,3])([1.65,-0.15,-1])(CUBOID([3.05,0.6,8]))
+#FINESTRONE
+buco=CYLINDER([5,1.5])(100)
+buco_fin=T([1,2,3])([16.83,0.75,24.5])(R([2,3])(PI/2)(buco))
+
+lines = lines2lines("fin_corte.lines")
+V,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
+#prova=STRUCT(MKPOLS((V,EV))) 
+#numerazione vertici e spigoli
+#VV = AA(LIST)(range(len(V)))
+#submodel = STRUCT(MKPOLS((V,EV)))
+#VIEW(larModelNumbering(1,1,1)(V,[VV,EV],submodel,0.2))
+scala = 6
+W=(mat(V)*scala).tolist()
+frame_cerchi=T([1,2])([-3,-3])(STRUCT(MKPOLS((W,FV))))
+fin_cerchi=R([2,3])(PI/2)(PROD([frame_cerchi,Q(2)]))
+fin_cut1=T([1,2,3])([25.4,-6,29])(R([1,2])(PI/3)(fin_cerchi))
+fin_cut2=T([1,2,3])([25.4,-6,20])(R([1,2])(PI/3)(fin_cerchi))
+fin_cutsx=STRUCT([fin_cut1,fin_cut2])
+fin_cutdx=T(1)(16.83)(S(1)(-1)(T(1)(-16.83)(fin_cutsx)))
+VIEW(STRUCT([corte,COLOR(RED)(fin_cutsx),COLOR(RED)(fin_cutdx)]))
+
+CUT=STRUCT([buco_fin,cut,cut2,fin_cutsx,fin_cutdx])
+
+# MARMO:file svg modificato, ricrea lines e modifica
 lines = lines2lines("corte_marmo.lines")
 grafo = STRUCT(AA(POLYLINE)(lines))
 #VIEW(grafo)
@@ -324,24 +387,153 @@ V,EV = lines2lar(lines)
 VV = AA(LIST)(range(len(V)))
 submodel = STRUCT(MKPOLS((V,EV)))
 #VIEW(larModelNumbering(1,1,1)(V,[VV,EV],submodel,0.2))
- #da traslare V[101]
+ #da traslare V[118]
 scala = 30.46
 
-W=((mat(V)-V[101])*scala+Z[189]).tolist()
+W=((mat(V)-V[118])*scala+Z[189]).tolist()
 
 mar=STRUCT(MKPOLS((W,EV)))
 base_marm=T([1,2])([-0.07,-0.15])(OFFSET([0.4,0.4])(mar))
-
 cir_marmo=PROD([base_marm,Q(0.2)])
 MARMO_corte=T(3)(1.4)(cir_marmo)
 rip_MARMOcorte=STRUCT(NN(11)([MARMO_corte,T(3)(3)]))
-MURI_CORTE=STRUCT([rip_MARMOcorte,MURI])
-VIEW(MURI_CORTE)
-#rotazione di 6 gradi
 
-VIEW(STRUCT([tras_SALA,MURI_CORTE]))
+#MARMO2
+lines = lines2lines("corte_muro.lines")
+V,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
+#prova=STRUCT(MKPOLS((V,EV))) 
+#numerazione vertici e spigoli
+VV = AA(LIST)(range(len(V)))
+submodel = STRUCT(MKPOLS((V,EV)))
+#VIEW(larModelNumbering(1,1,1)(V,[VV,EV],submodel,0.2))
+ #da traslare V[15]
+scala = 23.9
 
-#PAVIMENTI CORTE E SCALE
+W=((mat(V)-V[9])*scala).tolist()
+
+mar2=STRUCT(MKPOLS((W,EV)))
+base_marm2=T([1,2])([-0.07,-0.15])(OFFSET([0.4,0.4])(mar2))
+cir_marmo2=PROD([base_marm2,Q(0.2)])
+MARMO_corte2=T(3)(1.4)(cir_marmo2)
+rip_MARMOcorte2=T(1)(4.9)(STRUCT(NN(11)([MARMO_corte2,T(3)(3)])))
 
 
+"""fine dettagli"""
+
+MURI_CORTE=STRUCT([chiudi,rip_MARMOcorte,MURI,rip_MARMOcorte2])
+corte=DIFFERENCE([MURI_CORTE,CUT])
+VIEW(corte)
+
+#PAVIMENTI CORTE
+#LEVEL1/3
+lines = lines2lines("corte_pav1.lines")
+Y,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
+prova=STRUCT(MKPOLS((Y,FV))) #grafo pulito
+#VIEW(prova)
+
+YY = AA(LIST)(range(len(Y)))
+submodel = STRUCT(MKPOLS((Y,EV)))
+#VIEW(larModelNumbering(1,1,1)(Y,[YY,EV,FV],submodel,0.1))
+
+
+#Y[30][0]-Y[34][0] == 0.9603999999999999
+scala = 30.46/0.9114
+Z=((mat(Y)-Y[4])*scala).tolist()
+#ZZ = AA(LIST)(range(len(Z)))
+#submodel = STRUCT(MKPOLS((Z,EV)))
+#VIEW(larModelNumbering(1,1,1)(Z,[ZZ,EV,FV],submodel,0.1))
+#**celle vuote**
+base1=STRUCT(MKPOLS((Z,FV)))
+pav1=T([1,3])([1.6,1.25])(PROD([base1,Q(0.3)]))
+pav3=T([1,3])([1.6,7.25])(PROD([base1,Q(0.3)]))
+
+#LEVEL4.5:togli spigolo sulle scale
+lines = lines2lines("corte_pav4.lines")
+Y,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
+prova=STRUCT(MKPOLS((Y,FV))) #grafo pulito
+#VIEW(prova)
+
+YY = AA(LIST)(range(len(Y)))
+submodel = STRUCT(MKPOLS((Y,EV)))
+#VIEW(larModelNumbering(1,1,1)(Y,[YY,EV,FV],submodel,0.1))
+scala = 30.46/0.9114
+Z=((mat(Y)-Y[166])*scala).tolist()
+#ZZ = AA(LIST)(range(len(Z)))
+#submodel = STRUCT(MKPOLS((Z,EV)))
+#VIEW(larModelNumbering(1,1,1)(Z,[ZZ,EV,FV],submodel,0.1))
+#**celle vuote**
+#celle vuote sono 0,1,2,7,65,4, mi serve solo la 3
+buchi = STRUCT(MKPOLS([Z,[FV[k] for k in [3,4,2,8,7]]]))
+tot = STRUCT(MKPOLS([Z,FV]))
+pav0= DIFFERENCE([tot,buchi])
+toppe=STRUCT(MKPOLS([Z,[FV[0],FV[1]]]))
+pav_4=STRUCT([pav0,toppe])
+pav4=T([1,3])([1.6,11.75])(PROD([pav_4,Q(0.3)]))
+#VIEW(pav4)
+
+#LEVEL8
+lines = lines2lines("corte_pav8.lines")
+Y,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
+prova=STRUCT(MKPOLS((Y,FV))) #grafo pulito
+#VIEW(prova)
+
+YY = AA(LIST)(range(len(Y)))
+submodel = STRUCT(MKPOLS((Y,EV)))
+#VIEW(larModelNumbering(1,1,1)(Y,[YY,EV,FV],submodel,0.1))
+#V[26] da portare nell'origine, spigolo EV[18] da portare a grandezza mondo: 42metri
+#Y[30]:[0.0406, 0.9989]
+#Y[38]:[0.952, 0.9989]
+#Y[38][0]-Y[30][0]: 0.9114
+
+
+scala = 30.46/0.9114
+Z=((mat(Y)-Y[30])*scala).tolist()
+#ZZ = AA(LIST)(range(len(Z)))
+#submodel = STRUCT(MKPOLS((Z,EV)))
+#VIEW(larModelNumbering(1,1,1)(Z,[ZZ,EV,FV],submodel,0.1))
+#**celle vuote**
+#celle vuote sono 0,1,2,7,65,4, mi serve solo la 3
+buchi = STRUCT(MKPOLS([Z,[FV[1]]]))
+tot = STRUCT(MKPOLS([Z,FV]))
+pav_8= DIFFERENCE([tot,buchi])
+pav5=T([1,3])([1.6,13.25])(PROD([pav_8,Q(0.3)]))
+pav8=T([1,3])([1.6,22.25])(PROD([pav_8,Q(0.3)]))
+pav10=T([1,3])([1.6,28.25])(PROD([pav_8,Q(0.3)]))
+top=T([1,3])([1.6,32.25])(PROD([pav_8,Q(0.3)]))
+PAVIMENTI=STRUCT([pav1,pav3,pav4,pav5,pav8,pav10,top])
+
+#VIEW(STRUCT([corte,PAVIMENTI]))
+
+"""grata"""
+#grata finestrone
+grid_corte=SKEL_1(STRUCT(MKPOLS(larCuboids([7,1]))))
+grid_corte2=T([1,2])([.5,1])(SKEL_1(STRUCT(MKPOLS(larCuboids([6,1])))))
+grid_ripcorte=STRUCT(NN(3)([(STRUCT([grid_corte,grid_corte2])),T(2)(2)]+[grid_corte]))
+bordofin=SKEL_1(CUBOID([7,7]))
+seg_corte=T([1])(1.5)(R([1,2])(-PI/2)(INTERVALS(2)(1)))
+grata_corte=STRUCT(NN(5)([seg_corte,T(1)(1)]))
+grata_corte2=T(2)(9)(grata_corte)
+grata_corte3=T(1)(-2)(R([1,2])(PI/2)(grata_corte))
+grata_corte4=T(1)(9)(grata_corte3)
+GRID=STRUCT([grata_corte,grata_corte2,grata_corte3,grata_corte4,bordofin,grid_ripcorte])
+gridOFF=OFFSET([0.05,0.05])(GRID)
+GRATA_fin=T([1,2])([-3.5,-3.5])(PROD([gridOFF,Q(0.05)]))
+GRATA_corte=T([1,2,3])([16.83,0.15,24.5])(R([2,3])(PI/2)(GRATA_fin))
+
+ #grata fessure
+frame0=S([1,2])([31./35,31./35])(SKEL_1(STRUCT(MKPOLS(larCuboids([2,35])))))
+frame1=T(2)(-1.5)(CUBOID([1.9,1.5]))
+frame2=T(2)(31)(CUBOID([1.9,1.5]))
+mur=STRUCT([frame1,frame2])
+gridOFF=OFFSET([0.05,0.05])(frame0)
+grid_fess=T(3)(0.15)(PROD([gridOFF,Q(0.05)]))
+muretti=PROD([mur,Q(0.3)])
+FESSURE0=R([2,3])(PI/2)(T(2)(1.5)(STRUCT([muretti,grid_fess])))
+FESS1=T([1,2])([-0.5,0.3])(FESSURE0)
+FESS2=T([1,2])([32.1,0.3])(FESSURE0)
+FESSURE=STRUCT([FESS1,FESS2])
+
+VIEW(STRUCT([corte,GRATA_corte,PAVIMENTI]))
+SALA_INGRESSO=STRUCT([corte,GRATA_corte,PAVIMENTI,FESSURE])
+VIEW(STRUCT([tras_SALA,SALA_INGRESSO]))
 
