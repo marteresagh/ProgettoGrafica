@@ -79,9 +79,16 @@ parete0=STRUCT(AA(POLYLINE)([[W[EV[168][0]],W[EV[168][1]]]]))
 parete=OFFSET([0.3,0.3])(parete0)
 parete4=T(3)(10.5)(PROD([parete,Q(3)]))
 parete6=T(3)(16.5)(PROD([parete,Q(3)]))
-parete8=T(3)(22.5)(PROD([parete,Q(3)]))
+parete8=T(3)(22.5)(PROD([parete,Q(6)]))
+
+muro0=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in [152,85,6,147,69,36,46,21]]))
+muro=OFFSET([0.3,0.3])(muro0)
+muro_5=T(3)(16.5)(PROD([muro,Q(3)]))
+muro_7=T(3)(22.5)(PROD([muro,Q(3)]))
 
 #LEVEL4/6/8
+
+
 lines = lines2lines("alloggi_level6_8.lines")
 grafo = STRUCT(AA(POLYLINE)(lines))
 #VIEW(grafo)
@@ -98,13 +105,16 @@ scala = 22.85/0.6268
 W=(mat(V)*scala).tolist()
 
 #muri si e no
-EV_NO=sorted([2,0,89])
+EV_NO=sorted([2,0,89,37])
 EV_SI= set(range(len(EV))).difference(EV_NO)
 muri_4=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
 muri_4=OFFSET([0.3,0.3])(muri_4)
 wall_4=T(3)(10.5)(PROD([muri_4,Q(3)]))
 wall_6=T(3)(16.5)(PROD([muri_4,Q(3)]))
 wall_8=T(3)(22.5)(PROD([muri_4,Q(3)]))
+muro_9=STRUCT(AA(POLYLINE)([[W[EV[37][0]],W[EV[37][1]]]]))
+muro_9=OFFSET([0.3,0.3])(muro_9)
+muro9=T(3)(25.5)(PROD([muro_9,Q(3)]))
 
 #LEVEL9
 lines = lines2lines("alloggi_level9.lines")
@@ -123,7 +133,7 @@ scala = 22.85/0.6268
 W=(mat(V)*scala).tolist()
 
 #muri si e no
-EV_NO=sorted([73,112])
+EV_NO=sorted([73,112,99])
 EV_SI= set(range(len(EV))).difference(EV_NO)
 muri_9=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
 muri_9=OFFSET([0.3,0.3])(muri_9)
@@ -147,14 +157,13 @@ scala = 22.85/0.6268
 W=(mat(V)*scala).tolist()
 
 #muri si e no
-EV_NO=sorted([106,42])
+EV_NO=sorted([106,42,95,151])
 EV_SI= set(range(len(EV))).difference(EV_NO)
 muri_finale=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
 muri_finale=OFFSET([0.3,0.3])(muri_finale)
 wall_finale=T(3)(28.5)(PROD([muri_finale,Q(5.5)]))
 
-#disegna level dopo il 9
-muri=STRUCT([WALL_1,wall_2,wall_5,wall_6,wall_4,wall_7,wall_8,wall_9,parete4,parete6,parete8,wall_finale])
+muri=STRUCT([WALL_1,wall_2,wall_5,wall_6,wall_4,wall_7,wall_8,wall_9,parete4,parete6,parete8,wall_finale,muro_5,muro_7,muro9])
 
 """MARMO"""
 lines = lines2lines("alloggi_marmo.lines")
@@ -174,7 +183,7 @@ righe = T([1,2])([-0.15,-0.15])( OFFSET([0.6,0.6])(frame))
 RIGHE=PROD([righe,INTERVALS(0.20)(1)])
 MARMO=T(3)(1.4)(RIGHE)
 rip_MARMO=STRUCT(NN(11)([MARMO,T(3)(3)]))
-VIEW(STRUCT([rip_MARMO,muri]))
+#VIEW(STRUCT([rip_MARMO,muri]))
 MURI=STRUCT([rip_MARMO,muri])
 #VIEW(MURI)
 
@@ -200,26 +209,26 @@ Z=(mat(Y)*scala).tolist()
 buchi = STRUCT(MKPOLS([Z,[FV[k] for k in [7,3,19,2,6,4,5,8,18,13]]]))
 tot = STRUCT(MKPOLS([Z,FV]))
 frame_level1= DIFFERENCE([tot,buchi])
-pavimento_level1=T([1,3])([-0.6,1.5])(PROD([frame_level1,Q(0.3)]))
+pavimento_level1=T([1,3])([-0.6,1.25])(PROD([frame_level1,Q(0.3)]))
 #PAVIMENTO2
 buchi = STRUCT(MKPOLS([Z,[FV[k] for k in [14,7,3,19,2,6,4,5,8,18,13,15,16]]]))
 tot = STRUCT(MKPOLS([Z,FV]))
 frame_level2= DIFFERENCE([tot,buchi])
-pavimento_level2=T([1,3])([-0.6,4.5])(PROD([frame_level2,Q(0.3)]))
+pavimento_level2=T([1,3])([-0.6,4.25])(PROD([frame_level2,Q(0.3)]))
 #pavimento3
 buchi = STRUCT(MKPOLS([Z,[FV[k] for k in [7,3,19,2,6,4,5,8,18,13,15,16,20,14,17]]]))
 tot = STRUCT(MKPOLS([Z,FV]))
 frame_level2= DIFFERENCE([tot,buchi])
-pavimento_level3=T([1,3])([-0.6,7.5])(PROD([frame_level2,Q(0.3)]))
+pavimento_level3=T([1,3])([-0.6,7.25])(PROD([frame_level2,Q(0.3)]))
 pavimenti3=STRUCT(NN(3)([pavimento_level3,T(3)(3)]))
-pavimento_level9=T([1,3])([-0.6,25.5])(PROD([frame_level2,Q(0.3)]))
+pavimento_level9=T([1,3])([-0.6,25.25])(PROD([frame_level2,Q(0.3)]))
 
 pavimenti9=STRUCT(NN(2)([pavimento_level9,T(3)(3)]))
 
 buchi = STRUCT(MKPOLS([Z,[FV[k] for k in [7,3,19,2,6,4,5,8,18,13,20,17,14]]]))
 tot = STRUCT(MKPOLS([Z,FV]))
 frame_level11= DIFFERENCE([tot,buchi])
-top=T([1,3])([-0.6,31.5])(PROD([frame_level11,Q(0.3)]))
+top=T([1,3])([-0.6,31.25])(PROD([frame_level11,Q(0.3)]))
 
 #PAVIMENTo LEVel5
 lines = lines2lines("alloggi5.lines")
@@ -236,7 +245,7 @@ Z=(mat(Y)*scala).tolist()
 buchi = STRUCT(MKPOLS([Z,[FV[k] for k in [25,6,0,19,18,5,20,1,21,2,16,17,7,11,8,10]]]))
 tot = STRUCT(MKPOLS([Z,FV]))
 frame_level5= DIFFERENCE([tot,buchi])
-pavimento_level5=T([1,3])([-0.6,13.5])(PROD([frame_level5,Q(0.3)]))
+pavimento_level5=T([1,3])([-0.6,13.25])(PROD([frame_level5,Q(0.3)]))
 pavimenti5=STRUCT(NN(4)([pavimento_level5,T(3)(3)]))
 PAVIMENTI=STRUCT([pavimento_level1,pavimento_level2,pavimenti3,pavimenti5,pavimenti9,top])
 #VIEW(STRUCT([MURI,PAVIMENTI]))
@@ -279,4 +288,27 @@ BUCHI=STRUCT([tr_buco1,tr_buco2,TR_FIN,FIN])
 MURI_ALLOGGI=DIFFERENCE([MURI,BUCHI])
 
 VIEW(STRUCT([PAVIMENTI,MURI_ALLOGGI]))
+
+""" finestre """
+
+#W[17][1]-W[178][1]=4.9360082961072145
+#W[178]=[18.39884333120613, 15.788664645820038]
+#W[17][1]-W[18][1]: 1.8446234843650267
+#W[17]: [18.39884333120613, 22.56929642629228]
+
+trave=CUBOID([0.3,5,1])
+grid=SKEL_1(STRUCT(MKPOLS(larCuboids([5,5]))))
+gridOFF=OFFSET([0.05,0.05])(grid)
+fin=T([1,2,3])([0.15,-0.02,1])(R([1,3])(PI/2)(PROD([gridOFF,Q(0.05)])))
+FRAME1=STRUCT([fin,trave])
+FRAME2=T(3)(6)(STRUCT([fin,trave]))
+TRAVE=T(3)(12)(trave)
+wall=CUBOID([0.3,5,12])
+buco_fin=T([1,2,3])([-0.2,1.2,3])(CUBOID([1,3,3]))
+FRAME_FIN=T([1,2,3])([18.39884333120613, 15.788664645820038,15.5])(STRUCT([FRAME1,FRAME2,TRAVE]))
+VIEW(FRAME_FIN)
+VIEW(STRUCT([PAVIMENTI,MURI_ALLOGGI,FRAME_FIN]))
+
+
+# SISTEMA MURO CENTRALE, TOGLILA DA TUTTI I PIANI E RICREALA... AGGIUNGI MURI LATERALI ALLE FINESTRE E PARTE FINALE
 
