@@ -48,7 +48,7 @@ EV_NO=sorted([90,69,56,35,2])
 EV_SI= set(range(len(EV))).difference(EV_NO)
 muri_2=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
 muri_2=OFFSET([0.3,0.3])(muri_2)
-wall_2=T(3)(4.5)(PROD([muri_2,Q(6)]))
+wall_2=T(3)(4.5)(PROD([muri_2,Q(3)]))
 #VIEW(wall_2)
 
 
@@ -69,17 +69,17 @@ scala = 22.85/0.6268
 W=(mat(V)*scala).tolist()
 
 #muri si e no
-EV_NO=sorted([53,126])
+EV_NO=sorted([53,126,105,168])
 EV_SI= set(range(len(EV))).difference(EV_NO)
 muri_5=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
 muri_5=OFFSET([0.3,0.3])(muri_5)
 wall_5=T(3)(13.5)(PROD([muri_5,Q(3)]))
 wall_7=T(3)(19.5)(PROD([muri_5,Q(3)]))
-parete0=STRUCT(AA(POLYLINE)([[W[EV[168][0]],W[EV[168][1]]]]))
-parete=OFFSET([0.3,0.3])(parete0)
-parete4=T(3)(10.5)(PROD([parete,Q(3)]))
-parete6=T(3)(16.5)(PROD([parete,Q(3)]))
-parete8=T(3)(22.5)(PROD([parete,Q(6)]))
+#parete0=STRUCT(AA(POLYLINE)([[W[EV[168][0]],W[EV[168][1]]]]))
+#parete=OFFSET([0.3,0.3])(parete0)
+#parete4=T(3)(10.5)(PROD([parete,Q(3)]))
+#parete6=T(3)(16.5)(PROD([parete,Q(3)]))
+#parete8=T(3)(22.5)(PROD([parete,Q(6)]))
 
 muro0=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in [152,85,6,147,69,36,46,21]]))
 muro=OFFSET([0.3,0.3])(muro0)
@@ -109,13 +109,14 @@ EV_NO=sorted([2,0,89,37])
 EV_SI= set(range(len(EV))).difference(EV_NO)
 muri_4=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
 muri_4=OFFSET([0.3,0.3])(muri_4)
+wall_3=T(3)(7.5)(PROD([muri_4,Q(3)]))
 wall_4=T(3)(10.5)(PROD([muri_4,Q(3)]))
 wall_6=T(3)(16.5)(PROD([muri_4,Q(3)]))
 wall_8=T(3)(22.5)(PROD([muri_4,Q(3)]))
 muro_9=STRUCT(AA(POLYLINE)([[W[EV[37][0]],W[EV[37][1]]]]))
 muro_9=OFFSET([0.3,0.3])(muro_9)
 muro9=T(3)(25.5)(PROD([muro_9,Q(3)]))
-
+"""
 #LEVEL9
 lines = lines2lines("alloggi_level9.lines")
 grafo = STRUCT(AA(POLYLINE)(lines))
@@ -138,7 +139,7 @@ EV_SI= set(range(len(EV))).difference(EV_NO)
 muri_9=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
 muri_9=OFFSET([0.3,0.3])(muri_9)
 wall_9=T(3)(25.5)(PROD([muri_9,Q(3)]))
-
+"""
 
 #LEVEL FINALE
 lines = lines2lines("alloggi_finale.lines")
@@ -157,13 +158,13 @@ scala = 22.85/0.6268
 W=(mat(V)*scala).tolist()
 
 #muri si e no
-EV_NO=sorted([106,42,95,151])
+EV_NO=sorted([106,42,95,151,39,115,129])
 EV_SI= set(range(len(EV))).difference(EV_NO)
 muri_finale=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
 muri_finale=OFFSET([0.3,0.3])(muri_finale)
-wall_finale=T(3)(28.5)(PROD([muri_finale,Q(5.5)]))
+wall_finale=T(3)(25.5)(PROD([muri_finale,Q(8.5)]))
 
-muri=STRUCT([WALL_1,wall_2,wall_5,wall_6,wall_4,wall_7,wall_8,wall_9,parete4,parete6,parete8,wall_finale,muro_5,muro_7,muro9])
+muri=STRUCT([WALL_1,wall_2,wall_3,wall_5,wall_6,wall_4,wall_7,wall_8,wall_finale,muro_5,muro_7])
 
 """MARMO"""
 lines = lines2lines("alloggi_marmo.lines")
@@ -295,7 +296,7 @@ VIEW(STRUCT([PAVIMENTI,MURI_ALLOGGI]))
 #W[178]=[18.39884333120613, 15.788664645820038]
 #W[17][1]-W[18][1]: 1.8446234843650267
 #W[17]: [18.39884333120613, 22.56929642629228]
-
+#MURO CENTRALE
 trave=CUBOID([0.3,5,1])
 grid=SKEL_1(STRUCT(MKPOLS(larCuboids([5,5]))))
 gridOFF=OFFSET([0.05,0.05])(grid)
@@ -303,12 +304,37 @@ fin=T([1,2,3])([0.15,-0.02,1])(R([1,3])(PI/2)(PROD([gridOFF,Q(0.05)])))
 FRAME1=STRUCT([fin,trave])
 FRAME2=T(3)(6)(STRUCT([fin,trave]))
 TRAVE=T(3)(12)(trave)
-wall=CUBOID([0.3,5,12])
-buco_fin=T([1,2,3])([-0.2,1.2,3])(CUBOID([1,3,3]))
-FRAME_FIN=T([1,2,3])([18.39884333120613, 15.788664645820038,15.5])(STRUCT([FRAME1,FRAME2,TRAVE]))
-VIEW(FRAME_FIN)
+wall=CUBOID([0.3,5,8.5])
+buco_fin=T([1,2,3])([-0.4,1,1])(CUBOID([1,3,3]))
+wall_fin0=DIFFERENCE([wall,buco_fin])
+grid_small=SKEL_1(STRUCT(MKPOLS(larCuboids([3,3]))))
+gridOFF_small=OFFSET([0.05,0.05])(grid_small)
+fin_small=T([1,2,3])([0.15,1,1])(R([1,3])(PI/2)(PROD([gridOFF_small,Q(0.05)])))
+wall_fin=T(3)(13)(STRUCT([wall_fin0,fin_small]))
+laterale_dx=T([2,3])([-1.8,-6])(CUBOID([0.3,1.8,27.5]))
+laterale_sx=T([2,3])([5,-6])(CUBOID([0.3,2,27.5]))
+FRAME_FIN=T([1,2,3])([18.39884333120613, 15.7,12.5])(STRUCT([wall_fin,FRAME1,FRAME2,TRAVE,laterale_dx,laterale_sx]))
+#VIEW(FRAME_FIN)
 VIEW(STRUCT([PAVIMENTI,MURI_ALLOGGI,FRAME_FIN]))
 
+#PARETI LATERALI
+grid_rett=SKEL_1(PROD([ Hpc(Grid([6*[10./6]])), Hpc(Grid([2*[3./2]]))]))
+gridOFF_rett=OFFSET([0.05,0.05])(grid_rett)
+fin_rett1=T([1,2,3])([6,14,4.6])(R([2,3])(PI/2)(PROD([gridOFF_rett,Q(0.05)])))
+fin_rett2=T([3])([4.7])(fin_rett1)
+fin_rett3=T([2])([8.7])(fin_rett1)
+fin_rett4=T([2,3])([8.7,4.7])(fin_rett1)
+FIN_RETT=STRUCT([fin_rett1,fin_rett2,fin_rett3,fin_rett4])
 
-# SISTEMA MURO CENTRALE, TOGLILA DA TUTTI I PIANI E RICREALA... AGGIUNGI MURI LATERALI ALLE FINESTRE E PARTE FINALE
+grid_tr=SKEL_1(PROD([ Hpc(Grid([12*[1]])), Hpc(Grid([3*[1]]))]))
+gridOFF_tr=OFFSET([0.05,0.05])(grid_tr)
+fin_tr1=T([1,2,3])([6,14,14.6])(R([2,3])(PI/2)(PROD([gridOFF_tr,Q(0.05)])))
+fin_tr2=T([3])([6])(fin_tr1)
+fin_tr3=T([2])([8.7])(fin_tr1)
+fin_tr4=T([2,3])([8.7,6])(fin_tr1)
+FIN_TR=STRUCT([fin_tr1,fin_tr2,fin_tr3,fin_tr4])
+
+VIEW(STRUCT([PAVIMENTI,MURI_ALLOGGI,FRAME_FIN,FIN_RETT,FIN_TR]))
+
+
 
