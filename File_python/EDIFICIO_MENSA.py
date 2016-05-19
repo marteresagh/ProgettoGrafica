@@ -20,7 +20,7 @@ submodel = STRUCT(MKPOLS((W,EV)))
 #VIEW(larModelNumbering(1,1,1)(W,[WW,EV],submodel,0.2))
 
 #muri si e no
-EV_NO=sorted([7,109,108,48])
+EV_NO=sorted([7,109,108,48,21,45])
 EV_SI= set(range(len(EV))).difference(EV_NO)
 muri_1=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
 
@@ -46,7 +46,7 @@ scala = 31.42/0.8166
 W=((mat(V)-V[11])*scala).tolist()
 
 #muri si e no
-EV_NO=sorted([52,6,119,62,95,125])
+EV_NO=sorted([52,6,119,62,95,125,167,133])
 EV_SI= set(range(len(EV))).difference(EV_NO)
 muri_2=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
 balconi0=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in [95,125]]))
@@ -76,7 +76,7 @@ scala = 31.42/0.8166
 W=((mat(V)-V[161])*scala).tolist()
 
 #muri si e no
-EV_NO=sorted([88,2,14,119])
+EV_NO=sorted([88,2,14,119,125,19])
 EV_SI= set(range(len(EV))).difference(EV_NO)
 muri_5=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
 balconi0=STRUCT(AA(POLYLINE)([[W[EV[2][0]],W[EV[2][1]]]]))
@@ -103,7 +103,7 @@ scala = 31.42/0.8166
 W=((mat(V)-V[130])*scala).tolist()
 
 #muri si e no
-EV_NO=sorted([9,152,141,157])
+EV_NO=sorted([9,152,141,157,126,51])
 EV_SI= set(range(len(EV))).difference(EV_NO)
 muri_6=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
 muri_6=OFFSET([0.3,0.3])(muri_6)
@@ -126,7 +126,7 @@ scala = 31.42/0.8166
 W=((mat(V)-V[168])*scala).tolist()
 
 #muri si e no
-EV_NO=sorted([63,15,104])
+EV_NO=sorted([63,15,104,148,165])
 EV_SI= set(range(len(EV))).difference(EV_NO)
 muri_7=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
 muri_7=OFFSET([0.3,0.3])(muri_7)
@@ -149,7 +149,7 @@ scala = 31.42/0.8166
 W=((mat(V)-V[118])*scala).tolist()
 
 #muri si e no
-EV_NO=sorted([143,110,141,15])
+EV_NO=sorted([143,110,141,15,164,130])
 EV_SI= set(range(len(EV))).difference(EV_NO)
 muri_8=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
 muri_8=OFFSET([0.3,0.3])(muri_8)
@@ -172,7 +172,7 @@ scala = 31.42/0.8166
 W=((mat(V)-V[134])*scala).tolist()
 
 #muri si e no
-EV_NO=sorted([68,105,129,81,74,6,95,23,42])
+EV_NO=sorted([68,105,129,81,74,6,95,23,42,46,158])
 EV_SI= set(range(len(EV))).difference(EV_NO)
 muri_9=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
 muri_9=OFFSET([0.3,0.3])(muri_9)
@@ -182,7 +182,7 @@ pil=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in [6,95,23,42]]))
 pil=OFFSET([0.3,0.3])(pil)
 pilastri=T(3)(25.5)(PROD([pil,Q(0.3)]))
 WALL_9=STRUCT([wall_9,pilastri])
-EV_NOfinale=sorted([1,108,74,149,34,53,49,63,15,16,154,0,81,80,161,51,123,10,25,105,129,68,42,23,95,6,51,66])
+EV_NOfinale=sorted([1,108,74,149,34,53,49,63,15,16,154,0,81,80,161,51,123,10,25,105,129,68,42,23,95,6,51,66,46,158])
 EV_SIfinale= set(range(len(EV))).difference(EV_NOfinale)
 muri_finale=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SIfinale]))
 muri_finale=OFFSET([0.3,0.3])(muri_finale)
@@ -205,7 +205,7 @@ scala = 31.42/0.8166
 W=((mat(V)-V[36])*scala).tolist()
 
 #muri si e no
-EV_SI= sorted([6,100,21,94,30,78])
+EV_SI= sorted([6,100,21,94,30,78,])
 muri_11=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
 muri_11=OFFSET([0.3,0.3])(muri_11)
 wall_11=T(3)(31.5)(PROD([muri_11,Q(2.5)]))
@@ -332,6 +332,27 @@ level_2up=STRUCT(NN(4)([pavimento_level2,T(3)(6)]))
 
 PAVIMENTI=STRUCT([top,level_2up,pavimento_level1,pavimento_level3,pavimento_level5,pavimento_level7,pavimento_level9])
 
-VIEW(STRUCT([MENSA,PAVIMENTI]))
+"""FINESTRE"""
+
+#EV[167]=(91, 138)
+#W[91][1]-W[138][1]=3.6706686260102863
+#EV[133]= (10, 11)
+#W[10][1]-W[11][1]= -3.3859417095273088
+trave_base=CUBOID([0.3,3.6,1.55])
+trave_top=T(3)(30.5)(CUBOID([0.3,3.6,3.55]))
+trave=T(3)(3.5)(CUBOID([0.3,3.6,1.05]))
+travi=STRUCT(NN(9)([trave,T(3)(3.05)]))
+bordo=SKEL_1(CUBOID([2,3.6]))
+seg=T(2)(1.2)(INTERVALS(2)(1))
+seg1=STRUCT(NN(2)([seg,T(2)(1.2)]))
+seg2=T(1)(0.7)(R([1,2])(PI/2)(INTERVALS(3.6)(1)))
+grid_fin=OFFSET([0.05,0.05])(STRUCT([bordo,seg1,seg2]))
+fin_lat=T([1,3])([0.15,1.55])(R([1,3])(PI/2)(PROD([grid_fin,Q(0.05)])))
+fin_laterali=STRUCT(NN(10)([fin_lat,T(3)(3.05)]))
+LAT_sx=T(2)(-3.3)(STRUCT([fin_laterali,trave_top,travi,trave_base]))
+LAT_dx=T(2)(35.02)(LAT_sx)
+#VIEW(LAT)
+VIEW(STRUCT([LAT_dx,LAT_sx,MENSA,PAVIMENTI]))
+
 
 
