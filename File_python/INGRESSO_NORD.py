@@ -344,7 +344,7 @@ Z=((mat(Y)-Y[25])*scala).tolist()
 buchi = STRUCT(MKPOLS([Z,[FV[k] for k in [1,0,4,5,3,2,6,7,8,9]]]))
 tot = STRUCT(MKPOLS([Z,FV]))
 frame_level2= DIFFERENCE([tot,buchi])
-pavimento_level2=T(3)(4.25)(PROD([frame_level2,Q(0.3)]))
+pavimento_level2=T(3)(4.5)(PROD([frame_level2,Q(0.3)]))
 #VIEW(pavimento_level2)
 #VIEW(STRUCT([ingresso,COLOR(RED)(pavimento_level2)]))
 
@@ -369,7 +369,7 @@ Z=((mat(Y)-Y[0])*scala).tolist()
 buchi = STRUCT(MKPOLS([Z,[FV[k] for k in [0,1,2,3]]]))
 tot = STRUCT(MKPOLS([Z,FV]))
 frame_level3= DIFFERENCE([tot,buchi])
-pavimento_level3=T(3)(7.25)(PROD([frame_level3,Q(0.3)]))
+pavimento_level3=T(3)(7.5)(PROD([frame_level3,Q(0.3)]))
 #VIEW(pavimento_level2)
 #VIEW(STRUCT([ingresso,COLOR(RED)(pavimento_level3)]))
 
@@ -390,7 +390,7 @@ scala = 16.523778
 W=((mat(V)-V[2])*scala).tolist()
 
 base=STRUCT(MKPOLS((W,FV)))
-pav5=T([1,2,3])([7.7104680000000005, 0.0, 13.25])(PROD([base,Q(0.3)]))
+pav5=T([1,2,3])([7.7104680000000005, 0.0, 13.5])(PROD([base,Q(0.3)]))
 #VIEW(pav5)
 
 #LEVEL6
@@ -414,7 +414,7 @@ Z=((mat(Y)-Y[34])*scala).tolist()
 buchi = STRUCT(MKPOLS([Z,[FV[k] for k in [3,6,8,0,2,11,10,13,12,5,1,9,7,4,16]]]))
 tot = STRUCT(MKPOLS([Z,FV]))
 frame_level6= DIFFERENCE([tot,buchi])
-pavimento_level6=T(3)(16.25)(PROD([frame_level6,Q(0.3)]))
+pavimento_level6=T(3)(16.5)(PROD([frame_level6,Q(0.3)]))
 
 #VIEW(STRUCT([ingresso,COLOR(RED)(pavimento_level6)]))
 
@@ -439,7 +439,7 @@ Z=((mat(Y)-Y[9])*scala).tolist()
 buchi = STRUCT(MKPOLS([Z,[FV[k] for k in [0,1,2,3,4,5]]]))
 tot = STRUCT(MKPOLS([Z,FV]))
 frame_level7= DIFFERENCE([tot,buchi])
-pavimento_level7=T(3)(19.25)(PROD([frame_level7,Q(0.3)]))
+pavimento_level7=T(3)(19.5)(PROD([frame_level7,Q(0.3)]))
 
 #VIEW(STRUCT([ingresso,COLOR(RED)(pavimento_level7)]))
 
@@ -464,7 +464,7 @@ submodel = STRUCT(MKPOLS((Z,EV)))
 buchi = STRUCT(MKPOLS([Z,[FV[k] for k in [0,1,2,3,4,5,6,7]]]))
 tot = STRUCT(MKPOLS([Z,FV]))
 frame_level9= DIFFERENCE([tot,buchi])
-pavimento_level9=T([1,3])([0.1,25.25])(PROD([frame_level9,Q(0.3)]))
+pavimento_level9=T([1,3])([0.1,25.5])(PROD([frame_level9,Q(0.3)]))
 
 #VIEW(STRUCT([ingresso,COLOR(RED)(pavimento_level9)]))
 
@@ -472,7 +472,7 @@ pavimento_level9=T([1,3])([0.1,25.25])(PROD([frame_level9,Q(0.3)]))
 buchi_top = STRUCT(MKPOLS([Z,[FV[k] for k in [0,1,2,3,6]]]))
 tot = STRUCT(MKPOLS([Z,FV]))
 frame_top= DIFFERENCE([tot,buchi_top])
-top=T([1,3])([0.1,31.25])(PROD([frame_top,Q(0.3)]))
+top=T([1,3])([0.1,31.5])(PROD([frame_top,Q(0.3)]))
 
 #VIEW(STRUCT([ingresso,COLOR(RED)(top)]))
 PAVIMENTI=STRUCT([pavimento_level2,pavimento_level3,pav5,pavimento_level6,pavimento_level7,pavimento_level9,top])
@@ -552,8 +552,21 @@ GRATA=R([2,3])(PI/2)(R([1,3])(PI/2)(GRATA_fin))
 fin1=T([1,2,3])([0.15,14.5,7.5])(GRATA)
 fin2=T([1,2,3])([31.57,14.5,7.5])(GRATA)
 
-VIEW(STRUCT([GRATE,ING_CUT,PAVIMENTI,fin1,fin2]))
+ #grata fessure
+frame0=S([1,2])([31./35,31./35])(SKEL_1(STRUCT(MKPOLS(larCuboids([2,35])))))
+frame1=T(2)(-1.5)(CUBOID([1.9,1.5]))
+frame2=T(2)(31)(CUBOID([1.9,1.5]))
+mur=STRUCT([frame1,frame2])
+gridOFF=OFFSET([0.05,0.05])(frame0)
+grid_fess=T(3)(0.15)(PROD([gridOFF,Q(0.05)]))
+muretti=PROD([mur,Q(0.3)])
+FESSURE0=R([2,3])(PI/2)(T(2)(1.5)(STRUCT([muretti,grid_fess])))
+FESS1=T(1)(0.3)(R([1,2])(5*PI/4)(FESSURE0))
+FESS2=T([1,2])([31.72,0.3])(R([1,2])(-PI/4)(FESSURE0))
+FESSURE=STRUCT([FESS1,FESS2])
+#VIEW(STRUCT([ingresso,FESSURE]))
 
+VIEW(STRUCT([GRATE,ING_CUT,PAVIMENTI,fin1,fin2,FESSURE]))
 
 """mancano le scale"""
 

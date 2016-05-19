@@ -338,7 +338,6 @@ PAVIMENTI=STRUCT([top,level_2up,pavimento_level1,pavimento_level3,pavimento_leve
 #W[91][1]-W[138][1]=3.6706686260102863
 #EV[133]= (10, 11)
 #W[10][1]-W[11][1]= -3.3859417095273088
-
 trave_base=CUBOID([0.3,3.6,1.55])
 trave_top=T(3)(30.5)(CUBOID([0.3,3.6,3.55]))
 trave=T(3)(3.5)(CUBOID([0.3,3.6,1.05]))

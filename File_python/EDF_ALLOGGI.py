@@ -288,7 +288,7 @@ FIN=STRUCT([fin1,fin2,fin3,fin4])
 BUCHI=STRUCT([tr_buco1,tr_buco2,TR_FIN,FIN])
 MURI_ALLOGGI=DIFFERENCE([MURI,BUCHI])
 
-VIEW(STRUCT([PAVIMENTI,MURI_ALLOGGI]))
+#VIEW(STRUCT([PAVIMENTI,MURI_ALLOGGI]))
 
 """ finestre """
 
@@ -304,18 +304,18 @@ fin=T([1,2,3])([0.15,-0.02,1])(R([1,3])(PI/2)(PROD([gridOFF,Q(0.05)])))
 FRAME1=STRUCT([fin,trave])
 FRAME2=T(3)(6)(STRUCT([fin,trave]))
 TRAVE=T(3)(12)(trave)
-wall=CUBOID([0.3,5,8.5])
+wall=CUBOID([0.3,5,8.2])
 buco_fin=T([1,2,3])([-0.4,1,1])(CUBOID([1,3,3]))
 wall_fin0=DIFFERENCE([wall,buco_fin])
 grid_small=SKEL_1(STRUCT(MKPOLS(larCuboids([3,3]))))
 gridOFF_small=OFFSET([0.05,0.05])(grid_small)
 fin_small=T([1,2,3])([0.15,1,1])(R([1,3])(PI/2)(PROD([gridOFF_small,Q(0.05)])))
 wall_fin=T(3)(13)(STRUCT([wall_fin0,fin_small]))
-laterale_dx=T([2,3])([-1.8,-6])(CUBOID([0.3,1.8,27.5]))
-laterale_sx=T([2,3])([5,-6])(CUBOID([0.3,2,27.5]))
-FRAME_FIN=T([1,2,3])([18.39884333120613, 15.7,12.5])(STRUCT([wall_fin,FRAME1,FRAME2,TRAVE,laterale_dx,laterale_sx]))
+laterale_dx=T([2,3])([-1.8,-6.3])(CUBOID([0.3,1.8,27.5]))
+laterale_sx=T([2,3])([5,-6.3])(CUBOID([0.3,2,27.5]))
+FRAME_FIN=T([1,2,3])([18.39884333120613, 15.7,12.8])(STRUCT([wall_fin,FRAME1,FRAME2,TRAVE,laterale_dx,laterale_sx]))
 #VIEW(FRAME_FIN)
-VIEW(STRUCT([PAVIMENTI,MURI_ALLOGGI,FRAME_FIN]))
+#VIEW(STRUCT([PAVIMENTI,MURI_ALLOGGI,FRAME_FIN]))
 
 #PARETI LATERALI
 grid_rett=SKEL_1(PROD([ Hpc(Grid([6*[10./6]])), Hpc(Grid([2*[3./2]]))]))
@@ -333,8 +333,9 @@ fin_tr2=T([3])([6])(fin_tr1)
 fin_tr3=T([2])([8.7])(fin_tr1)
 fin_tr4=T([2,3])([8.7,6])(fin_tr1)
 FIN_TR=STRUCT([fin_tr1,fin_tr2,fin_tr3,fin_tr4])
+edf_alloggi=STRUCT([PAVIMENTI,MURI_ALLOGGI,FRAME_FIN,FIN_RETT,FIN_TR])
+VIEW(edf_alloggi)
 
-VIEW(STRUCT([PAVIMENTI,MURI_ALLOGGI,FRAME_FIN,FIN_RETT,FIN_TR]))
-
-
-
+#X,FX,EX=UKPOL(edf_alloggi)
+#EDF_ALLOGGI=STRUCT([MKPOL((X,FX,EX))])
+#VIEW(EDF_ALLOGGI)

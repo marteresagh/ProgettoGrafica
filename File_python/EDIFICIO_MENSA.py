@@ -57,7 +57,7 @@ wall_2=T(3)(4.5)(PROD([muri_2,Q(3)]))
 WALL_2=STRUCT([wall_2,balconi_1])
 wall_4=T(3)(6)(WALL_2)
 #VIEW(wall_2)
-VIEW(STRUCT([wall_1,WALL_2,wall_3,wall_4]))
+#VIEW(STRUCT([wall_1,WALL_2,wall_3,wall_4]))
 
 #LEVEL5
 lines = lines2lines("mensa_level5.lines")
@@ -210,7 +210,7 @@ muri_11=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
 muri_11=OFFSET([0.3,0.3])(muri_11)
 wall_11=T(3)(31.5)(PROD([muri_11,Q(2.5)]))
 muri=STRUCT([wall_1,WALL_2,wall_3,wall_4,WALL_5,wall_6,wall_7,wall_8,WALL_9,wall_11,wall_finale])
-VIEW(muri)
+#VIEW(muri)
 
 """MARMO e BUCHI"""
 #MARMO
@@ -231,7 +231,7 @@ righe = T([1,2])([-0.15,-0.15])( OFFSET([0.6,0.6])(frame))
 RIGHE=PROD([righe,INTERVALS(0.20)(1)])
 MARMO=T(3)(1.4)(RIGHE)
 rip_MARMO=STRUCT(NN(11)([MARMO,T(3)(3)]))
-VIEW(STRUCT([rip_MARMO,muri]))
+#VIEW(STRUCT([rip_MARMO,muri]))
 MURI=STRUCT([rip_MARMO,muri])
 #BUCHI
 lines = lines2lines("facciata_mensa.lines")
@@ -248,7 +248,7 @@ buchi = STRUCT(MKPOLS([W,[FV[k] for k in FV_SI]]))
 buchiPROD=R([2,3])(PI/2)(PROD([buchi,Q(2)]))
 parete=T([1,3])([16.3,0.5])(R([1,2])(PI/2)(buchiPROD))
 MENSA=DIFFERENCE([MURI,parete])
-VIEW(MENSA)
+#VIEW(MENSA)
 
 """ PAVIMENTI """
 
@@ -354,5 +354,5 @@ LAT_dx=T(2)(35.02)(LAT_sx)
 #VIEW(LAT)
 VIEW(STRUCT([LAT_dx,LAT_sx,MENSA,PAVIMENTI]))
 
-
+"""mancano finestre davanti e scegli i piani e le scale"""
 

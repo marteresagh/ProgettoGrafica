@@ -552,8 +552,24 @@ GRATA=R([2,3])(PI/2)(R([1,3])(PI/2)(GRATA_fin))
 fin1=T([1,2,3])([0.15,14.5,7.5])(GRATA)
 fin2=T([1,2,3])([31.57,14.5,7.5])(GRATA)
 
-VIEW(STRUCT([GRATE,ING_CUT,PAVIMENTI,fin1,fin2]))
+ #grata fessure
+frame0=S([1,2])([31./35,31./35])(SKEL_1(STRUCT(MKPOLS(larCuboids([2,35])))))
+frame1=T(2)(-1.5)(CUBOID([1.9,1.5]))
+frame2=T(2)(31)(CUBOID([1.9,1.5]))
+mur=STRUCT([frame1,frame2])
+gridOFF=OFFSET([0.05,0.05])(frame0)
+grid_fess=T(3)(0.15)(PROD([gridOFF,Q(0.05)]))
+muretti=PROD([mur,Q(0.3)])
+FESSURE0=R([2,3])(PI/2)(T(2)(1.5)(STRUCT([muretti,grid_fess])))
+FESS1=T(1)(0.3)(R([1,2])(5*PI/4)(FESSURE0))
+FESS2=T([1,2])([31.72,0.3])(R([1,2])(-PI/4)(FESSURE0))
+FESSURE=STRUCT([FESS1,FESS2])
+#VIEW(STRUCT([ingresso,FESSURE]))
 
+VIEW(STRUCT([GRATE,ING_CUT,PAVIMENTI,fin1,fin2,FESSURE]))
+
+
+"""mancano le scale"""
 
 
 

@@ -1,6 +1,6 @@
 #SALA DELLA PREGHIERA
 
-"""togli le alette alla corte e fai le finestre"""
+
 #dimensioni 20.95 per lato e 34 di altezza, 7.61 il raggio delle colonne, offset delle pareti a 0.3
 from larlib import *
 
@@ -44,7 +44,7 @@ buco3=R([1,2])(PI/2)(R([1,3])(PI/2)(buco_circ))
 circ3=COLOR(RED)(T([2,3])([.8,14.5])(buco3))
 #VIEW(STRUCT([circ3,circ2]))
 
-#DA CAMBIARE CIRC SUD!!!!!!!!!!!!!!!!!!!!!!
+
 circ_sud=COLOR(RED)(T([1,2,3])([.8,.8,13.3])(S([3])(-0.75)(T([1,2,3])([-.8,-.8,-14.5])(STRUCT([circ2,circ3])))))
 
 #CILINDRI
@@ -106,7 +106,7 @@ finestra1_sud=T([1,2,3])([0.1,0.2,15.5])(R([2,3])(PI/2)(griglia_sud))
 finestra2_sud=T([1,2])([.3,0.1])(R([1,2])(PI/2)(finestra1_sud))
 fin_SUD=T(3)(14.5)(S(3)(0.88)(T(3)(-14)(STRUCT([finestra1_sud,finestra2_sud]))))
 
-#DA CAMBIARE LE FINESTRE SOTTO
+# FINESTRE SOTTO
 FIN_SOTTO=T(3)(13.3)(S(3)(-.75)(S(3)(0.88)(T(3)(-14)(STRUCT([finestra1_sud,finestra2_sud])))))
 #VIEW(STRUCT([fin_SUD,SALA_PREG]))
 #trasformazioni finestre
@@ -130,12 +130,14 @@ rip_MARMOrig=STRUCT(NN(11)([MARMOrig,T(3)(3)]))
 
 pilastro=STRUCT([cil_vuoto,pil_x,pil_y,rip_MARMOcirc,rip_MARMOrig])
 BUCHI=STRUCT([circ,circ1,circ2,circ3,circ_sud])
+PIL=DIFFERENCE([pilastro,BUCHI])
+
 tagli=R([1,2])(PI/2)(BUCHI)
 tagli2=T(1)(20.8)(R([1,2])(PI/2)(tagli))
 tagli3=T([1,2])([20.8,20.8])(R([1,2])(PI)(tagli))
 tagli4=T(2)(20.8)(R([1,2])(-PI/2)(tagli))
 FORI=STRUCT([tagli,tagli2,tagli3,tagli4])
-croce1=R([1,2])(PI/2)(pilastro)
+croce1=R([1,2])(PI/2)(PIL)
 croce2=T(1)(20.8)(R([1,2])(PI/2)(croce1))
 croce3=T([1,2])([20.8,20.8])(R([1,2])(PI)(croce1))
 croce4=T(2)(20.8)(R([1,2])(-PI/2)(croce1))
@@ -147,9 +149,9 @@ righe=PROD([frame_righe,Q(0.2)])
 MARMOrett=T(3)(1.4)(righe)
 rip_MARMOrett=STRUCT(NN(11)([MARMOrett,T(3)(3)]))
 #VIEW(rip_MARMOrett)
-PREG=STRUCT([SALA,croce1,croce2,croce3,croce4,rip_MARMOrett])
-SALA_PREG=DIFFERENCE([PREG,FORI])
-
+PREG=STRUCT([SALA,rip_MARMOrett])
+PREG_forata=DIFFERENCE([PREG,FORI])
+SALA_PREG=STRUCT([PREG_forata,croce1,croce2,croce3,croce4])
 
 #ARCHI ANGOLATI
 para=CUBOID([20,0.3,6.3])
@@ -424,7 +426,7 @@ MURI_CORTE=STRUCT([chiudi,rip_MARMOcorte,MURI,rip_MARMOcorte2])
 corte=DIFFERENCE([MURI_CORTE,CUT])
 VIEW(corte)
 
-#PAVIMENTI CORTE
+"""PAVIMENTI CORTE"""
 #LEVEL1/3
 lines = lines2lines("corte_pav1.lines")
 Y,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
@@ -533,7 +535,7 @@ FESS1=T([1,2])([-0.5,0.3])(FESSURE0)
 FESS2=T([1,2])([32.1,0.3])(FESSURE0)
 FESSURE=STRUCT([FESS1,FESS2])
 
-VIEW(STRUCT([corte,GRATA_corte,PAVIMENTI]))
+#VIEW(STRUCT([corte,GRATA_corte,PAVIMENTI]))
 SALA_INGRESSO=STRUCT([corte,GRATA_corte,PAVIMENTI,FESSURE])
 VIEW(STRUCT([tras_SALA,SALA_INGRESSO]))
 
