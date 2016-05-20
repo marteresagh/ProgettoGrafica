@@ -267,7 +267,7 @@ W=((mat(V)-V[5])*scala).tolist()
 base=STRUCT(MKPOLS((W,EV)))
 finale=OFFSET([0.3,0.3])(base)
 finale=T(3)(28.5)(PROD([finale,Q(5.5)]))
-
+"""
 #dettagli righe
 
 lines = lines2lines("rialzo_level1.lines")
@@ -297,12 +297,12 @@ rip_MARMO=STRUCT(NN(11)([MARMO,T(3)(3)]))
 
 #VIEW(level_4)
 #VIEW(level_4up)
-"""
+
 EDF_UFF=STRUCT([rialzo,level1,colonne,rip_MARMO])
 #VIEW(EDF_UFF)
 
 #**PAVIMENTI**
-"""
+
 #**pavimento level 2**
 lines = lines2lines("pavimento_level2.lines")
 Y,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
@@ -328,7 +328,7 @@ pavimento_level2= DIFFERENCE([tot,buchi])
 pavimento_level2=T(3)(4.25)(PROD([pavimento_level2,Q(0.3)]))
 #VIEW(pavimento_level2)
 #VIEW(STRUCT([EDF_UFF,pavimento_level2]))
-
+"""
 
 #**pavimento level3**
 lines = lines2lines("pavimento_level3.lines")
@@ -375,7 +375,7 @@ pavimento_level4=T(3)(10.25)(PROD([pavimento_level4,Q(0.3)]))
 #**pavimenti superiori e finale**
 pavimento_3up=STRUCT(NN(4)([pavimento_level3,T(3)(6)]))
 pavimento_4up=STRUCT(NN(3)([pavimento_level4,T(3)(6)]))
-"""
+
 lines = lines2lines("pavimento_level3.lines")
 V,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
 #prova=STRUCT(MKPOLS((V,FV))) #grafo pulito
@@ -399,7 +399,7 @@ top2=T(3)(31.25)(PROD([top,Q(0.3)]))
 
 #VIEW(pavimento_level4up) 
 #VIEW(STRUCT([EDF_UFF,PAVIMENTI_UFF]))
-
+"""
 #**MURO CIRCOLARE**
 
 lines = lines2lines("murocircolare.lines") 

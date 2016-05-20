@@ -62,13 +62,18 @@ scala = 31.42
 W=((mat(V)-V[6])*scala).tolist()
 
 #muri si e no
-EV_NO=sorted([0,7,9,4,6])
+EV_NO=sorted([0,7,9,4,6,3])
 EV_SI= set(range(len(EV))).difference(EV_NO)
 muri_1=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
 
-muri_1=OFFSET([0.3/SQRT(2),0.3/SQRT(2)])(muri_1)
-wall_1=T(3)(1.5)(PROD([muri_1,Q(3)]))
-#VIEW(STRUCT([wall_1,wall,rialzo]))
+muri_obliqui=OFFSET([0.3/SQRT(2),0.3/SQRT(2)])(muri_1)
+wall_obliqui=T(3)(1.5)(PROD([muri_obliqui,Q(19.5)]))
+muro_1=STRUCT(AA(POLYLINE)([[W[EV[3][0]],W[EV[3][1]]]]))
+muro_1=OFFSET([0.3,0.3])(muro_1)
+wall_1=T(3)(1.5)(PROD([muro_1,Q(3)]))
+
+WALL_1=STRUCT([wall_obliqui,muro_1])
+#VIEW(STRUCT([WALL_1,WALL,rialzo]))
 
 #LEVEL2
 lines = lines2lines("nord_level2.lines")
@@ -87,13 +92,13 @@ scala = 31.42
 W=((mat(V)-V[5])*scala).tolist()
 
 #muri fini e muri spessi
-EV_NO=sorted([0,7,5,8])
+EV_NO=sorted([0,7,5,8,6,11,13,1,14,2,10,17,4,3,12,15])
 EV_SI= set(range(len(EV))).difference(EV_NO)
 muri_2=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
 
 muri_2=OFFSET([0.3/SQRT(2),0.3/SQRT(2)])(muri_2)
 wall_2=T(3)(4.5)(PROD([muri_2,Q(3)]))
-#VIEW(STRUCT([wall_2,wall_1,WALL,rialzo]))
+#VIEW(STRUCT([wall_2,WALL,rialzo]))
 
 #LEVEL3/4
 lines = lines2lines("nord_level3.lines")
@@ -113,15 +118,11 @@ W=((mat(V)-V[5])*scala).tolist()
 
 #muri fini e muri spessi
 EV_spessi=sorted([2,5,12,4,16])
-EV_fini= set(range(len(EV))).difference(EV_spessi)
-muri_fini=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_fini]))
 muri_spessi=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_spessi]))
 
-muri_fini=OFFSET([0.3/SQRT(2),0.3/SQRT(2)])(muri_fini)
-wall_fini=T(3)(7.5)(PROD([muri_fini,Q(6)]))
 muri_spessi=OFFSET([0.3,0.3])(muri_spessi)
-wall_spessi=T(3)(7.5)(PROD([muri_spessi,Q(6)]))
-wall_3=STRUCT([wall_spessi,wall_fini])
+wall_spessi=T(3)(7.5)(PROD([muri_spessi,Q(12.5)]))
+wall_3=wall_spessi
 #VIEW(STRUCT([wall_2,wall_1,WALL,wall_3,rialzo]))
 
 #MARMO
@@ -151,19 +152,14 @@ scala = 31.42
 W=((mat(V)-V[7])*scala).tolist()
 
 #muri fini e muri spessi
-EV_spessi=sorted([4,0,11,21,7,1,14,8])
-EV_fini= set(range(len(EV))).difference(EV_spessi)
-muri_fini=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_fini]))
-muri_spessi=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_spessi if e!=8]))
+muri_spessi=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in [3,2]]))
 
-muri_fini=OFFSET([0.3/SQRT(2),0.3/SQRT(2)])(muri_fini)
-wall_fini=T(3)(13.5)(PROD([muri_fini,Q(3)]))
 muri_spessi=OFFSET([0.3,0.3])(muri_spessi)
 wall_spessi=T(3)(13.5)(PROD([muri_spessi,Q(3)]))
 muro_basso=STRUCT(MKPOLS((W,[EV[8]])))
 balcone=OFFSET([0.3,0.3])(muro_basso)
 wall_basso=T(3)(13.5)(PROD([balcone,Q(1.5)]))
-wall_5=STRUCT([wall_spessi,wall_fini,wall_basso])
+wall_5=STRUCT([wall_spessi,wall_basso])
 
 #VIEW(STRUCT([wall_5,wall_2,wall_1,WALL,wall_3,rialzo]))
 
@@ -184,16 +180,12 @@ scala = 31.42
 W=((mat(V)-V[16])*scala).tolist()
 
 #muri fini e muri spessi
-EV_fini=sorted([24,32,14,20,4,34,29,7,3,27,1,11])
-EV_spessi= set(range(len(EV))).difference(EV_fini)
-muri_fini=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_fini]))
-muri_spessi=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_spessi]))
+EV_si= [5,0,25,8,28,10,2,30,33,23,25,13,21]
+muri_spessi=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_si]))
 
-muri_fini=OFFSET([0.3/SQRT(2),0.3/SQRT(2)])(muri_fini)
-wall_fini=T(3)(16.5)(PROD([muri_fini,Q(3)]))
 muri_spessi=OFFSET([0.3,0.3])(muri_spessi)
 wall_spessi=T(3)(16.5)(PROD([muri_spessi,Q(3)]))
-wall_6=STRUCT([wall_spessi,wall_fini])
+wall_6=wall_spessi
 #VIEW(STRUCT([wall_6,wall_5,wall_2,wall_1,WALL,wall_3,rialzo]))
 
 
@@ -226,7 +218,7 @@ muro_basso=STRUCT(MKPOLS((W,[EV[4]])))
 balcone=OFFSET([0.3,0.3])(muro_basso)
 wall_basso=T(3)(19.5)(PROD([balcone,Q(1.5)]))
 wall_7=STRUCT([wall_spessi,wall_fini,wall_basso])
-#VIEW(STRUCT([wall_7,wall_6,wall_5,wall_2,wall_1,WALL,wall_3,rialzo]))
+#VIEW(STRUCT([wall_7,wall_6,wall_5,wall_2,WALL,wall_3,rialzo,WALL_1]))
 
 #LEVEL8
 lines = lines2lines("nord_level8.lines")
@@ -344,7 +336,7 @@ Z=((mat(Y)-Y[25])*scala).tolist()
 buchi = STRUCT(MKPOLS([Z,[FV[k] for k in [1,0,4,5,3,2,6,7,8,9]]]))
 tot = STRUCT(MKPOLS([Z,FV]))
 frame_level2= DIFFERENCE([tot,buchi])
-pavimento_level2=T(3)(4.25)(PROD([frame_level2,Q(0.3)]))
+pavimento_level2=T(3)(4.5)(PROD([frame_level2,Q(0.3)]))
 #VIEW(pavimento_level2)
 #VIEW(STRUCT([ingresso,COLOR(RED)(pavimento_level2)]))
 
@@ -369,7 +361,7 @@ Z=((mat(Y)-Y[0])*scala).tolist()
 buchi = STRUCT(MKPOLS([Z,[FV[k] for k in [0,1,2,3]]]))
 tot = STRUCT(MKPOLS([Z,FV]))
 frame_level3= DIFFERENCE([tot,buchi])
-pavimento_level3=T(3)(7.25)(PROD([frame_level3,Q(0.3)]))
+pavimento_level3=T(3)(7.5)(PROD([frame_level3,Q(0.3)]))
 #VIEW(pavimento_level2)
 #VIEW(STRUCT([ingresso,COLOR(RED)(pavimento_level3)]))
 
@@ -390,7 +382,7 @@ scala = 16.523778
 W=((mat(V)-V[2])*scala).tolist()
 
 base=STRUCT(MKPOLS((W,FV)))
-pav5=T([1,2,3])([7.7104680000000005, 0.0, 13.25])(PROD([base,Q(0.3)]))
+pav5=T([1,2,3])([7.7104680000000005, 0.0, 13.5])(PROD([base,Q(0.3)]))
 #VIEW(pav5)
 
 #LEVEL6
@@ -414,7 +406,7 @@ Z=((mat(Y)-Y[34])*scala).tolist()
 buchi = STRUCT(MKPOLS([Z,[FV[k] for k in [3,6,8,0,2,11,10,13,12,5,1,9,7,4,16]]]))
 tot = STRUCT(MKPOLS([Z,FV]))
 frame_level6= DIFFERENCE([tot,buchi])
-pavimento_level6=T(3)(16.25)(PROD([frame_level6,Q(0.3)]))
+pavimento_level6=T(3)(16.5)(PROD([frame_level6,Q(0.3)]))
 
 #VIEW(STRUCT([ingresso,COLOR(RED)(pavimento_level6)]))
 
@@ -439,7 +431,7 @@ Z=((mat(Y)-Y[9])*scala).tolist()
 buchi = STRUCT(MKPOLS([Z,[FV[k] for k in [0,1,2,3,4,5]]]))
 tot = STRUCT(MKPOLS([Z,FV]))
 frame_level7= DIFFERENCE([tot,buchi])
-pavimento_level7=T(3)(19.25)(PROD([frame_level7,Q(0.3)]))
+pavimento_level7=T(3)(19.5)(PROD([frame_level7,Q(0.3)]))
 
 #VIEW(STRUCT([ingresso,COLOR(RED)(pavimento_level7)]))
 
@@ -464,7 +456,7 @@ submodel = STRUCT(MKPOLS((Z,EV)))
 buchi = STRUCT(MKPOLS([Z,[FV[k] for k in [0,1,2,3,4,5,6,7]]]))
 tot = STRUCT(MKPOLS([Z,FV]))
 frame_level9= DIFFERENCE([tot,buchi])
-pavimento_level9=T([1,3])([0.1,25.25])(PROD([frame_level9,Q(0.3)]))
+pavimento_level9=T([1,3])([0.1,25.5])(PROD([frame_level9,Q(0.3)]))
 
 #VIEW(STRUCT([ingresso,COLOR(RED)(pavimento_level9)]))
 
@@ -472,7 +464,7 @@ pavimento_level9=T([1,3])([0.1,25.25])(PROD([frame_level9,Q(0.3)]))
 buchi_top = STRUCT(MKPOLS([Z,[FV[k] for k in [0,1,2,3,6]]]))
 tot = STRUCT(MKPOLS([Z,FV]))
 frame_top= DIFFERENCE([tot,buchi_top])
-top=T([1,3])([0.1,31.25])(PROD([frame_top,Q(0.3)]))
+top=T([1,3])([0.1,31.5])(PROD([frame_top,Q(0.3)]))
 
 #VIEW(STRUCT([ingresso,COLOR(RED)(top)]))
 PAVIMENTI=STRUCT([pavimento_level2,pavimento_level3,pav5,pavimento_level6,pavimento_level7,pavimento_level9,top])
@@ -486,7 +478,7 @@ PAVIMENTI=STRUCT([pavimento_level2,pavimento_level3,pav5,pavimento_level6,pavime
 muro=CUBOID([6.302852,0.3,3])
 muro_centro=T([1,2,3])([12.822502000000002, 22.839198000000003,30])(muro)
 
-ingresso=STRUCT([rip_MARMOup,rip_MARMObottom,wall_top,wall_8,wall_9,wall_7,wall_6,wall_5,wall_2,wall_1,WALL,wall_3,rialzo,muro_centro])
+ingresso=STRUCT([rip_MARMOup,rip_MARMObottom,wall_top,wall_8,wall_9,wall_7,wall_6,wall_5,wall_2,WALL_1,WALL,wall_3,rialzo,muro_centro])
 #VIEW(ingresso)
 
 #fessure
@@ -567,7 +559,6 @@ FESSURE=STRUCT([FESS1,FESS2])
 #VIEW(STRUCT([ingresso,FESSURE]))
 
 VIEW(STRUCT([GRATE,ING_CUT,PAVIMENTI,fin1,fin2,FESSURE]))
-
 
 """mancano le scale"""
 

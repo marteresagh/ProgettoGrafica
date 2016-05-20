@@ -351,7 +351,7 @@ pavimento_level3= DIFFERENCE([tot,buchi])
 pavimento_level3=T(3)(7.25)(PROD([pavimento_level3,Q(0.3)]))
 #VIEW(pavimento_level3)
 #VIEW(STRUCT([EDF_UFF,pavimento_level3,pavimento_level2]))
-"""
+
 #**pavimento level4**
 lines = lines2lines("pavimento_level3.lines")
 V,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
@@ -375,7 +375,7 @@ pavimento_level4=T(3)(10.25)(PROD([pavimento_level4,Q(0.3)]))
 #**pavimenti superiori e finale**
 pavimento_3up=STRUCT(NN(4)([pavimento_level3,T(3)(6)]))
 pavimento_4up=STRUCT(NN(3)([pavimento_level4,T(3)(6)]))
-
+"""
 lines = lines2lines("pavimento_level3.lines")
 V,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
 #prova=STRUCT(MKPOLS((V,FV))) #grafo pulito
@@ -397,7 +397,7 @@ top= DIFFERENCE([tot,buchi])
 top2=T(3)(31.25)(PROD([top,Q(0.3)]))
 #PAVIMENTI_UFF=STRUCT([pavimento_3up,pavimento_level2,pavimento_4up,top1,top2])
 
-#VIEW(pavimento_level4up)
+#VIEW(pavimento_level4up) 
 #VIEW(STRUCT([EDF_UFF,PAVIMENTI_UFF]))
 
 #**MURO CIRCOLARE**
@@ -437,7 +437,7 @@ RIGHE_circ=PROD([righe_circ,INTERVALS(0.20)(1)])
 MARMO_circ=T(3)(1.4)(RIGHE_circ)
 rip_MARMOcirc=STRUCT(NN(11)([MARMO_circ,T(3)(3)]))
 
-#EDF_UFF=STRUCT([rialzo,level1,colonne,level_1,level_2,level_3up,level_4up,finale,rip_MARMO,rip_MARMOcirc])
+EDF_UFF=STRUCT([rialzo,level1,colonne,rip_MARMO,rip_MARMOcirc])
 
 Pav_UFF=T([1,2])([0.1,0.2])(S(2)(0.99)(top2))
 
@@ -525,4 +525,6 @@ GRID_tot=T(2)(0.1)(STRUCT([GRID_dx,GRID_sx,grcol_dx,grcol_sx]))
 EDIFICIO=STRUCT([EDF_UFFfinal,Pav_UFF,muro_circ,GRID_tot])
 VIEW(EDIFICIO)
 
+
+#alleggerito
 #mancano solo le scale 

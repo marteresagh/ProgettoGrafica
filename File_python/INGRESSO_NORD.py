@@ -17,7 +17,7 @@ scala = 31.42/0.993
 W=((mat(V)-V[22])*scala).tolist()
 
 base0 = STRUCT(MKPOLS([W,FV]))
-rialzo=PROD([base0,Q(1.5)])
+rialzo=T(3)(1.2)(PROD([base0,Q(0.3)]))
 #VIEW(rialzo)
 
 EV_alti=sorted([7,5,0,4,22,3,21,26])
@@ -40,7 +40,7 @@ righe = T([1,2])([-0.15,-0.15])( OFFSET([0.6,0.6])(frame))
 RIGHE=PROD([righe,INTERVALS(0.20)(1)])
 MARMO=T(3)(1.4)(RIGHE)
 rip_MARMObottom=STRUCT(NN(3)([MARMO,T(3)(3)]))
-
+level1=STRUCT([WALL,rip_MARMObottom])
 #VIEW(STRUCT([WALL,rialzo]))
 
 #MURI 
@@ -62,13 +62,18 @@ scala = 31.42
 W=((mat(V)-V[6])*scala).tolist()
 
 #muri si e no
-EV_NO=sorted([0,7,9,4,6])
+EV_NO=sorted([0,7,9,4,6,3])
 EV_SI= set(range(len(EV))).difference(EV_NO)
 muri_1=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
 
-muri_1=OFFSET([0.3/SQRT(2),0.3/SQRT(2)])(muri_1)
-wall_1=T(3)(1.5)(PROD([muri_1,Q(3)]))
-#VIEW(STRUCT([wall_1,wall,rialzo]))
+muri_obliqui=OFFSET([0.3/SQRT(2),0.3/SQRT(2)])(muri_1)
+wall_obliqui=T(3)(1.5)(PROD([muri_obliqui,Q(19.5)]))
+muro_1=STRUCT(AA(POLYLINE)([[W[EV[3][0]],W[EV[3][1]]]]))
+muro_1=OFFSET([0.3,0.3])(muro_1)
+wall_1=T(3)(1.5)(PROD([muro_1,Q(3)]))
+
+WALL_1=STRUCT([wall_obliqui,wall_1])
+#VIEW(STRUCT([WALL_1,WALL,rialzo]))
 
 #LEVEL2
 lines = lines2lines("nord_level2.lines")
@@ -87,13 +92,13 @@ scala = 31.42
 W=((mat(V)-V[5])*scala).tolist()
 
 #muri fini e muri spessi
-EV_NO=sorted([0,7,5,8])
+EV_NO=sorted([0,7,5,8,6,11,13,1,14,2,10,17,4,3,12,15])
 EV_SI= set(range(len(EV))).difference(EV_NO)
 muri_2=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
 
 muri_2=OFFSET([0.3/SQRT(2),0.3/SQRT(2)])(muri_2)
 wall_2=T(3)(4.5)(PROD([muri_2,Q(3)]))
-#VIEW(STRUCT([wall_2,wall_1,WALL,rialzo]))
+#VIEW(STRUCT([wall_2,WALL,rialzo]))
 
 #LEVEL3/4
 lines = lines2lines("nord_level3.lines")
@@ -113,15 +118,11 @@ W=((mat(V)-V[5])*scala).tolist()
 
 #muri fini e muri spessi
 EV_spessi=sorted([2,5,12,4,16])
-EV_fini= set(range(len(EV))).difference(EV_spessi)
-muri_fini=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_fini]))
 muri_spessi=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_spessi]))
 
-muri_fini=OFFSET([0.3/SQRT(2),0.3/SQRT(2)])(muri_fini)
-wall_fini=T(3)(7.5)(PROD([muri_fini,Q(6)]))
 muri_spessi=OFFSET([0.3,0.3])(muri_spessi)
-wall_spessi=T(3)(7.5)(PROD([muri_spessi,Q(6)]))
-wall_3=STRUCT([wall_spessi,wall_fini])
+wall_spessi=T(3)(7.5)(PROD([muri_spessi,Q(12.5)]))
+wall_3=wall_spessi
 #VIEW(STRUCT([wall_2,wall_1,WALL,wall_3,rialzo]))
 
 #MARMO
@@ -133,7 +134,7 @@ righe = T([1,2])([-0.15,-0.15])( OFFSET([0.6,0.6])(frame))
 RIGHE=PROD([righe,INTERVALS(0.20)(1)])
 MARMO=T(3)(10.4)(RIGHE)
 rip_MARMOup=STRUCT(NN(8)([MARMO,T(3)(3)]))
-
+WALL_3=STRUCT([wall_3,rip_MARMOup])
 
 #LEVEL5
 lines = lines2lines("nord_level5.lines")
@@ -151,19 +152,14 @@ scala = 31.42
 W=((mat(V)-V[7])*scala).tolist()
 
 #muri fini e muri spessi
-EV_spessi=sorted([4,0,11,21,7,1,14,8])
-EV_fini= set(range(len(EV))).difference(EV_spessi)
-muri_fini=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_fini]))
-muri_spessi=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_spessi if e!=8]))
+muri_spessi=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in [3,2]]))
 
-muri_fini=OFFSET([0.3/SQRT(2),0.3/SQRT(2)])(muri_fini)
-wall_fini=T(3)(13.5)(PROD([muri_fini,Q(3)]))
 muri_spessi=OFFSET([0.3,0.3])(muri_spessi)
 wall_spessi=T(3)(13.5)(PROD([muri_spessi,Q(3)]))
 muro_basso=STRUCT(MKPOLS((W,[EV[8]])))
 balcone=OFFSET([0.3,0.3])(muro_basso)
 wall_basso=T(3)(13.5)(PROD([balcone,Q(1.5)]))
-wall_5=STRUCT([wall_spessi,wall_fini,wall_basso])
+wall_5=STRUCT([wall_spessi,wall_basso])
 
 #VIEW(STRUCT([wall_5,wall_2,wall_1,WALL,wall_3,rialzo]))
 
@@ -184,16 +180,12 @@ scala = 31.42
 W=((mat(V)-V[16])*scala).tolist()
 
 #muri fini e muri spessi
-EV_fini=sorted([24,32,14,20,4,34,29,7,3,27,1,11])
-EV_spessi= set(range(len(EV))).difference(EV_fini)
-muri_fini=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_fini]))
-muri_spessi=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_spessi]))
+EV_si= [5,0,25,8,28,10,2,30,33,23,25,13,21]
+muri_spessi=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_si]))
 
-muri_fini=OFFSET([0.3/SQRT(2),0.3/SQRT(2)])(muri_fini)
-wall_fini=T(3)(16.5)(PROD([muri_fini,Q(3)]))
 muri_spessi=OFFSET([0.3,0.3])(muri_spessi)
 wall_spessi=T(3)(16.5)(PROD([muri_spessi,Q(3)]))
-wall_6=STRUCT([wall_spessi,wall_fini])
+wall_6=wall_spessi
 #VIEW(STRUCT([wall_6,wall_5,wall_2,wall_1,WALL,wall_3,rialzo]))
 
 
@@ -226,7 +218,7 @@ muro_basso=STRUCT(MKPOLS((W,[EV[4]])))
 balcone=OFFSET([0.3,0.3])(muro_basso)
 wall_basso=T(3)(19.5)(PROD([balcone,Q(1.5)]))
 wall_7=STRUCT([wall_spessi,wall_fini,wall_basso])
-#VIEW(STRUCT([wall_7,wall_6,wall_5,wall_2,wall_1,WALL,wall_3,rialzo]))
+#VIEW(STRUCT([wall_7,wall_6,wall_5,wall_2,WALL,wall_3,rialzo,WALL_1]))
 
 #LEVEL8
 lines = lines2lines("nord_level8.lines")
@@ -486,12 +478,12 @@ PAVIMENTI=STRUCT([pavimento_level2,pavimento_level3,pav5,pavimento_level6,pavime
 muro=CUBOID([6.302852,0.3,3])
 muro_centro=T([1,2,3])([12.822502000000002, 22.839198000000003,30])(muro)
 
-ingresso=STRUCT([rip_MARMOup,rip_MARMObottom,wall_top,wall_8,wall_9,wall_7,wall_6,wall_5,wall_2,wall_1,WALL,wall_3,rialzo,muro_centro])
+ingresso=STRUCT([level1,wall_top,wall_8,wall_9,wall_7,wall_6,wall_5,wall_2,WALL_1,WALL_3,rialzo,muro_centro])
 #VIEW(ingresso)
 
 #fessure
 
-frame=COLOR(RED)(CUBOID([2,1,27]))
+frame=CUBOID([2,1,27])
 fessura1=T([1,2,3])([-.7,1.6,4.5])(frame)
 fessura2=T([1,2,3])([30.7,1.6,4.5])(frame)
 fessura3=T([1,2,3])([-.7,26.36,4.5])(frame)
@@ -568,7 +560,11 @@ FESSURE=STRUCT([FESS1,FESS2])
 
 VIEW(STRUCT([GRATE,ING_CUT,PAVIMENTI,fin1,fin2,FESSURE]))
 
-"""mancano le scale"""
+"""le famose scale"""
+stairs_base=createSteps(18,[0.4,4.25,0.15],full=True,spessore=0.28)
+stairs=T([1,2,3])([6.6, 15.819970000000003,10.35 ])(R([1,2])(PI/3)(stairs_base))
 
-
+VIEW(STRUCT([stairs,ING_CUT,PAVIMENTI]))
+#W[14]: [6.362550000000001, 15.819970000000003]
+#W[21]: [20.561248, 24.413339999999998]
 
