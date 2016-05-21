@@ -66,13 +66,13 @@ EV_NO=sorted([0,7,9,4,6,3])
 EV_SI= set(range(len(EV))).difference(EV_NO)
 muri_1=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
 
-muri_obliqui=OFFSET([0.3/SQRT(2),0.3/SQRT(2)])(muri_1)
-wall_obliqui=T(3)(1.5)(PROD([muri_obliqui,Q(19.5)]))
+#muri_obliqui=OFFSET([0.3/SQRT(2),0.3/SQRT(2)])(muri_1)
+#wall_obliqui=T(3)(1.5)(PROD([muri_obliqui,Q(19.5)]))
 muro_1=STRUCT(AA(POLYLINE)([[W[EV[3][0]],W[EV[3][1]]]]))
 muro_1=OFFSET([0.3,0.3])(muro_1)
 wall_1=T(3)(1.5)(PROD([muro_1,Q(3)]))
 
-WALL_1=STRUCT([wall_obliqui,wall_1])
+WALL_1=wall_1
 #VIEW(STRUCT([WALL_1,WALL,rialzo]))
 
 #LEVEL2
@@ -207,17 +207,14 @@ W=((mat(V)-V[3])*scala).tolist()
 #muri fini e muri spessi
 EV_fini=sorted([13,7,8,6,15,2,16,0])
 EV_spessi= set(range(len(EV))).difference(EV_fini)
-muri_fini=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_fini]))
 muri_spessi=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_spessi if e!=4]))
 
-muri_fini=OFFSET([0.3/SQRT(2),0.3/SQRT(2)])(muri_fini)
-wall_fini=T(3)(19.5)(PROD([muri_fini,Q(3)]))
 muri_spessi=OFFSET([0.3,0.3])(muri_spessi)
 wall_spessi=T(3)(19.5)(PROD([muri_spessi,Q(3)]))
 muro_basso=STRUCT(MKPOLS((W,[EV[4]])))
 balcone=OFFSET([0.3,0.3])(muro_basso)
 wall_basso=T(3)(19.5)(PROD([balcone,Q(1.5)]))
-wall_7=STRUCT([wall_spessi,wall_fini,wall_basso])
+wall_7=STRUCT([wall_spessi,wall_basso])
 #VIEW(STRUCT([wall_7,wall_6,wall_5,wall_2,WALL,wall_3,rialzo,WALL_1]))
 
 #LEVEL8
@@ -241,15 +238,12 @@ W=((mat(V)-V[6])*scala).tolist()
 #muri fini e muri spessi
 EV_fini=sorted([9,10,5,7,15,13,8,0])
 EV_spessi= set(range(len(EV))).difference(EV_fini)
-muri_fini=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_fini]))
 muri_spessi=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_spessi if e!=3]))
 
-muri_fini=OFFSET([0.3/SQRT(2),0.3/SQRT(2)])(muri_fini)
-wall_fini=T(3)(22.5)(PROD([muri_fini,Q(3)]))
 muri_spessi=OFFSET([0.3,0.3])(muri_spessi)
 wall_spessi=T(3)(22.5)(PROD([muri_spessi,Q(3)]))
 
-wall_8=STRUCT([wall_spessi,wall_fini])
+wall_8=wall_spessi
 
 #LEVEL9
 lines = lines2lines("nord_level8.lines")
@@ -272,17 +266,14 @@ W=((mat(V)-V[6])*scala).tolist()
 #muri fini e muri spessi
 EV_fini=sorted([9,10,5,7,15,13,8,0])
 EV_spessi= set(range(len(EV))).difference(EV_fini)
-muri_fini=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_fini]))
 muri_spessi=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_spessi if e!=3]))
 
-muri_fini=OFFSET([0.3/SQRT(2),0.3/SQRT(2)])(muri_fini)
-wall_fini=T(3)(25.5)(PROD([muri_fini,Q(6)]))
 muri_spessi=OFFSET([0.3,0.3])(muri_spessi)
 wall_spessi=T(3)(25.5)(PROD([muri_spessi,Q(6)]))
 muro_basso=STRUCT(MKPOLS((W,[EV[3]])))
 balcone=OFFSET([0.3,0.3])(muro_basso)
 wall_basso=T(3)(25.5)(PROD([balcone,Q(1.5)]))
-wall_9=STRUCT([wall_basso,wall_spessi,wall_fini])
+wall_9=STRUCT([wall_basso,wall_spessi])
 
 #LEVEL_top
 lines = lines2lines("nord_top.lines")
@@ -302,14 +293,11 @@ W=((mat(V)-V[10])*scala).tolist()
 #muri fini e muri spessi
 EV_fini=sorted([16,12,4,19,18,11,7,17])
 EV_spessi= set(range(len(EV))).difference(EV_fini)
-muri_fini=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_fini]))
 muri_spessi=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_spessi]))
 
-muri_fini=OFFSET([0.3/SQRT(2),0.3/SQRT(2)])(muri_fini)
-wall_fini=T(3)(31.5)(PROD([muri_fini,Q(2.5)]))
 muri_spessi=OFFSET([0.3,0.3])(muri_spessi)
 wall_spessi=T(3)(31.5)(PROD([muri_spessi,Q(2.5)]))
-wall_top=STRUCT([wall_spessi,wall_fini])
+wall_top=wall_spessi
 
 
 
@@ -514,18 +502,38 @@ fin_2=T([1,2,3])([19.3,23.3,27])(grid_fin)
 GRATE=STRUCT([fin_1,fin_2,grid_fessure1,grid_fessure2,grid_fessure3,grid_fessure4])
 #VIEW(STRUCT([INGRESSO,fin_1,fin_2]))
 
+"""pareti oblique"""
+
+#W[12]:[8.181768000000002, 14.198698000000002]
+#W[13]: [12.822502000000002, 6.246295999999999]
+#SQRT((W[12][0]-W[13][0])**2+(W[12][1]-W[13][1])**2): 9.207448594934432
+#W[16]: [6.362550000000001, 13.265524]
+#W[17]: [11.386608, 4.653302000000001]
+#SQRT((W[16][0]-W[17][0])**2+(W[16][1]-W[17][1])**2): 9.970532912770912
+
+#W[18]: [2.6707000000000005, 11.402318000000001]
+#W[19]: [7.7104680000000005, 2.7618180000000003]
+#SQRT((W[18][0]-W[19][0])**2+(W[18][1]-W[19][1])**2): 10.00287467400367
+#W[0][1]-W[6][1]: 28.394254
+#W[27]: [24.253098, 25.946636000000005]
+
+parete1=T([1,2,3])([8.181768000000002, 14.198698000000002,7.5])(R([1,2])(-PI/3)(CUBOID([9.207448594934432,0.3,26.5])))
+parete2=T([1,2,3])([6.362550000000001, 13.265524,7.5])(R([1,2])(-PI/3)(CUBOID([9.970532912770912,0.3,26.5])))
+parete3=T([1,2,3])([2.6707000000000005, 11.402318000000001,7.5])(R([1,2])(-PI/3)(CUBOID([10.00287467400367,0.3,12])))
+PARETE=STRUCT([parete1,parete2,parete3])
+
+
 """BUCHI"""
 buco= T(3)(-1)(CYLINDER([4,8])(100))
 cerchi=R([1,3])(PI/2)(buco)
-foro1=T([1,2,3])([10.5,18.85,13.5])(R([1,2])(-PI/6)(cerchi))
-foro2=T([1,2,3])([10.5,18.85,25.5])(R([1,2])(-PI/6)(cerchi))
 foro3=T([1,2,3])([10.5,10.21,13.5])(R([1,2])(PI/6)(cerchi))
 foro4=T([1,2,3])([10.5,10.21,25.5])(R([1,2])(PI/6)(cerchi))
-foro_dx=STRUCT([foro1,foro2,foro3,foro4])
-foro_sx=T(1)(15.86)(S(1)(-1)(T(1)(-15.86)(foro_dx)))
-FORO=STRUCT([foro_dx,foro_sx])
-ING_CUT=DIFFERENCE([INGRESSO,FORO])
-#VIEW(STRUCT([foro_dx,foro_sx,INGRESSO]))
+FORO=STRUCT([foro3,foro4])
+OBLIQUI=DIFFERENCE([PARETE,FORO])
+OBLIQUI2=T(2)(14.889938000000003)(S(2)(-1)(T(2)(-28.394254/2)(OBLIQUI)))
+OBL_dx=STRUCT([OBLIQUI,OBLIQUI2])
+OBL_sx=T(1)([18.66])(S(1)(-1)(T(1)(-13.5)(OBL_dx)))
+
 
 #grata finestre
 grid=SKEL_1(STRUCT(MKPOLS(larCuboids([4,1]))))
@@ -558,13 +566,13 @@ FESS2=T([1,2])([31.72,0.3])(R([1,2])(-PI/4)(FESSURE0))
 FESSURE=STRUCT([FESS1,FESS2])
 #VIEW(STRUCT([ingresso,FESSURE]))
 
-VIEW(STRUCT([GRATE,ING_CUT,PAVIMENTI,fin1,fin2,FESSURE]))
-
+#VIEW(STRUCT([GRATE,PAVIMENTI,fin1,fin2,FESSURE]))
+ING_NORD=STRUCT([GRATE,PAVIMENTI,fin1,fin2,FESSURE,OBL_sx,OBL_dx,INGRESSO])
 """le famose scale"""
-stairs_base=createSteps(18,[0.4,4.25,0.15],full=True,spessore=0.28)
-stairs=T([1,2,3])([6.6, 15.819970000000003,10.35 ])(R([1,2])(PI/3)(stairs_base))
+stairs_base=createSteps(18,[0.4,4.43,0.15],full=True,spessore=0.3)
+stairs=T([1,2,3])([6.7, 15.8,10.35 ])(R([1,2])(PI/3)(stairs_base))
+VIEW(STRUCT([stairs,ING_NORD]))
 
-VIEW(STRUCT([stairs,ING_CUT,PAVIMENTI]))
-#W[14]: [6.362550000000001, 15.819970000000003]
-#W[21]: [20.561248, 24.413339999999998]
+
+
 
