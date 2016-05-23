@@ -371,7 +371,7 @@ buchi = STRUCT(MKPOLS([W,[FV[k] for k in [3,8,9,5,6,2]]]))
 tot = STRUCT(MKPOLS([W,FV]))
 pavimento_level4= DIFFERENCE([tot,buchi])
 pavimento_level4=T(3)(10.25)(PROD([pavimento_level4,Q(0.3)]))
-
+"""
 #**pavimenti superiori e finale**
 pavimento_3up=STRUCT(NN(4)([pavimento_level3,T(3)(6)]))
 pavimento_4up=STRUCT(NN(3)([pavimento_level4,T(3)(6)]))
@@ -399,7 +399,7 @@ top2=T(3)(31.25)(PROD([top,Q(0.3)]))
 
 #VIEW(pavimento_level4up) 
 #VIEW(STRUCT([EDF_UFF,PAVIMENTI_UFF]))
-"""
+
 #**MURO CIRCOLARE**
 
 lines = lines2lines("murocircolare.lines") 

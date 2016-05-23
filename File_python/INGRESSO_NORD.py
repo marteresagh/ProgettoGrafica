@@ -395,7 +395,7 @@ buchi = STRUCT(MKPOLS([Z,[FV[k] for k in [3,6,8,0,2,11,10,13,12,5,1,9,7,4,16]]])
 tot = STRUCT(MKPOLS([Z,FV]))
 frame_level6= DIFFERENCE([tot,buchi])
 pavimento_level6=T(3)(16.5)(PROD([frame_level6,Q(0.3)]))
-
+pavimento_level4=T(3)(10.5)(PROD([frame_level6,Q(0.3)]))
 #VIEW(STRUCT([ingresso,COLOR(RED)(pavimento_level6)]))
 
 #LEVEL7
@@ -455,7 +455,7 @@ frame_top= DIFFERENCE([tot,buchi_top])
 top=T([1,3])([0.1,31.5])(PROD([frame_top,Q(0.3)]))
 
 #VIEW(STRUCT([ingresso,COLOR(RED)(top)]))
-PAVIMENTI=STRUCT([pavimento_level2,pavimento_level3,pav5,pavimento_level6,pavimento_level7,pavimento_level9,top])
+PAVIMENTI=STRUCT([pavimento_level2,pavimento_level3,pavimento_level4,pav5,pavimento_level6,pavimento_level7,pavimento_level9,top])
 #VIEW(STRUCT([ingresso,PAVIMENTI]))
 
 #fessure e buchi 
@@ -569,9 +569,11 @@ FESSURE=STRUCT([FESS1,FESS2])
 #VIEW(STRUCT([GRATE,PAVIMENTI,fin1,fin2,FESSURE]))
 ING_NORD=STRUCT([GRATE,PAVIMENTI,fin1,fin2,FESSURE,OBL_sx,OBL_dx,INGRESSO])
 """le famose scale"""
-stairs_base=createSteps(18,[0.4,4.43,0.15],full=True,spessore=0.3)
-stairs=T([1,2,3])([6.7, 15.8,10.35 ])(R([1,2])(PI/3)(stairs_base))
-VIEW(STRUCT([stairs,ING_NORD]))
+stairs_base=createSteps(20,[0.4,4.43,0.15],full=True,spessore=0.3)
+stairs=T([1,2,3])([6.47, 15.4,10.65])(R([1,2])(PI/3)(stairs_base))
+stairs_base1=createSteps(20,[0.5,4.43,0.15],full=True,spessore=0.3)
+stairs1=T([1,2,3])([11.48, 5,13.5 ])(R([1,2])(2*PI/3)(stairs_base1))
+VIEW(STRUCT([stairs1,stairs,OBL_dx,OBL_sx,ING_NORD,PAVIMENTI]))
 
 
 
