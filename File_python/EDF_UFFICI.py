@@ -373,8 +373,8 @@ pavimento_level4= DIFFERENCE([tot,buchi])
 pavimento_level4=T(3)(10.25)(PROD([pavimento_level4,Q(0.3)]))
 """
 #**pavimenti superiori e finale**
-pavimento_3up=STRUCT(NN(4)([pavimento_level3,T(3)(6)]))
-pavimento_4up=STRUCT(NN(3)([pavimento_level4,T(3)(6)]))
+#pavimento_3up=STRUCT(NN(4)([pavimento_level3,T(3)(6)]))
+#pavimento_4up=STRUCT(NN(3)([pavimento_level4,T(3)(6)]))
 
 lines = lines2lines("pavimento_level3.lines")
 V,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
