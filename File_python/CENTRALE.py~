@@ -94,7 +94,26 @@ frontale=T([1,2])([58.17879120879121, 45.53564318034906])(R([1,2])(-0.3941146823
 )(PARETE_FRONT))
 lat1=T([1,2])([58.17879120879121, 34.08064641241113])(R([1,2])(PI/2)(T([2])(-.3)(PARETE_LAT)))
 lat2=T([1,2])([61.32688429217841, 32.7706334841629])(R([1,2])(PI/4)(T([1,2])([.22,-.24])(PARETE_LAT)))
-ARIA=STRUCT([aria,frontale,lat1,lat2,passo])
+
+"""ROTAZIONE CENTRALE"""
+parete= CUBOID([14.059425917919919,0.3,34])
+
+buco_circ= CYLINDER([6,2])(100)
+buco=R([2,3])(PI/2)(buco_circ)
+cerchio=T([1,2,3])([14.059425917919919/2,.7,23])(buco)
+frame=STRUCT(MKPOLS(larDisk(6,PI)([100,1])))
+semi_circ= PROD([frame,Q(2)]) 
+buco2=R([2,3])(PI/2)(semi_circ)
+semi_circ=T([1,2,3])([14.059425917919919/2,.7,9])(buco2)
+FORI=STRUCT([cerchio,semi_circ])
+PARETE=DIFFERENCE([parete,FORI])
+WALL=T([1,2])([59.011512605042014, 50.46088558500324])(R([1,2])(-0.39411468237339375
+)(PARETE))
+porta=T([1,2,3])([6.2,-1,7.5])(CUBOID([2,2,2.5]))
+muro0=T([1,2])([-.1,-.01])(CUBOID([14.4,0.3,34]))
+muro=DIFFERENCE([muro0,porta])
+wall_int=T([1,2])([71.99993535875889, 45.07866192630899])(R([1,2])(-PI/4)(muro))
+ARIA=STRUCT([aria,frontale,lat1,lat2,passo,WALL,wall_int])
 aria_alcentro=T([1,2])([-59.092753716871364, -32.25272139625081])(ARIA)
 aria2=T([1,2])([69.20727213962509, 22.148358112475762])(R([1,2])(-PI/4)(aria_alcentro))
 aria3=T([1,2])([69.20727213962509, 7.860077569489337])(R([1,2])(-PI/2)(aria_alcentro))
@@ -104,12 +123,57 @@ aria6=T([1,2])([34.70010989010989, 7.860077569489337])(R([1,2])(-5*PI/4)(aria_al
 aria7=T([1,2])([34.70010989010989, 22.148358112475762])(R([1,2])(-3*PI/2)(aria_alcentro))
 aria8=T([1,2])([44.80447317388494, 32.25272139625081])(R([1,2])(-7*PI/4)(aria_alcentro))
 COLONNE=STRUCT([ARIA,aria2,aria3,aria4,aria5,aria6,aria7,aria8])
-VIEW(STRUCT([COLONNE]))
+VIEW(STRUCT([COLONNE,mappa,wall_int]))
 
+"""ingresso alla sala"""
+#W[108]: [44.80447317388494, 32.25272139625081]
+#W[22]: [59.092753716871364, 32.25272139625081]
+#W[23]: [69.20727213962509, 22.148358112475762]
+#W[92]: [69.20727213962509, 7.860077569489337]
+#W[93]: [59.092753716871364, -2.2442857142857155]
+#W[91]: [34.70010989010989, 7.860077569489337]
+#W[90]: [44.80447317388494, -2.2442857142857155]
+#W[107]: [34.70010989010989, 22.148358112475762]
+"trave"
+V=[[0,0],[1,0],[0,1]]
+FV=[[0,1,2]]
+triangle=STRUCT(MKPOLS((V,FV)))
+triangle=PROD([triangle,Q(14.296910166001808)])
+trave=T([2,3])([1.2,16.2])(S([2,3])([-1,-1])(R([1,3])(-PI/2)(triangle)))
+#VIEW(STRUCT([trave,ING_PRES,ING,COLONNE]))
+"pareti"
+par_int=CUBOID([14.296910166001808,1,10.5])
+porta1=T([2,3])([-.7,7.5])(CUBOID([1.5,2,2.5]))
+porta2=T([1,2,3])([14.296910166001808-1.5,-.7,7.5])(CUBOID([1.5,2,2.5]))
+porte=STRUCT([porta1,porta2])
+ingr_sala0=DIFFERENCE([par_int,porte])
+par_sup=T(3)(19.5)(CUBOID([14.296910166001808,1,14.5]))
+ingr_sala=STRUCT([trave,ingr_sala0,par_sup])
+ING_sala=T([1,2])([44.80447317388494, 32.25272139625081])(ingr_sala)
+ing2=T([1,2])([59.092753716871364, 32.25272139625081])(R([1,2])(-PI/4)(ingr_sala))
+ing3=T([1,2])([69.20727213962509, 22.148358112475762])(R([1,2])(-PI/2)(ingr_sala))
+ing4=T([1,2])([69.20727213962509, 7.860077569489337])(R([1,2])(-3*PI/4)(ingr_sala))
+ing5=T([1,2])([59.092753716871364, -2.2442857142857155])(R([1,2])(-PI)(ingr_sala))
+sup6=T([1,2])([44.80447317388494, -2.2442857142857155])(R([1,2])(-5*PI/4)(STRUCT([trave,par_sup])))
+sup8=T([1,2])([34.70010989010989, 22.148358112475762])(R([1,2])(-7*PI/4)(STRUCT([trave,par_sup])))
+ING=STRUCT([ING_sala,ing2,ing3,ing4,ing5,sup6,sup8])
 
+par_pres=CUBOID([14.296910166001808,1,34])
+porta_princ=T([1,2,3])([14.296910166001808/2-1,-.7,7.5])(CUBOID([2,2,2.5]))
+por1=T([2,3])([-.7,7.5])(CUBOID([1.3,2,2]))
+por2=T([1,2,3])([14.296910166001808-1.3,-.7,7.5])(CUBOID([1.3,2,2]))
+porte_pres=STRUCT([por1,por2,porta_princ])
+ing_pres=DIFFERENCE([par_pres,porte_pres])
+ING_PRES=T([1,2])([34.70010989010989, 7.860077569489337])(R([1,2])(PI/2)(ing_pres))
+VIEW(STRUCT([ING_PRES,ING,COLONNE]))
 """LEVEL3"""
-#PARETE DA BUCARE=SQRT((W[58][0]-W[81][0])**2+(W[58][1]-W[81][1])**2):86.3369407167611
-#da traslare qui=W[40]:[13.455559146735618, 11.790116354234007]
+#PARETE DA BUCARE=SQRT((W[58][0]-W[81][0])**2+(W[58][1]-W[81][1])**2):14.059425917919919
+#da traslare qui=W[40]:[59.011512605042014, 50.46088558500324]
+#parete da non bucare=SQRT((W[4][0]-W[5][0])**2+(W[4][1]-W[5][1])**2): 14.059943030716752
+#da traslare qui=W[4]: [71.99993535875889, 45.07866192630899]
+#SQRT((W[22][0]-W[23][0])**2+(W[22][1]-W[23][1])**2): 14.296910166001808
+#INGR_SALA=W[108]: [44.80447317388494, 32.25272139625081]
+
 lines = lines2lines("centro_level3.lines")
 grafo = STRUCT(AA(POLYLINE)(lines))
 
@@ -125,16 +189,23 @@ submodel = STRUCT(MKPOLS((V,EV)))
 scala = 31.42/0.3094
 
 W=((mat(V)-V[0])*scala).tolist()
-EV_NO=sorted([36,37,9,27,77,18,22,6,43,30,53,49])
-EV_SI= set(range(len(EV))).difference(EV_NO)
-muri_alti=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
-muri_alti=OFFSET([0.3,0.3])(muri_alti)
-wall_level3=T(3)(7.5)(PROD([muri_alti,Q(3)]))
-#VIEW(wall_level3)
-#VIEW(STRUCT([FOND,wall_level3]))
-"""parete da bucare"""
-parete= CUBOID([86.3369407167611,0.3,34])
+WW = AA(LIST)(range(len(W)))
+submodel = STRUCT(MKPOLS((W,EV)))
+mappa=larModelNumbering(1,1,1)(W,[WW,EV,FV],submodel,5)
 
+
+EV_SI=sorted([56,72,81,10,25,39,42,35,91,26,80,17,94,34,93,86,15,58,84,46,101,78,7,70,28,0,73,1,88,19,11,31,33,5,71,104,102,85,14,76,61,87,24,64,38,4,48,75,20,83,97,13,103,51,59,82,92])
+muri_alti0=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
+muri_alti0=OFFSET([0.3,0.3])(muri_alti0)
+wall_edf=T(3)(7.5)(PROD([muri_alti0,Q(26.5)]))
+EV_CORTE=[67,40,98,8,55,66,23,57,2,3,16]
+muri_alti=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_CORTE]))
+muri_alti=OFFSET([0.3,0.3])(muri_alti)
+wall_corte=T(3)(7.5)(PROD([muri_alti,Q(7.5)]))
+ESTERNO=STRUCT([wall_corte,wall_edf])
+#VIEW(wall_level3)
+#VIEW(STRUCT([COLONNE,wall_level3]))
+"""
 """LEVEL4"""
 
 lines = lines2lines("centro_level4.lines")
@@ -234,3 +305,9 @@ muri_alti=OFFSET([0.3,0.3])(muri_alti)
 wall_level7=T(3)(19.5)(PROD([muri_alti,Q(14.5)]))
 #VIEW(wall_level7)
 VIEW(STRUCT([COLONNE,wall_level3,wall_level4,wall_level5,wall_level6,wall_level7]))
+
+"""
+
+
+VIEW(STRUCT([ING_PRES,ING,COLONNE,ESTERNO]))
+
