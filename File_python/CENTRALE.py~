@@ -16,9 +16,9 @@ submodel = STRUCT(MKPOLS((V,EV)))
 scala = 31.42/0.3094
 
 W=((mat(V)-V[0])*scala).tolist()
-WW = AA(LIST)(range(len(W)))
-submodel = STRUCT(MKPOLS((W,EV)))
-mappa=larModelNumbering(1,1,1)(W,[WW,EV,FV],submodel,5)
+#WW = AA(LIST)(range(len(W)))
+#submodel = STRUCT(MKPOLS((W,EV)))
+#mappa=larModelNumbering(1,1,1)(W,[WW,EV,FV],submodel,5)
 #WW = AA(LIST)(range(len(W)))
 #submodel = STRUCT(MKPOLS((W,EV)))
 #VIEW(larModelNumbering(1,1,1)(W,[WW,EV],submodel,5))
@@ -202,11 +202,42 @@ EV_CORTE=[67,40,98,8,55,66,23,57,2,3,16]
 muri_alti=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_CORTE]))
 muri_alti=OFFSET([0.3,0.3])(muri_alti)
 wall_corte=T(3)(7.5)(PROD([muri_alti,Q(7.5)]))
-ESTERNO=STRUCT([wall_corte,wall_edf])
+muro1=CUBOID([19.84314156431803,0.3,3])
+muro2=T(3)(3)(CUBOID([7,0.3,4.5]))
+muro3=T([1,3])([19.84314156431803-7,3])(CUBOID([7,0.3,4.5]))
+muro=T([1,2,3])([42.021965093729804, -27.53058177117001,7.5])(STRUCT([muro1,muro2,muro3]))
+ESTERNO=STRUCT([wall_corte,wall_edf,muro])
 #VIEW(wall_level3)
 #VIEW(STRUCT([COLONNE,wall_level3]))
+
+
+"""corridoio esterno"""
+#W[6],W[68]:SQRT((W[6][0]-W[68][0])**2+(W[6][1]-W[68][1])**2)=43.20811153293262
+#W[99],W[75]:SQRT((W[99][0]-W[75][0])**2+(W[99][1]-W[75][1])**2)=42.747549408870746
+#W[33],W[34]:SQRT((W[33][0]-W[34][0])**2+(W[33][1]-W[34][1])**2)=43.357941172843034
+#W[42],W[69]:SQRT((W[42][0]-W[69][0])**2+(W[42][1]-W[69][1])**2)=42.440380341310124
+lines = lines2lines("facciata_uff.lines")
+V,FV,EV,polygons = larFromLines(lines) 
+VV = AA(LIST)(range(len(V)))
+submodel = STRUCT(MKPOLS((V,EV)))
+VIEW(larModelNumbering(1,1,1)(V,[VV,EV,FV],submodel,0.1))
+scala = 34/0.8114
+W=((mat(V)-V[181])*scala).tolist()
+FV_NO=[7,4,2,5,1,3,6]
+buchi = STRUCT(MKPOLS([W,[FV[k] for k in FV_NO]]))
+tot = STRUCT(MKPOLS([W,FV]))
+frame= DIFFERENCE([tot,buchi])
+muro_uff=PROD([frame,Q(0.3)])
+wall_uff=T(1)((41.90288390436283-38)/2)(S(1)(38/41.90288390436283)(R([2,3])(PI/2)(muro_uff)))
+#VIEW(wall_uff)
+wall1=T([1,2])([7.108597285067875, 0.0])(R([1,2])(-PI/4)(wall_uff))
+wall2=T([1,2])([7.108597285067875, 29.998280542986432])(R([1,2])(PI/4)(wall_uff))
+wall3=T([1,2])([66.26228183581125, 60.30121525533292])(R([1,2])(-PI/4)(wall_uff))
+wall4=T([1,2])([97.06281835811248, -0.21325791855203527])(R([1,2])(-3*PI/4)(wall_uff))
+facciate_uff=STRUCT([wall2,wall3,wall4,wall1])
+#VIEW(STRUCT([facciate_uff,ING_PRES,ING,COLONNE]))
 """
-"""LEVEL4"""
+LEVEL4
 
 lines = lines2lines("centro_level4.lines")
 grafo = STRUCT(AA(POLYLINE)(lines))
@@ -231,7 +262,7 @@ wall_level4=T(3)(10.5)(PROD([muri_alti,Q(3)]))
 #VIEW(STRUCT([FOND,wall_level3,wall_level4]))
 
 
-"""LEVEL5"""
+LEVEL5
 
 lines = lines2lines("centro_level5.lines")
 grafo = STRUCT(AA(POLYLINE)(lines))
@@ -256,7 +287,7 @@ wall_level5=T(3)(13.5)(PROD([muri_alti,Q(3)]))
 #VIEW(STRUCT([FOND,wall_level3,wall_level4,wall_level5]))
 
 
-"""LEVEL6"""
+LEVEL6
 
 lines = lines2lines("centro_level6.lines")
 grafo = STRUCT(AA(POLYLINE)(lines))
@@ -282,7 +313,7 @@ wall_level6=T(3)(16.5)(PROD([muri_alti,Q(3)]))
 
 
 
-"""LEVEL7 up"""
+LEVEL7 up
 
 lines = lines2lines("centro_level7.lines")
 grafo = STRUCT(AA(POLYLINE)(lines))
@@ -309,5 +340,5 @@ VIEW(STRUCT([COLONNE,wall_level3,wall_level4,wall_level5,wall_level6,wall_level7
 """
 
 
-VIEW(STRUCT([ING_PRES,ING,COLONNE,ESTERNO]))
+VIEW(STRUCT([ING_PRES,ING,COLONNE,ESTERNO,facciate_uff]))
 
