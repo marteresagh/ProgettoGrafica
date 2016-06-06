@@ -18,7 +18,7 @@ scala = 31.42/0.3094
 W=((mat(V)-V[0])*scala).tolist()
 #WW = AA(LIST)(range(len(W)))
 #submodel = STRUCT(MKPOLS((W,EV)))
-#mappa=larModelNumbering(1,1,1)(W,[WW,EV,FV],submodel,5)
+#mappa=larModelNumbering(1,1,1)(W,[WW,EV],submodel,5)
 #WW = AA(LIST)(range(len(W)))
 #submodel = STRUCT(MKPOLS((W,EV)))
 #VIEW(larModelNumbering(1,1,1)(W,[WW,EV],submodel,5))
@@ -123,7 +123,10 @@ aria6=T([1,2])([34.70010989010989, 7.860077569489337])(R([1,2])(-5*PI/4)(aria_al
 aria7=T([1,2])([34.70010989010989, 22.148358112475762])(R([1,2])(-3*PI/2)(aria_alcentro))
 aria8=T([1,2])([44.80447317388494, 32.25272139625081])(R([1,2])(-7*PI/4)(aria_alcentro))
 COLONNE=STRUCT([ARIA,aria2,aria3,aria4,aria5,aria6,aria7,aria8])
-VIEW(STRUCT([COLONNE,mappa,wall_int]))
+apertura=T([1,2])([44.7, -21.5])(CUBOID([14.5,1.5,16.5]))
+INTERNO=DIFFERENCE([COLONNE,apertura])
+VIEW(STRUCT([COLONNE,apertura]))
+#VIEW(STRUCT([COLONNE,mappa,wall_int]))
 
 """ingresso alla sala"""
 #W[108]: [44.80447317388494, 32.25272139625081]
@@ -165,7 +168,7 @@ por2=T([1,2,3])([14.296910166001808-1.3,-.7,7.5])(CUBOID([1.3,2,2]))
 porte_pres=STRUCT([por1,por2,porta_princ])
 ing_pres=DIFFERENCE([par_pres,porte_pres])
 ING_PRES=T([1,2])([34.70010989010989, 7.860077569489337])(R([1,2])(PI/2)(ing_pres))
-VIEW(STRUCT([ING_PRES,ING,COLONNE]))
+#VIEW(STRUCT([ING_PRES,ING,COLONNE]))
 """LEVEL3"""
 #PARETE DA BUCARE=SQRT((W[58][0]-W[81][0])**2+(W[58][1]-W[81][1])**2):14.059425917919919
 #da traslare qui=W[40]:[59.011512605042014, 50.46088558500324]
@@ -191,10 +194,10 @@ scala = 31.42/0.3094
 W=((mat(V)-V[0])*scala).tolist()
 WW = AA(LIST)(range(len(W)))
 submodel = STRUCT(MKPOLS((W,EV)))
-mappa=larModelNumbering(1,1,1)(W,[WW,EV,FV],submodel,5)
+mappa=larModelNumbering(1,1,1)(W,[WW,EV],submodel,5)
 
 
-EV_SI=sorted([56,72,81,10,25,39,42,35,91,26,80,17,94,34,93,86,15,58,84,46,101,78,7,70,28,0,73,1,88,19,11,31,33,5,71,104,102,85,14,76,61,87,24,64,38,4,48,75,20,83,97,13,103,51,59,82,92])
+EV_SI=sorted([25,39,70,28,73,4,75,20,83,103,51,59,92])
 muri_alti0=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_SI]))
 muri_alti0=OFFSET([0.3,0.3])(muri_alti0)
 wall_edf=T(3)(7.5)(PROD([muri_alti0,Q(26.5)]))
@@ -207,8 +210,55 @@ muro2=T(3)(3)(CUBOID([7,0.3,4.5]))
 muro3=T([1,3])([19.84314156431803-7,3])(CUBOID([7,0.3,4.5]))
 muro=T([1,2,3])([42.021965093729804, -27.53058177117001,7.5])(STRUCT([muro1,muro2,muro3]))
 ESTERNO=STRUCT([wall_corte,wall_edf,muro])
-#VIEW(wall_level3)
-#VIEW(STRUCT([COLONNE,wall_level3]))
+
+"""muro ovest con ringhiere"""
+#W[44][1]-W[46][1]: 7.860077569489338
+#W[46][0]-W[57][0]: -3.1785585003232075
+EV_OVEST=[15,84,101,7,24,87,61,64]
+muri_ovest=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_OVEST]))
+muri_ovest=OFFSET([0.3,0.3])(muri_ovest)
+wall_ovest=PROD([muri_ovest,Q(34)])
+
+part1=CUBOID([0.3,7.860077569489338/3,34])
+part2=T(2)(2*7.860077569489338/3)(CUBOID([0.3,7.860077569489338/3,34]))
+rail_ovest1=STRUCT([T([1,3])([0.15,.5])(R([1,2])(PI/2)(ringhiera(12))),CUBOID([0.3,7.860077569489338/3,0.5])])
+travi=STRUCT(NN(7)([T([2,3])([7.860077569489338/3,10])(rail_ovest1),T(3)(3)]))
+muro_top=T([2,3])([7.860077569489338/3,31])(CUBOID([0.3,7.860077569489338/3,3]))
+rail_ovest2=STRUCT([T([1,2,3])([0.15,0.15,.5])(ringhiera(13)),CUBOID([3.1785585003232075,0.3,0.5])])
+travi2=STRUCT(NN(7)([T(3)(10)(rail_ovest2),T(3)(3)]))
+muro_top2=T(3)(31)(CUBOID([3.1,0.3,3]))
+parete=STRUCT(NN(2)([T(2)(7.860077569489338/3+0.3),T(2)(-0.6)(S(1)(-1)(CUBOID([6.34,0.3,34])))]))
+pareteOVEST=T([1,2])([13.455559146735618, 22.138202973497094])(STRUCT([muro_top,travi,part1,part2,travi2,muro_top2,parete]))
+WALL_OVEST=STRUCT([wall_ovest,pareteOVEST])
+pareteOVEST2=T(2)(29.998280542986432/2)(S(2)(-1)(T(2)(-29.998280542986432/2)(WALL_OVEST)))
+
+"""muro est"""
+part1=CUBOID([0.3,7.860077569489338/3,34])
+part2=T(2)(2*7.860077569489338/3)(CUBOID([0.3,7.860077569489338/3,34]))
+rail_ovest1=STRUCT([T([1,3])([0.15,.5])(R([1,2])(PI/2)(ringhiera(12))),CUBOID([0.3,7.860077569489338/3,0.5])])
+travi=STRUCT(NN(7)([T([2,3])([7.860077569489338/3,10])(rail_ovest1),T(3)(3)]))
+muro_top=T([2,3])([7.860077569489338/3,31])(CUBOID([0.3,7.860077569489338/3,3]))
+rail_ovest2=STRUCT([T([1,2,3])([0.15,0.15,.5])(ringhiera(13)),CUBOID([3.1785585003232075,0.3,0.5])])
+travi2=STRUCT(NN(7)([T(3)(10)(rail_ovest2),T(3)(3)]))
+muro_top2=T(3)(31)(CUBOID([3.1,0.3,3]))
+parete=STRUCT(NN(2)([T(2)(7.860077569489338/3+0.3),T(2)(-0.6)(S(1)(-1)(CUBOID([6.34,0.3,34])))]))
+a=S(1)(-1)(STRUCT([muro_top,travi,part1,part2,travi2,muro_top2,parete]))
+b=STRUCT(NN(2)([CUBOID([6.34,0.3,34]),T(2)(7.860077569489338-0.3)]))
+part01=T(1)(6.34)(CUBOID([0.3,7.860077569489338/3,34]))
+part02=T([1,2])([6.34,2*7.860077569489338/3])(CUBOID([0.3,7.860077569489338/3,34]))
+pareteEST1=T([1,2])([90.6,22.1])(STRUCT([a,b,part01,part02]))
+pareteEST2=T([1,2])([90.6,8])(S(2)(-1)(STRUCT([a,b,part01,part02])))
+rin1=STRUCT(NN(4)([T([1,2,3])([97, 0,10.5])(R([1,2])(PI/2)(ringhiera(3))),T(3)(6)]))
+rin2=STRUCT(NN(4)([T([1,2,3])([95.75, 30.5,10.5])(R([1,2])(-PI/2)(ringhiera(4))),T(3)(6)]))
+EST_OVEST=STRUCT([rin1,rin2,WALL_OVEST,pareteOVEST2,pareteEST1,pareteEST2])
+
+#VIEW(STRUCT([rin1,rin2,ING_PRES,ING,COLONNE,ESTERNO,facciate_uff,ringhiere_sud,WALL_OVEST,pareteOVEST2,pareteEST1,pareteEST2]))
+
+"""muro nord"""
+rail_nord1=T([1,2,3])([45, 53.99487394957984,13.5])(R([1,2])(-PI/2)(ringhiera(16)))
+rail_nord2=T([1,2,3])([59.1, 53.99487394957984,13.5])(R([1,2])(-PI/2)(ringhiera(16)))
+wall=T([1,2,3])([44.9466451195863, 53.99487394957984,19.5])(CUBOID([14.064867485455714,0.3,14.5]))
+rail_NORD=STRUCT([rail_nord1,rail_nord2,wall])
 
 
 """corridoio esterno"""
@@ -216,11 +266,12 @@ ESTERNO=STRUCT([wall_corte,wall_edf,muro])
 #W[99],W[75]:SQRT((W[99][0]-W[75][0])**2+(W[99][1]-W[75][1])**2)=42.747549408870746
 #W[33],W[34]:SQRT((W[33][0]-W[34][0])**2+(W[33][1]-W[34][1])**2)=43.357941172843034
 #W[42],W[69]:SQRT((W[42][0]-W[69][0])**2+(W[42][1]-W[69][1])**2)=42.440380341310124
+
 lines = lines2lines("facciata_uff.lines")
 V,FV,EV,polygons = larFromLines(lines) 
 VV = AA(LIST)(range(len(V)))
 submodel = STRUCT(MKPOLS((V,EV)))
-VIEW(larModelNumbering(1,1,1)(V,[VV,EV,FV],submodel,0.1))
+#VIEW(larModelNumbering(1,1,1)(V,[VV,EV,FV],submodel,0.1))
 scala = 34/0.8114
 W=((mat(V)-V[181])*scala).tolist()
 FV_NO=[7,4,2,5,1,3,6]
@@ -228,14 +279,37 @@ buchi = STRUCT(MKPOLS([W,[FV[k] for k in FV_NO]]))
 tot = STRUCT(MKPOLS([W,FV]))
 frame= DIFFERENCE([tot,buchi])
 muro_uff=PROD([frame,Q(0.3)])
-wall_uff=T(1)((41.90288390436283-38)/2)(S(1)(38/41.90288390436283)(R([2,3])(PI/2)(muro_uff)))
+wall_uff0=T(1)((41.90288390436283-38)/2)(S(1)(38/41.90288390436283)(R([2,3])(PI/2)(muro_uff)))
+
+
+"""ringhiere sud"""
+ringhiera0=T(3)(10.5)(ringhiera(9))
+rip_ring=T(2)(-0.15)(STRUCT(NN(4)([ringhiera0,T(3)(6)])))
+rip_ring2=T(1)(41.90288390436283-(41.90288390436283-38)/2)(rip_ring)
+#VIEW(rip_ring)
+
+wall_uff=STRUCT([rip_ring,rip_ring2,wall_uff0])
 #VIEW(wall_uff)
+
 wall1=T([1,2])([7.108597285067875, 0.0])(R([1,2])(-PI/4)(wall_uff))
 wall2=T([1,2])([7.108597285067875, 29.998280542986432])(R([1,2])(PI/4)(wall_uff))
 wall3=T([1,2])([66.26228183581125, 60.30121525533292])(R([1,2])(-PI/4)(wall_uff))
 wall4=T([1,2])([97.06281835811248, -0.21325791855203527])(R([1,2])(-3*PI/4)(wall_uff))
 facciate_uff=STRUCT([wall2,wall3,wall4,wall1])
 #VIEW(STRUCT([facciate_uff,ING_PRES,ING,COLONNE]))
+
+"""altre ringhiere"""
+ringh_sala=T([1,2,3])([36.65, -29.687,22.5])(ringhiera(17))
+ringh_sala2=T([1,2,3])([36.65, -29.687,28.5])(ringhiera(17))
+ringh_sala3=T([1,2,3])([40.3, -29.8,22.5])(R([1,2])(-PI/2)(ringhiera(14)))
+ringh_sala4=T([1,2,3])([40.3, -29.8,28.5])(R([1,2])(-PI/2)(ringhiera(14)))
+ringh_SALA=STRUCT([ringh_sala,ringh_sala2,ringh_sala3,ringh_sala4])
+ringh_SALA2=T(1)(51.6)(S(1)(-1)(T(1)(-52.30912087912088)(ringh_SALA)))
+ring01=T([1,2,3])([36.6, -29.8,16.5])(R([1,2])(-3*PI/4)(ringhiera(17)))
+ring02=T([1,2,3])([36.6, -29.8,10.5])(R([1,2])(-3*PI/4)(ringhiera(17)))
+ring03=T(1)(51.65)(S(1)(-1)(T(1)(-52.30912087912088)(STRUCT([ringh_SALA]))))
+ringhiere_sud=STRUCT([ring01,ring02,ring03,ringh_SALA,ringh_SALA2])
+#VIEW(STRUCT([ringhiere_sud,mappa,ING_PRES,ING,COLONNE,ESTERNO,facciate_uff]))
 """
 LEVEL4
 
@@ -322,7 +396,8 @@ grafo = STRUCT(AA(POLYLINE)(lines))
 V,EV = lines2lar(lines)
 VV = AA(LIST)(range(len(V)))
 submodel = STRUCT(MKPOLS((V,EV)))
-#VIEW(larModelNumbering(1,1,1)(V,[VV,EV],submodel,0.05))
+#mappa=larModelNumbering(1,1,1)(V,[VV,EV],submodel,0.05)
+
 
 #V[0] da portare nell'origine 
 #V[51][0]-V[78][0]= 0.3094
@@ -330,6 +405,9 @@ submodel = STRUCT(MKPOLS((V,EV)))
 scala = 31.42/0.3094
 
 W=((mat(V)-V[0])*scala).tolist()
+WW = AA(LIST)(range(len(W)))
+submodel = STRUCT(MKPOLS((W,EV)))
+mappa=larModelNumbering(1,1,1)(W,[WW,EV],submodel,5)
 
 muri_alti=STRUCT(MKPOLS((W,EV)))
 muri_alti=OFFSET([0.3,0.3])(muri_alti)
@@ -338,7 +416,9 @@ wall_level7=T(3)(19.5)(PROD([muri_alti,Q(14.5)]))
 VIEW(STRUCT([COLONNE,wall_level3,wall_level4,wall_level5,wall_level6,wall_level7]))
 
 """
+VIEW(STRUCT([ING_PRES,ING,COLONNE,ESTERNO,facciate_uff,ringhiere_sud,EST_OVEST,rail_NORD]))
 
 
-VIEW(STRUCT([ING_PRES,ING,COLONNE,ESTERNO,facciate_uff]))
+
+
 

@@ -375,7 +375,7 @@ fin_cut1=T([1,2,3])([25.4,-6,29])(R([1,2])(PI/3)(fin_cerchi))
 fin_cut2=T([1,2,3])([25.4,-6,20])(R([1,2])(PI/3)(fin_cerchi))
 fin_cutsx=STRUCT([fin_cut1,fin_cut2])
 fin_cutdx=T(1)(16.83)(S(1)(-1)(T(1)(-16.83)(fin_cutsx)))
-VIEW(STRUCT([corte,COLOR(RED)(fin_cutsx),COLOR(RED)(fin_cutdx)]))
+#VIEW(STRUCT([corte,COLOR(RED)(fin_cutsx),COLOR(RED)(fin_cutdx)]))
 
 CUT=STRUCT([buco_fin,cut,cut2,fin_cutsx,fin_cutdx])
 
@@ -424,7 +424,7 @@ rip_MARMOcorte2=T(1)(4.9)(STRUCT(NN(11)([MARMO_corte2,T(3)(3)])))
 
 MURI_CORTE=STRUCT([chiudi,rip_MARMOcorte,MURI,rip_MARMOcorte2])
 corte=DIFFERENCE([MURI_CORTE,CUT])
-VIEW(corte)
+#VIEW(corte)
 
 """PAVIMENTI CORTE"""
 #LEVEL1/3

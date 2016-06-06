@@ -1,4 +1,6 @@
 #INGRESSO NORD
+#apertura livello 5 no 7
+
 lines = lines2lines("nord_level0.lines")
 V,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
 grafo=STRUCT(MKPOLS((V,EV))) #grafo pulito
