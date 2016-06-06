@@ -125,7 +125,7 @@ aria8=T([1,2])([44.80447317388494, 32.25272139625081])(R([1,2])(-7*PI/4)(aria_al
 COLONNE=STRUCT([ARIA,aria2,aria3,aria4,aria5,aria6,aria7,aria8])
 apertura=T([1,2])([44.7, -21.5])(CUBOID([14.5,1.5,16.5]))
 INTERNO=DIFFERENCE([COLONNE,apertura])
-VIEW(STRUCT([COLONNE,apertura]))
+#VIEW(STRUCT([COLONNE,apertura]))
 #VIEW(STRUCT([COLONNE,mappa,wall_int]))
 
 """ingresso alla sala"""
@@ -416,7 +416,7 @@ wall_level7=T(3)(19.5)(PROD([muri_alti,Q(14.5)]))
 VIEW(STRUCT([COLONNE,wall_level3,wall_level4,wall_level5,wall_level6,wall_level7]))
 
 """
-VIEW(STRUCT([ING_PRES,ING,COLONNE,ESTERNO,facciate_uff,ringhiere_sud,EST_OVEST,rail_NORD]))
+VIEW(STRUCT([ING_PRES,ING,INTERNO,ESTERNO,facciate_uff,ringhiere_sud,EST_OVEST,rail_NORD]))
 
 
 
