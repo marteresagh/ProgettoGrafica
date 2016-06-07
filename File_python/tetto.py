@@ -1,4 +1,4 @@
-TETTO
+#TETTO
 def CONICALSURFACE (args):
     apex=args[0]
     alpha_fn   = lambda point: apex

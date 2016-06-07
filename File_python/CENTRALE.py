@@ -139,7 +139,9 @@ WALL=T([1,2])([59.011512605042014, 50.46088558500324])(R([1,2])(-0.3941146823733
 tetto0=T([1,2,3])([62.97709437621203, 34.40053329023918,34])(R([1,2])(-PI/4)(CUBOID([12.175568028173133,0.3,12])))
 tetto1=T([1,2,3])([59.092753716871364, 32.25272139625081,43])(R([1,2])(-PI/4)(CUBOID([14.296910166001808,0.3,3])))
 tetto2=T([1,2,3])([59.092753716871364, 32.25272139625081,40])(R([1,2])(-PI/4)(CUBOID([14.296910166001808,0.3,1])))
-tetto=STRUCT([tetto0,tetto1,tetto2])
+tetto3=T([1,2,3])([75, 8.794350355526827,43])(CUBOID([1,12.186166774402075,3]))
+
+tetto=STRUCT([tetto0,tetto1,tetto2,tetto3])
 ARIA=STRUCT([tetto,aria,frontale,lat1,lat2,passo,WALL])
 aria_alcentro=T([1,2])([-59.092753716871364, -32.25272139625081])(ARIA)
 aria2=T([1,2])([69.20727213962509, 22.148358112475762])(R([1,2])(-PI/4)(aria_alcentro))
@@ -181,15 +183,17 @@ V=[[0,0],[1,0],[0,1]]
 FV=[[0,1,2]]
 triangle=STRUCT(MKPOLS((V,FV)))
 triangle=PROD([triangle,Q(14.296910166001808)])
-trave=T([2,3])([1.2,16.2])(S([2,3])([-1,-1])(R([1,3])(-PI/2)(triangle)))
-#VIEW(STRUCT([trave,ING_PRES,ING,COLONNE]))
+trave0=T([2,3])([1.2,14.5])(S([2,3])([-1,-1])(R([1,3])(-PI/2)(triangle)))
+pil=STRUCT(NN(5)([T([1,2,3])([1,1.2,15])(CUBOID([0.05,0.05,3])),T(1)(3)]))
+trave=STRUCT([trave0,pil])
+
 "pareti"
 par_int=CUBOID([14.296910166001808,1,10.5])
 porta1=T([2,3])([-.7,7.5])(CUBOID([1.5,2,2.5]))
 porta2=T([1,2,3])([14.296910166001808-1.5,-.7,7.5])(CUBOID([1.5,2,2.5]))
 porte=STRUCT([porta1,porta2])
 ingr_sala0=DIFFERENCE([par_int,porte])
-par_sup=T(3)(19.5)(CUBOID([14.296910166001808,1,14.5]))
+par_sup=T(3)(18)(CUBOID([14.296910166001808,1,16]))
 ingr_sala=STRUCT([trave,ingr_sala0,par_sup])
 ING_sala=T([1,2])([44.80447317388494, 32.25272139625081])(ingr_sala)
 ing2=T([1,2])([59.092753716871364, 32.25272139625081])(R([1,2])(-PI/4)(ingr_sala))
@@ -346,7 +350,7 @@ ringh_SALA=STRUCT([ringh_sala,ringh_sala2,ringh_sala3,ringh_sala4])
 ringh_SALA2=T(1)(51.6)(S(1)(-1)(T(1)(-52.30912087912088)(ringh_SALA)))
 ring01=T([1,2,3])([36.6, -29.8,16.5])(R([1,2])(-3*PI/4)(ringhiera(17)))
 ring02=T([1,2,3])([36.6, -29.8,10.5])(R([1,2])(-3*PI/4)(ringhiera(17)))
-ring03=T(1)(51.65)(S(1)(-1)(T(1)(-52.30912087912088)(STRUCT([ringh_SALA]))))
+ring03=T(1)(51.65)(S(1)(-1)(T(1)(-52.30912087912088)(STRUCT([ring01,ring02]))))
 ringhiere_sud=STRUCT([ring01,ring02,ring03,ringh_SALA,ringh_SALA2])
 #VIEW(STRUCT([ringhiere_sud,mappa,ING_PRES,ING,COLONNE,ESTERNO,facciate_uff]))
 """
@@ -456,9 +460,19 @@ VIEW(STRUCT([COLONNE,wall_level3,wall_level4,wall_level5,wall_level6,wall_level7
 
 """
 centro=STRUCT([COLONNE,ING_PRES,ING,ESTERNO,facciate_uff,ringhiere_sud,EST_OVEST,rail_NORD,WAY])
-VIEW(STRUCT([COLONNE,ING_PRES,ING,ESTERNO,facciate_uff,ringhiere_sud,EST_OVEST,rail_NORD,WAY]))
+#VIEW(STRUCT([COLONNE,ING_PRES,ING,ESTERNO,facciate_uff,ringhiere_sud,EST_OVEST,rail_NORD,WAY]))
+piano3=T([2,3])([-30,7.3])(CUBOID([100,100,0.3]))
+#VIEW(STRUCT([centro,piano3]))
 
-
-
-
+"""CAMERA ASSEMBLEA"""
+#SQRT((W[59][0]-W[25][0])**2+(W[59][1]-W[25][1])**2)
+trib0=T([1,3])([2.05,7.5])(CUBOID([8,0.3,3]))
+trib1=T([2,3])([2,7.5])(CUBOID([14,0.3,7.5]))
+m=MAT([[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,3./2,1]])
+trib2=T([1,3])([2.05,4.5])(m(CUBOID([0.3,2,6])))
+trib3=T([1,3])([2.05+8,4.5])(m(CUBOID([0.3,2,6])))
+trib=STRUCT([trib0,trib1,trib2,trib3])
+tri1=T([1,2])([42.84453135100194, -2.9754557207498378])(R([1,2])(-5*PI/4)(trib))
+tri2=T([1,2])([34.222818358112484, 24.128610213316094])(R([1,2])(-7*PI/4)(trib))
+VIEW(STRUCT([tri1,tri2,centro,piano3]))
 
