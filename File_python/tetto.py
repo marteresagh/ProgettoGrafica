@@ -8,20 +8,14 @@ def CONICALSURFACE (args):
 #altezza=SQRT((34.49700711053653/2)**2-(7.1)**2)
 
 domain = EMBED(1)(PROD([INTERVALS(3)(48),INTERVALS(1)(48)]))
-beta = lambda point: [COS(point[0]),SIN(point[0]),-1]
+angle0=5*PI/8
+beta = lambda point: [COS(point[0]),SIN(point[0])*COS(angle0)+SIN(angle0)+1,SIN(angle0)*SIN(point[0])-COS(angle0)-1.35]
 out = GMAP(CONICALSURFACE([[0,0,0],beta]))(domain)
-VIEW(out)
-cono0=S([1,2,3])([7.4,8,18.3])(out)
+#VIEW(out)
+cono0=S([1,2,3])([7.85,10,6.5])(out)
 angle=ATAN(7.1/16.5)
-cono1=R([2,3])(3*angle)(cono0)
-
-cubo=T([1,2,3])([-8,34.49700711053653/2,-10])(CUBOID([16,0,20]))
-conoR=STRUCT(NN(8)([cono1,R([1,2])((2*PI)/8)]))
-conoT=T([1,2,3])([51.95369101486749,15.00421784098255,40])(conoR)
-#VIEW(conoT)
-centro=[51.95369101486749,15.00421784098255,40]
-VIEW(STRUCT([ING,INTERNO,conoT]))
-
-pr=PROD([conoT, QUOTE([1]) ])
-VIEW(pr)
+conoR=STRUCT(NN(8)([cono0,R([1,2])((2*PI)/8)]))
+TETTO=T([1,2,3])([51.95369101486749,15.00421784098255,39.5])(conoR)
+#o=[51.95369101486749,15.00421784098255,40]
+VIEW(STRUCT([centro,TETTO]))
 

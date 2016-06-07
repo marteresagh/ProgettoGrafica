@@ -16,12 +16,10 @@ submodel = STRUCT(MKPOLS((V,EV)))
 scala = 31.42/0.3094
 
 W=((mat(V)-V[0])*scala).tolist()
-#WW = AA(LIST)(range(len(W)))
-#submodel = STRUCT(MKPOLS((W,EV)))
-#mappa=larModelNumbering(1,1,1)(W,[WW,EV],submodel,5)
-#WW = AA(LIST)(range(len(W)))
-#submodel = STRUCT(MKPOLS((W,EV)))
-#VIEW(larModelNumbering(1,1,1)(W,[WW,EV],submodel,5))
+WW = AA(LIST)(range(len(W)))
+submodel = STRUCT(MKPOLS((W,EV)))
+mappa=larModelNumbering(1,1,1)(W,[WW,EV],submodel,5)
+
 
 #base =STRUCT(MKPOLS((W,EV)))
 #VIEW(base)
@@ -32,6 +30,25 @@ W=((mat(V)-V[0])*scala).tolist()
 #W[109]:[58.17879120879121, 34.08064641241113]
 #W[153]: [61.32688429217841, 32.7706334841629]
 
+"""finestre"""
+grid=SKEL_1(STRUCT(MKPOLS(larCuboids([6,4]))))
+gridOFF=OFFSET([0.05,0.05])(grid)
+grata=PROD([gridOFF,Q(0.05)])
+fin_quad=R([2,3])(PI/2)(grata)
+grata1=T([1,2,3])([3,0.15,8])(fin_quad)
+grata2=T([1,2,3])([3,0.15,14])(fin_quad)
+grata3=T([1,2,3])([3,0.15,19])(fin_quad)
+grata4=T([1,2,3])([3,0.15,22])(fin_quad)
+GRATA_QUAD=STRUCT([grata1,grata2,grata3,grata4])
+#VIEW(STRUCT([PARETE_LAT,grata1,grata2,grata3,grata4]))
+
+grid_C=SKEL_1(STRUCT(MKPOLS(larCuboids([10,11]))))
+gridOFFC=OFFSET([0.05,0.05])(grid_C)
+grataC=PROD([gridOFFC,Q(0.05)])
+fin_circ=R([2,3])(PI/2)(grataC)
+grataC1=T([1,2,3])([1,0.15,4])(fin_circ)
+grataC2=T([1,2,3])([1,0.15,16])(fin_circ)
+#VIEW(STRUCT([PARETE_FRONT,grataC1,grataC2]))
 
 
 EV_si=sorted([54,73,34])
@@ -68,7 +85,8 @@ buchiPROD=R([2,3])(PI/2)(PROD([buchi,Q(2)]))
 buco1=T([1,2,3])([12.181106137187708/2,1,22])(buchiPROD)
 buco2=T([1,2,3])([12.181106137187708/2,1,10])(buchiPROD)
 BUCHI=STRUCT([buco1,buco2,CERCHIO])
-PARETE_FRONT=DIFFERENCE([parete_front,BUCHI])
+PARETE_FRONT0=DIFFERENCE([parete_front,BUCHI])
+PARETE_FRONT=STRUCT([PARETE_FRONT0,grataC1,grataC2])
 
 parete_lat=CUBOID([11.454996767937942,0.3,46])
 fin=T([1,2,3])([3,-1,8])(CUBOID([6,2,4]))
@@ -76,7 +94,8 @@ fin2=T([1,2,3])([3,-1,14])(CUBOID([6,2,4]))
 fin3=T([1,2,3])([3,-1,19])(CUBOID([6,2,1.5]))
 fin4=T([1,2,3])([3,-1,22])(CUBOID([6,2,1.5]))
 FIN=STRUCT([fin,fin2,fin3,fin4])
-PARETE_LAT=DIFFERENCE([parete_lat,FIN])
+PARETE_LAT0=DIFFERENCE([parete_lat,FIN])
+PARETE_LAT=STRUCT([PARETE_LAT0,GRATA_QUAD])
 
 #VIEW(STRUCT([PARETE_FRONT,PARETE_LAT]))
 #ATAN((W[105][1]-W[106][1])/(W[105][0]-W[106][0])):-0.39411468237339375
@@ -109,11 +128,19 @@ FORI=STRUCT([cerchio,semi_circ])
 PARETE=DIFFERENCE([parete,FORI])
 WALL=T([1,2])([59.011512605042014, 50.46088558500324])(R([1,2])(-0.39411468237339375
 )(PARETE))
-porta=T([1,2,3])([6.2,-1,7.5])(CUBOID([2,2,2.5]))
-muro0=T([1,2])([-.1,-.01])(CUBOID([14.4,0.3,34]))
-muro=DIFFERENCE([muro0,porta])
-wall_int=T([1,2])([71.99993535875889, 45.07866192630899])(R([1,2])(-PI/4)(muro))
-ARIA=STRUCT([aria,frontale,lat1,lat2,passo,WALL,wall_int])
+
+#W[106]: [62.97709437621203, 34.40053329023918]
+#W[107]: [71.50233354880413, 25.707734324499036]
+#W[153]: [61.32688429217841, 32.7706334841629]
+#tetto=SQRT((W[106][0]-W[107][0])**2+(W[106][1]-W[107][1])**2): 12.175568028173133
+#SQRT((W[23][0]-W[26][0])**2+(W[26][1]-W[23][1])**2): 14.296910166001808
+
+
+tetto0=T([1,2,3])([62.97709437621203, 34.40053329023918,34])(R([1,2])(-PI/4)(CUBOID([12.175568028173133,0.3,12])))
+tetto1=T([1,2,3])([59.092753716871364, 32.25272139625081,43])(R([1,2])(-PI/4)(CUBOID([14.296910166001808,0.3,3])))
+tetto2=T([1,2,3])([59.092753716871364, 32.25272139625081,40])(R([1,2])(-PI/4)(CUBOID([14.296910166001808,0.3,1])))
+tetto=STRUCT([tetto0,tetto1,tetto2])
+ARIA=STRUCT([tetto,aria,frontale,lat1,lat2,passo,WALL])
 aria_alcentro=T([1,2])([-59.092753716871364, -32.25272139625081])(ARIA)
 aria2=T([1,2])([69.20727213962509, 22.148358112475762])(R([1,2])(-PI/4)(aria_alcentro))
 aria3=T([1,2])([69.20727213962509, 7.860077569489337])(R([1,2])(-PI/2)(aria_alcentro))
@@ -123,10 +150,22 @@ aria6=T([1,2])([34.70010989010989, 7.860077569489337])(R([1,2])(-5*PI/4)(aria_al
 aria7=T([1,2])([34.70010989010989, 22.148358112475762])(R([1,2])(-3*PI/2)(aria_alcentro))
 aria8=T([1,2])([44.80447317388494, 32.25272139625081])(R([1,2])(-7*PI/4)(aria_alcentro))
 COLONNE=STRUCT([ARIA,aria2,aria3,aria4,aria5,aria6,aria7,aria8])
-apertura=T([1,2])([44.7, -21.5])(CUBOID([14.5,1.5,16.5]))
-INTERNO=DIFFERENCE([COLONNE,apertura])
+
 #VIEW(STRUCT([COLONNE,apertura]))
 #VIEW(STRUCT([COLONNE,mappa,wall_int]))
+porta=T([1,2,3])([6.2,-1,7.5])(CUBOID([2,2,2.5]))
+muro0=T([1,2])([-.1,-.01])(CUBOID([14.4,0.3,34]))
+muro=DIFFERENCE([muro0,porta])
+wall_int=T([1,2])([71.99993535875889, 45.07866192630899])(R([1,2])(-PI/4)(muro))
+wall_alcentro=T([1,2])([-59.092753716871364, -32.25272139625081])(wall_int)
+wall2=T([1,2])([69.20727213962509, 22.148358112475762])(R([1,2])(-PI/4)(wall_alcentro))
+wall3=T([1,2])([69.20727213962509, 7.860077569489337])(R([1,2])(-PI/2)(wall_alcentro))
+wall5=T([1,2])([44.80447317388494, -2.2442857142857155])(R([1,2])(-PI)(wall_alcentro))
+wall6=T([1,2])([34.70010989010989, 7.860077569489337])(R([1,2])(-5*PI/4)(wall_alcentro))
+wall7=T([1,2])([34.70010989010989, 22.148358112475762])(R([1,2])(-3*PI/2)(wall_alcentro))
+wall8=T([1,2])([44.80447317388494, 32.25272139625081])(R([1,2])(-7*PI/4)(wall_alcentro))
+apertura=T([1,2,3])([44.7, -20.7,16.5])(CUBOID([14.5,0.3,17.5]))
+WAY=STRUCT([wall_int,wall2,wall3,apertura,wall5,wall6,wall7,wall8])
 
 """ingresso alla sala"""
 #W[108]: [44.80447317388494, 32.25272139625081]
@@ -416,7 +455,8 @@ wall_level7=T(3)(19.5)(PROD([muri_alti,Q(14.5)]))
 VIEW(STRUCT([COLONNE,wall_level3,wall_level4,wall_level5,wall_level6,wall_level7]))
 
 """
-VIEW(STRUCT([ING_PRES,ING,INTERNO,ESTERNO,facciate_uff,ringhiere_sud,EST_OVEST,rail_NORD]))
+centro=STRUCT([COLONNE,ING_PRES,ING,ESTERNO,facciate_uff,ringhiere_sud,EST_OVEST,rail_NORD,WAY])
+VIEW(STRUCT([COLONNE,ING_PRES,ING,ESTERNO,facciate_uff,ringhiere_sud,EST_OVEST,rail_NORD,WAY]))
 
 
 
