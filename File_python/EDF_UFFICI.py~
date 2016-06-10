@@ -373,8 +373,8 @@ pavimento_level4= DIFFERENCE([tot,buchi])
 pavimento_level4=T(3)(10.25)(PROD([pavimento_level4,Q(0.3)]))
 """
 #**pavimenti superiori e finale**
-pavimento_3up=STRUCT(NN(4)([pavimento_level3,T(3)(6)]))
-pavimento_4up=STRUCT(NN(3)([pavimento_level4,T(3)(6)]))
+#pavimento_3up=STRUCT(NN(4)([pavimento_level3,T(3)(6)]))
+#pavimento_4up=STRUCT(NN(3)([pavimento_level4,T(3)(6)]))
 
 lines = lines2lines("pavimento_level3.lines")
 V,FV,EV,polygons = larFromLines(lines) #taglia le parti di troppo
@@ -522,9 +522,9 @@ GRID3=PROD([grid3,INTERVALS(0.1)(1)])
 grcol_dx=T([1,2,3])([27.997909337621874, 10.928786812744997,33.8])(GRID3)
 grcol_sx=T([1,2,3])([10.928786812744999, 10.928786812744997,33.8])(GRID3)
 GRID_tot=T(2)(0.1)(STRUCT([GRID_dx,GRID_sx,grcol_dx,grcol_sx]))
+PARETI_UFF=STRUCT([EDF_UFFfinal,muro_circ])
+
 EDIFICIO=STRUCT([EDF_UFFfinal,Pav_UFF,muro_circ,GRID_tot])
 VIEW(EDIFICIO)
 
-
-#alleggerito
-#mancano solo le scale 
+#obj creato

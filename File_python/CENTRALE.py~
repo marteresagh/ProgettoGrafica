@@ -31,14 +31,14 @@ mappa=larModelNumbering(1,1,1)(W,[WW,EV],submodel,5)
 #W[153]: [61.32688429217841, 32.7706334841629]
 
 """finestre"""
-grid=SKEL_1(STRUCT(MKPOLS(larCuboids([6,4]))))
+grid=SKEL_1(STRUCT(MKPOLS(larCuboids([6,6]))))
 gridOFF=OFFSET([0.05,0.05])(grid)
 grata=PROD([gridOFF,Q(0.05)])
 fin_quad=R([2,3])(PI/2)(grata)
-grata1=T([1,2,3])([3,0.15,8])(fin_quad)
-grata2=T([1,2,3])([3,0.15,14])(fin_quad)
-grata3=T([1,2,3])([3,0.15,19])(fin_quad)
-grata4=T([1,2,3])([3,0.15,22])(fin_quad)
+grata1=T([1,2,3])([3,0.15,7.75])(fin_quad)
+grata2=T([1,2,3])([3,0.15,13.75])(fin_quad)
+grata3=T([1,2,3])([3,0.15,19.75])(fin_quad)
+grata4=T([1,2,3])([3,0.15,22.75])(fin_quad)
 GRATA_QUAD=STRUCT([grata1,grata2,grata3,grata4])
 #VIEW(STRUCT([PARETE_LAT,grata1,grata2,grata3,grata4]))
 
@@ -89,10 +89,10 @@ PARETE_FRONT0=DIFFERENCE([parete_front,BUCHI])
 PARETE_FRONT=STRUCT([PARETE_FRONT0,grataC1,grataC2])
 
 parete_lat=CUBOID([11.454996767937942,0.3,46])
-fin=T([1,2,3])([3,-1,8])(CUBOID([6,2,4]))
-fin2=T([1,2,3])([3,-1,14])(CUBOID([6,2,4]))
-fin3=T([1,2,3])([3,-1,19])(CUBOID([6,2,1.5]))
-fin4=T([1,2,3])([3,-1,22])(CUBOID([6,2,1.5]))
+fin=T([1,2,3])([3,-1,7.75])(CUBOID([6,2,5.5]))
+fin2=T([1,2,3])([3,-1,13.75])(CUBOID([6,2,5.5]))
+fin3=T([1,2,3])([3,-1,19.75])(CUBOID([6,2,2.5]))
+fin4=T([1,2,3])([3,-1,22.75])(CUBOID([6,2,2.5]))
 FIN=STRUCT([fin,fin2,fin3,fin4])
 PARETE_LAT0=DIFFERENCE([parete_lat,FIN])
 PARETE_LAT=STRUCT([PARETE_LAT0,GRATA_QUAD])
@@ -183,8 +183,10 @@ V=[[0,0],[1,0],[0,1]]
 FV=[[0,1,2]]
 triangle=STRUCT(MKPOLS((V,FV)))
 triangle=PROD([triangle,Q(14.296910166001808)])
-trave=T([2,3])([1.2,14.5])(S([2,3])([-1,-1])(R([1,3])(-PI/2)(triangle)))
-#VIEW(STRUCT([trave,ING_PRES,ING,COLONNE]))
+trave0=T([2,3])([1.2,14.5])(S([2,3])([-1,-1])(R([1,3])(-PI/2)(triangle)))
+pil=STRUCT(NN(5)([T([1,2,3])([1,1.2,15])(CUBOID([0.05,0.05,3])),T(1)(3)]))
+trave=STRUCT([trave0,pil])
+
 "pareti"
 par_int=CUBOID([14.296910166001808,1,10.5])
 porta1=T([2,3])([-.7,7.5])(CUBOID([1.5,2,2.5]))
@@ -246,9 +248,9 @@ EV_CORTE=[67,40,98,8,55,66,23,57,2,3,16]
 muri_alti=STRUCT(AA(POLYLINE)([[W[EV[e][0]],W[EV[e][1]]] for e in EV_CORTE]))
 muri_alti=OFFSET([0.3,0.3])(muri_alti)
 wall_corte=T(3)(7.5)(PROD([muri_alti,Q(7.5)]))
-muro1=CUBOID([19.84314156431803,0.3,3])
-muro2=T(3)(3)(CUBOID([7,0.3,4.5]))
-muro3=T([1,3])([19.84314156431803-7,3])(CUBOID([7,0.3,4.5]))
+muro1=CUBOID([19.84314156431803,0.3,4.5])
+muro2=T(3)(4.5)(CUBOID([7,0.3,3]))
+muro3=T([1,3])([19.84314156431803-7,4.5])(CUBOID([7,0.3,3]))
 muro=T([1,2,3])([42.021965093729804, -27.53058177117001,7.5])(STRUCT([muro1,muro2,muro3]))
 ESTERNO=STRUCT([wall_corte,wall_edf,muro])
 
@@ -465,12 +467,24 @@ piano3=T([2,3])([-30,7.3])(CUBOID([100,100,0.3]))
 """CAMERA ASSEMBLEA"""
 #SQRT((W[59][0]-W[25][0])**2+(W[59][1]-W[25][1])**2)
 trib0=T([1,3])([2.05,7.5])(CUBOID([8,0.3,3]))
-trib1=T([2,3])([2,7.5])(CUBOID([14,0.3,7.5]))
+trib1=T([2,3])([2,7.5])(CUBOID([13,0.3,7.5]))
 m=MAT([[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,3./2,1]])
 trib2=T([1,3])([2.05,4.5])(m(CUBOID([0.3,2,6])))
 trib3=T([1,3])([2.05+8,4.5])(m(CUBOID([0.3,2,6])))
 trib=STRUCT([trib0,trib1,trib2,trib3])
 tri1=T([1,2])([42.84453135100194, -2.9754557207498378])(R([1,2])(-5*PI/4)(trib))
 tri2=T([1,2])([34.222818358112484, 24.128610213316094])(R([1,2])(-7*PI/4)(trib))
-VIEW(STRUCT([tri1,tri2,centro,piano3]))
+VIEW(STRUCT([tri1,tri2,centro,piano3,TETTO]))
+
+
+"""scale"""
+scala_corte1=T([1,2,3])([42.021965093729804+19.84314156431803-7, -27.53058177117001-5.29082740788623,10.4])(createSteps(20,[0.27,5.29082740788623/2,0.15],full=True))
+scala_corte2=T([1,2,3])([42.021965093729804+7, -27.53058177117001-5.29082740788623,10.4])(S(1)(-1)(createSteps(20,[0.27,5.29082740788623/2,0.15],full=True)))
+scala_corte3=T([1,2,3])([42.021965093729804+1.6, -27.53058177117001-5.29082740788623/2,13.4])(createSteps(20,[0.27,5.29082740788623/2,0.15],full=True))
+scala_corte4=T([1,2,3])([42.021965093729804+19.84314156431803-1.6, -27.53058177117001-5.29082740788623/2,13.4])(S(1)(-1)(createSteps(20,[0.27,5.29082740788623/2,0.15],full=True)))
+pianerottolo=T([1,2,3])([42.021965093729804+7, -27.53058177117001-5.29082740788623,10.4])(CUBOID([5.8431415643180316,5.29082740788623,0.15]))
+
+VIEW(STRUCT([pianerottolo,scala_corte1,scala_corte2,scala_corte3,scala_corte4,centro]))
+
+
 

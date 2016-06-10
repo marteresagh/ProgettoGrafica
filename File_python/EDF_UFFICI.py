@@ -267,7 +267,7 @@ W=((mat(V)-V[5])*scala).tolist()
 base=STRUCT(MKPOLS((W,EV)))
 finale=OFFSET([0.3,0.3])(base)
 finale=T(3)(28.5)(PROD([finale,Q(5.5)]))
-"""
+
 #dettagli righe
 
 lines = lines2lines("rialzo_level1.lines")
@@ -293,12 +293,12 @@ righe = T([1,2])([-0.15,-0.15])( OFFSET([0.6,0.6])(frame))
 RIGHE=PROD([righe,INTERVALS(0.20)(1)])
 MARMO=T(3)(1.4)(RIGHE)
 rip_MARMO=STRUCT(NN(11)([MARMO,T(3)(3)]))
-
+"""
 
 #VIEW(level_4)
 #VIEW(level_4up)
 
-EDF_UFF=STRUCT([rialzo,level1,colonne,rip_MARMO])
+EDF_UFF=STRUCT([rialzo,level1,colonne])
 #VIEW(EDF_UFF)
 
 #**PAVIMENTI**
@@ -322,10 +322,10 @@ Z=((mat(Y)-Y[26])*scala).tolist()
 #VIEW(larModelNumbering(1,1,1)(Z,[ZZ,EV,FV],submodel,0.1))
 #**celle vuote**
 #celle vuote sono 0,1,2,7,65,4, mi serve solo la 3
-buchi = STRUCT(MKPOLS([Z,[FV[k] for k in [0,1,2,4,5,7,6]]]))
-tot = STRUCT(MKPOLS([Z,FV]))
-pavimento_level2= DIFFERENCE([tot,buchi])
-pavimento_level2=T(3)(4.25)(PROD([pavimento_level2,Q(0.3)]))
+#buchi = STRUCT(MKPOLS([Z,[FV[k] for k in [0,1,2,4,5,7,6]]]))
+#tot = STRUCT(MKPOLS([Z,FV]))
+#pavimento_level2= DIFFERENCE([tot,buchi])
+#pavimento_level2=T(3)(4.25)(PROD([pavimento_level2,Q(0.3)]))
 #VIEW(pavimento_level2)
 #VIEW(STRUCT([EDF_UFF,pavimento_level2]))
 """
@@ -522,9 +522,9 @@ GRID3=PROD([grid3,INTERVALS(0.1)(1)])
 grcol_dx=T([1,2,3])([27.997909337621874, 10.928786812744997,33.8])(GRID3)
 grcol_sx=T([1,2,3])([10.928786812744999, 10.928786812744997,33.8])(GRID3)
 GRID_tot=T(2)(0.1)(STRUCT([GRID_dx,GRID_sx,grcol_dx,grcol_sx]))
+PARETI_UFF=STRUCT([EDF_UFFfinal,muro_circ])
+
 EDIFICIO=STRUCT([EDF_UFFfinal,Pav_UFF,muro_circ,GRID_tot])
 VIEW(EDIFICIO)
 
-
-#alleggerito
-#mancano solo le scale 
+#obj da rifare

@@ -1,5 +1,5 @@
 #SALA DELLA PREGHIERA
-
+#sistema i tagli 
 
 #dimensioni 20.95 per lato e 34 di altezza, 7.61 il raggio delle colonne, offset delle pareti a 0.3
 from larlib import *
@@ -11,19 +11,7 @@ pareti=PROD([muri,Q(34)])
 pav_sala=T([1,2,3])([0.3,0.3,13.5])(CUBOID([20.5,20.5,0.5]))
 pav_sala1=T([1,2,3])([0.3,0.3,7.5])(CUBOID([20.5,20.5,0.5]))
 soffitto=T([1,2,3])([0.3,0.3,33.5])(CUBOID([20.2,20.2,0.5]))
-SALA=STRUCT([rialzo,pareti,soffitto,pav_sala,pav_sala1])
-
-#COLONNE PIANO TERRA
-lines = lines2lines("sala_terra.lines") 
-grafo = STRUCT(AA(POLYLINE)(lines))
-V,EV = lines2lar(lines)
-scaling=14.95
-W=(mat(V)*scaling).tolist()
-grafo1=STRUCT(MKPOLS((W,EV)))
-arco=OFFSET([0.3,0.3])(grafo1)
-ARCHI=T([1,2])([2.87,2.87])(PROD([arco,Q(13.5)]))
-#VIEW(STRUCT([ARCHI]))
-
+#SALA=STRUCT([rialzo,pareti,soffitto,pav_sala,pav_sala1])
 #VIEW(SALA)
 #a 6*1.5 metri c'è l'ingresso principale, ovvero al terzo piano, al primo c' è il passaggio inferiore al livello 5 ovvero a 1.5+3*4
 
@@ -48,22 +36,30 @@ circ3=COLOR(RED)(T([2,3])([.8,14.5])(buco3))
 circ_sud=COLOR(RED)(T([1,2,3])([.8,.8,13.3])(S([3])(-0.75)(T([1,2,3])([-.8,-.8,-14.5])(STRUCT([circ2,circ3])))))
 
 #CILINDRI
-base1=STRUCT(MKPOLS(larDisk(7.61,3./2*PI)([100,1])))
-base2=STRUCT(MKPOLS(larDisk(7.31,3./2*PI)([100,1])))
-cil1=PROD([base1,Q(34)])
-cil2=T(3)(-1)(PROD([base2,Q(37)]))
-cil_vuoto=DIFFERENCE([cil1,cil2])
+def larHollowCyl(r,R,height,angle=2*PI):
+   def larHollowCyl0(shape=[36,1,1]):
+      V,CV = larIntervals(shape)([angle,R-r,1])
+      V = larTranslate([0,r,0])(V)
+      domain = V,CV
+      x = lambda p : p[1] * COS(p[0])
+      y = lambda p : p[1] * SIN(p[0])
+      z = lambda p : p[2] * height
+      return larMap([x,y,z])(domain)
+   return larHollowCyl0
+base1=larHollowCyl(7.31,7.61,34,3*PI/2)([100,1,1])
+cil_vuoto=STRUCT(MKPOLS(base1))
 #VIEW(cil_vuoto)
-
+"""
 #dettagli MARMO
-base01=STRUCT(MKPOLS(larDisk(7.76,3./2*PI)([100,1])))
+base01=larHollowCyl(7.31,7.61,34,3*PI/2)([100,1,1])
+VIEW(STRUCT([PREG,STRUCT(MKPOLS(base01))]))
 base02=STRUCT(MKPOLS(larDisk(7.16,3./2*PI)([100,1])))
 cil01=PROD([base01,Q(0.2)])
 cil02=T(3)(-.5)(PROD([base02,Q(1)]))
 r_circ=DIFFERENCE([cil01,cil02])
 MARMOcirc=T(3)(1.4)(r_circ)
 rip_MARMOcirc=STRUCT(NN(11)([MARMOcirc,T(3)(3)]))
-
+"""
 #FINESTRE
 
 grid=SKEL_1(STRUCT(MKPOLS(larCuboids([5,1]))))
@@ -121,14 +117,14 @@ FINESTRE=STRUCT([GRATE,fin2,fin3,fin4])
 
 pil_x=T(2)(-0.3)(CUBOID([-7.61,0.3,34]))
 pil_y=CUBOID([0.3,7.61,34])
-
+"""
 righe_x=T(2)(-0.15)(T(2)(-0.3)(CUBOID([-7.61,0.60,0.2])))
 righe_y=T(1)(-.15)(CUBOID([0.60,7.61,0.2]))
 rig=STRUCT([righe_x,righe_y])
 MARMOrig=T(3)(1.4)(rig)
 rip_MARMOrig=STRUCT(NN(11)([MARMOrig,T(3)(3)]))
-
-pilastro=STRUCT([cil_vuoto,pil_x,pil_y,rip_MARMOcirc,rip_MARMOrig])
+"""
+pilastro=STRUCT([cil_vuoto,pil_x,pil_y])
 BUCHI=STRUCT([circ,circ1,circ2,circ3,circ_sud])
 PIL=DIFFERENCE([pilastro,BUCHI])
 
@@ -142,6 +138,7 @@ croce2=T(1)(20.8)(R([1,2])(PI/2)(croce1))
 croce3=T([1,2])([20.8,20.8])(R([1,2])(PI)(croce1))
 croce4=T(2)(20.8)(R([1,2])(-PI/2)(croce1))
 
+"""
 #dettagli MARMO
 base0= CUBOID([20.8,20.8])
 frame_righe=T([1,2])([-0.15,-0.15])(OFFSET([0.4,0.4])(SKEL_1(base0)))
@@ -149,10 +146,11 @@ righe=PROD([frame_righe,Q(0.2)])
 MARMOrett=T(3)(1.4)(righe)
 rip_MARMOrett=STRUCT(NN(11)([MARMOrett,T(3)(3)]))
 #VIEW(rip_MARMOrett)
-PREG=STRUCT([SALA,rip_MARMOrett])
-PREG_forata=DIFFERENCE([PREG,FORI])
-SALA_PREG=STRUCT([PREG_forata,croce1,croce2,croce3,croce4])
+"""
+pareti1=DIFFERENCE([pareti,FORI])
+SALA=STRUCT([rialzo,pareti1,soffitto,pav_sala,pav_sala1])
 
+SALA_PREG=STRUCT([SALA,croce1,croce2,croce3,croce4])
 #ARCHI ANGOLATI
 para=CUBOID([20,0.3,6.3])
 semi_circ=STRUCT(MKPOLS(larDisk(9.6/2,PI)([100,1])))
@@ -201,7 +199,7 @@ pav_trans1=T([1,3])([7.4,1.25])(pavrefl)
 pav_trans5=T([1,3])([7.4,13.25])(pavrefl)
 PAV_TRANS=STRUCT([pav_transtop,pav_trans1,pav_trans5])
 
-SALA_PREGHIERA=STRUCT([ARCHI,TETTO,SALA_PREG,FINESTRE,PAV_TRANS])
+SALA_PREGHIERA=STRUCT([TETTO,SALA_PREG,FINESTRE,PAV_TRANS])
 #VIEW(SALA_PREGHIERA)
 rot_SALA=R([1,2])(-PI-0.10472)(T([1,2])([-10.475,-10.475])(SALA_PREGHIERA))
 tras_SALA=T([1,2])([13.328,-30.416])(rot_SALA)
@@ -378,7 +376,7 @@ fin_cutdx=T(1)(16.83)(S(1)(-1)(T(1)(-16.83)(fin_cutsx)))
 #VIEW(STRUCT([corte,COLOR(RED)(fin_cutsx),COLOR(RED)(fin_cutdx)]))
 
 CUT=STRUCT([buco_fin,cut,cut2,fin_cutsx,fin_cutdx])
-
+"""
 # MARMO:file svg modificato, ricrea lines e modifica
 lines = lines2lines("corte_marmo.lines")
 grafo = STRUCT(AA(POLYLINE)(lines))
@@ -418,11 +416,11 @@ base_marm2=T([1,2])([-0.07,-0.15])(OFFSET([0.4,0.4])(mar2))
 cir_marmo2=PROD([base_marm2,Q(0.2)])
 MARMO_corte2=T(3)(1.4)(cir_marmo2)
 rip_MARMOcorte2=T(1)(4.9)(STRUCT(NN(11)([MARMO_corte2,T(3)(3)])))
-
+"""
 
 """fine dettagli"""
 
-MURI_CORTE=STRUCT([chiudi,rip_MARMOcorte,MURI,rip_MARMOcorte2])
+MURI_CORTE=STRUCT([chiudi,MURI])
 corte=DIFFERENCE([MURI_CORTE,CUT])
 #VIEW(corte)
 
