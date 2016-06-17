@@ -166,7 +166,7 @@ wall_finale=T(3)(25.5)(PROD([muri_finale,Q(8.5)]))
 
 muri=STRUCT([WALL_1,wall_2,wall_3,wall_5,wall_6,wall_4,wall_7,wall_8,wall_finale,muro_5,muro_7])
 
-"""MARMO"""
+"""MARMO
 lines = lines2lines("alloggi_marmo.lines")
 
 #numerazione vertici e spigoli
@@ -187,7 +187,7 @@ rip_MARMO=STRUCT(NN(11)([MARMO,T(3)(3)]))
 #VIEW(STRUCT([rip_MARMO,muri]))
 MURI=STRUCT([rip_MARMO,muri])
 #VIEW(MURI)
-
+"""
 
  
 
@@ -247,8 +247,7 @@ buchi = STRUCT(MKPOLS([Z,[FV[k] for k in [25,6,0,19,18,5,20,1,21,2,16,17,7,11,8,
 tot = STRUCT(MKPOLS([Z,FV]))
 frame_level5= DIFFERENCE([tot,buchi])
 pavimento_level5=T([1,3])([-0.6,13.5])(PROD([frame_level5,Q(0.3)]))
-pavimenti5=STRUCT(NN(4)([pavimento_level5,T(3)(3)]))
-PAVIMENTI=STRUCT([pavimento_level1,pavimento_level2,pavimenti3,pavimenti5,pavimenti9,top])
+PAVIMENTI=STRUCT([pavimento_level2,pavimenti3,pavimento_level5,top])
 #VIEW(STRUCT([MURI,PAVIMENTI]))
 
 """buchi"""
@@ -286,7 +285,7 @@ FIN=STRUCT([fin1,fin2,fin3,fin4])
 #VIEW(STRUCT([MURI,COLOR(RED)(tr_fin1),COLOR(RED)(tr_fin2),COLOR(RED)(tr_fin3),COLOR(RED)(tr_fin4),COLOR(RED)(fin1),COLOR(RED)(fin2),COLOR(RED)(fin3),COLOR(RED)(fin4)]))
 
 BUCHI=STRUCT([tr_buco1,tr_buco2,TR_FIN,FIN])
-MURI_ALLOGGI=DIFFERENCE([MURI,BUCHI])
+MURI_ALLOGGI=DIFFERENCE([muri,BUCHI])
 
 #VIEW(STRUCT([PAVIMENTI,MURI_ALLOGGI]))
 
